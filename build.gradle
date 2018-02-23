@@ -1,0 +1,57 @@
+buildscript {
+    ext {
+//		springBootVersion = '1.5.10.RELEASE'
+        springBootVersion = '2.0.0.RC2'
+    }
+    repositories {
+        mavenCentral()
+        maven {
+            url 'https://repo.spring.io/libs-milestone'
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'at.hollander'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://repo.spring.io/libs-milestone'
+    }
+}
+
+
+dependencies {
+    compileOnly('org.projectlombok:lombok')
+
+    compile('com.google.guava:guava:24.0-jre')
+    compile('commons-io:commons-io:2.6')
+
+    runtime('mysql:mysql-connector-java')
+
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-data-rest')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.boot:spring-boot-starter-validation')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    runtime('org.springframework.boot:spring-boot-devtools')
+    compileOnly('org.springframework.boot:spring-boot-configuration-processor')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    compile('org.springframework.data:spring-data-rest-hal-browser')
+
+    compile('org.springframework.session:spring-session-core:2.0.1.RELEASE')
+    compile('org.springframework.session:spring-session-jdbc:2.0.2.RELEASE')
+
+    testCompile('org.springframework.security:spring-security-test')
+}

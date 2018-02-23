@@ -1,0 +1,14 @@
+/dist
+/tmp
+/app/**/*.js
+/app/**/*.js.map
+out/
+build/
+/node_modules
+.idea/
+*.iml
+.DS_Store
+*.iws
+npm-debug.log*
+package-lock.json
+.gradle/

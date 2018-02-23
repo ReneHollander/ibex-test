@@ -1,0 +1,42 @@
+<app-loading [condition]="isLoading"></app-loading>
+
+<app-toast [message]="toast.message"></app-toast>
+
+<div class="card" *ngIf="!isLoading">
+    <h4 class="card-header">Account settings</h4>
+    <div class="card-body">
+        <form #accountForm="ngForm" (ngSubmit)="save(accountDetails)">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                </div>
+                <input class="form-control" type="text" name="name" [(ngModel)]="accountDetails.name" placeholder="Name"
+                       required>
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                </div>
+                <input class="form-control" type="email" name="email" [(ngModel)]="accountDetails.email"
+                       placeholder="Email" required>
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                </div>
+                <input class="form-control" type="number" name="postcode" [(ngModel)]="accountDetails.postcode"
+                       placeholder="Postcode" required>
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                </div>
+                <input class="form-control" type="text" name="city" [(ngModel)]="accountDetails.city" placeholder="City"
+                       required>
+            </div>
+            <button class="btn btn-primary" type="submit" [disabled]="!accountForm.form.valid">
+                <i class="fa fa-save"></i> Save
+            </button>
+        </form>
+    </div>
+</div>

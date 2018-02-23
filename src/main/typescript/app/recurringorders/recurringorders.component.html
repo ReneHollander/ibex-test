@@ -1,0 +1,46 @@
+<app-loading [condition]="isLoading"></app-loading>
+
+<div class="card mb-3" *ngIf="!isLoading">
+    <h4 class="card-header">Recurring Orders</h4>
+
+    <div class="card-body">
+        <ngb-tabset>
+            <ngb-tab *ngFor="let order of recurringOrders" title="{{order.deliverySlot.name}}">
+                <ng-template ngbTabContent>
+                    <recurring-order [recurringOrder]="order"></recurring-order>
+                </ng-template>
+            </ngb-tab>
+        </ngb-tabset>
+    </div>
+</div>
+
+<div class="card" *ngIf="!isEditing">
+    <h4 class="card-header">Add product</h4>
+    <div class="card-body">
+        <form class="form-inline" (ngSubmit)="addProduct()">
+            <!--<input class="form-control mr-2" type="number" name="id" formControlName="id" placeholder="ID" min="1"-->
+            <!--step="1"-->
+            <!--required>-->
+            <!--<input class="form-control mr-2" type="text" name="name" formControlName="name" placeholder="Name" required>-->
+            <!--<div class="input-group mr-2">-->
+            <!--<div class="input-group-prepend">-->
+            <!--<span class="input-group-text">€</span>-->
+            <!--</div>-->
+            <!--<input class="form-control" type="text" name="price" formControlName="price" placeholder="Price"-->
+            <!--required>-->
+            <!--</div>-->
+            <input type="text" class="form-control" [(ngModel)]="productModel" name="productName"
+                   [ngbTypeahead]="productSearch"
+                   [resultTemplate]="productTemplate"
+                   [inputFormatter]="productFormatter"/>
+            <button class="btn btn-primary" type="submit">
+                <i class="fa fa-plus"></i>
+                Add
+            </button>
+        </form>
+    </div>
+</div>
+
+<ng-template #productTemplate let-r="result" let-t="term">
+    {{r.name}}, {{r.price}}
+</ng-template>

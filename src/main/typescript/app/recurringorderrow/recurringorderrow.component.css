@@ -1,0 +1,12 @@
+td.min {
+    width: 1%;
+    white-space: nowrap;
+}
+
+.input-group {
+    margin-bottom: 0;
+}
+
+td {
+    vertical-align: middle;
+}

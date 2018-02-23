@@ -1,0 +1,34 @@
+<table class="table table-hover table-bordered">
+    <thead>
+    <tr>
+        <th scope="col">Produkt</th>
+        <th scope="col" class="input-width">Menge</th>
+        <th scope="col" class="min">Einzelpreis</th>
+        <th scope="col" class="min">Gesamtpreis</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of recurringOrder.items"
+        recurring-orders-row
+        (onDelete)="onDeleteItem($event)"
+        (onUpdate)="onUpdate($event)"
+        [item]="item"></tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="3" align="right">Liefergebühr</td>
+        <td align="right">{{deliveryFee | currency:'EUR':'symbol':'1.2-2'}}</td>
+        <td>
+
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" align="right">Gesamt</td>
+        <td align="right">{{total | currency:'EUR':'symbol':'1.2-2'}}</td>
+        <td>
+
+        </td>
+    </tr>
+    </tfoot>
+</table>
