@@ -36,25 +36,27 @@ export class AuthService {
     }
 
     login(email: String, password: String): Observable<User> {
-        return this.loginService.login(email, password).pipe(map((user) => {
-                this.currentUser = user;
-                if (this.currentUser.role == 'ADMIN') {
-                    this.isAdmin = true;
+        return this.loginService.login(email, password)
+            .pipe(map((user) => {
+                    this.currentUser = user;
+                    if (this.currentUser.role == 'ADMIN') {
+                        this.isAdmin = true;
+                    }
+                    this.loggedIn = true;
+                    return user;
                 }
-                this.loggedIn = true;
-                return user;
-            }
-        ));
+            ));
     }
 
     logout(): Observable<any> {
-        return this.loginService.logout().pipe(switchMap(() => {
-                this.loggedIn = false;
-                this.currentUser = null;
-                console.log("here");
-                return fromPromise(this.router.navigate(['/'])).pipe(mapTo(void 0))
-            }
-        ));
+        return this.loginService.logout()
+            .pipe(switchMap(() => {
+                    this.loggedIn = false;
+                    this.currentUser = null;
+                    console.log("here");
+                    return fromPromise(this.router.navigate(['/'])).pipe(mapTo(void 0))
+                }
+            ));
     }
 
 }

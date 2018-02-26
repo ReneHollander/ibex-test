@@ -22,7 +22,7 @@ public class OrderItem {
     @ManyToOne(cascade = CascadeType.ALL)
     private Order order;
 
-    @MapsId("product")
+    @MapsId("selectedProduct")
     @ManyToOne(cascade = CascadeType.ALL)
     private Product product;
 

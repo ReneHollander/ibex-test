@@ -23,7 +23,7 @@ public class RecurringOrderItem {
     @JsonIgnore
     private RecurringOrder recurringOrder;
 
-    @MapsId("product")
+    @MapsId("selectedProduct")
     @ManyToOne(cascade = CascadeType.REFRESH)
     private Product product;
 

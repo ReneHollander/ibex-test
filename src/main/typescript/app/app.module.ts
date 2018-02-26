@@ -20,9 +20,10 @@ import {RecurringOrdersComponent} from "./recurringorders/recurringorders.compon
 import {RecurringOrderComponent} from "./recurringorder/recurringorder.component";
 import {RecurringOrderRowComponent} from "./recurringorderrow/recurringorderrow.component";
 import {RecurringOrderService} from "./services/recurringorder.service";
-import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {LoginService} from "./services/login.service";
 import {NgPipesModule} from "ngx-pipes";
+import {TabsModule, TypeaheadModule} from "ngx-bootstrap";
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
     declarations: [
@@ -43,7 +44,9 @@ import {NgPipesModule} from "ngx-pipes";
         RoutingModule,
         SharedModule,
         NgPipesModule,
-        NgbModule.forRoot()
+        TabsModule.forRoot(),
+        TypeaheadModule.forRoot(),
+        NgbModule.forRoot(),
     ],
     providers: [
         AuthService,

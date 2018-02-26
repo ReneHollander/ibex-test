@@ -1,4 +1,5 @@
 import {Product} from "./product.model";
+import {Type} from "class-transformer";
 
 export class DeliverySlot {
     id?: number;
@@ -15,6 +16,7 @@ export class DeliverySlot {
 export class RecurringOrder {
     deliverySlot?: DeliverySlot;
     enabled?: boolean;
+    @Type(() => RecurringOrderItem)
     items?: RecurringOrderItem[];
 
     constructor(deliverySlot?: DeliverySlot, enabled?: boolean, items?: RecurringOrderItem[]) {
@@ -25,6 +27,7 @@ export class RecurringOrder {
 }
 
 export class RecurringOrderItem {
+    @Type(() => Product)
     product?: Product;
     amount?: number;
 

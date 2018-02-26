@@ -69,10 +69,10 @@ export class ProductsComponent implements OnInit {
     }
 
     editProduct(product: Product) {
-        // this.productService.editProduct(product).subscribe(
+        // this.productService.editProduct(selectedProduct).subscribe(
         //     () => {
         //         this.isEditing = false;
-        //         this.product = product;
+        //         this.selectedProduct = selectedProduct;
         //         this.toast.setMessage('item edited successfully.', 'success');
         //     },
         //     error => console.log(error)
@@ -81,9 +81,9 @@ export class ProductsComponent implements OnInit {
 
     deleteProduct(product: Product) {
         // if (window.confirm('Are you sure you want to permanently delete this item?')) {
-        //     this.productService.deleteProduct(product).subscribe(
+        //     this.productService.deleteProduct(selectedProduct).subscribe(
         //         () => {
-        //             const pos = this.products.map(elem => elem.id).indexOf(product.id);
+        //             const pos = this.products.map(elem => elem.id).indexOf(selectedProduct.id);
         //             this.products.splice(pos, 1);
         //             this.toast.setMessage('item deleted successfully.', 'success');
         //         },
