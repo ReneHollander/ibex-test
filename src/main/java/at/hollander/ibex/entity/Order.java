@@ -20,11 +20,11 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @ManyToOne(cascade = CascadeType.REFRESH)
+    @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
     private Account account;
 
-    @Column(nullable = false)
-    private Status status = Status.ORDERED;
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    private Invoice invoice;
 
     @Column(nullable = false)
     private LocalDateTime deliveryTime;
@@ -50,10 +50,4 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderItem> items;
 
-    public enum Status {
-        ORDERED,
-        DELIVERED,
-        PAID,
-        DISPUTED
-    }
 }

@@ -34,7 +34,7 @@ public class Account {
     @JsonIgnore
     private String password;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JsonIgnore
     private City city;
 
