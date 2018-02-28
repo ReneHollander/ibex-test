@@ -11,13 +11,6 @@ export function plainToClassOp<T, R>(cls: ClassType<R>): OperatorFunction<T, R> 
     };
 }
 
-export function plainToClassArrayOp<T extends Array<any>, R>(cls: ClassType<R>): OperatorFunction<T, R[]> {
-    return function mapOperation(source: Observable<T>): Observable<R[]> {
-        return source.lift(new PlainToClassOperator(cls));
-    };
-}
-
-
 export class PlainToClassOperator<T, R> implements Operator<T, R> {
     constructor(private cls: ClassType<R>) {
     }
@@ -29,6 +22,39 @@ export class PlainToClassOperator<T, R> implements Operator<T, R> {
 
 class PlainToClassSubscriber<T, R> extends Subscriber<T> {
     constructor(destination: Subscriber<R>, private cls: ClassType<R>) {
+        super(destination);
+    }
+
+    protected _next(value: T) {
+        let result: any;
+        try {
+            result = plainToClass(this.cls, value);
+            console.log(result);
+        } catch (err) {
+            this.destination.error(err);
+            return;
+        }
+        this.destination.next(result);
+    }
+}
+
+export function plainToClassArrayOp<T extends Array<any>, R>(cls: ClassType<R>): OperatorFunction<T, R[]> {
+    return function mapOperation(source: Observable<T>): Observable<R[]> {
+        return source.lift(new PlainToClassArrayOperator(cls));
+    };
+}
+
+export class PlainToClassArrayOperator<T extends Array<any>, R> implements Operator<T, R[]> {
+    constructor(private cls: ClassType<R>) {
+    }
+
+    call(subscriber: Subscriber<R[]>, source: any): any {
+        return source.subscribe(new PlainToClassArraySubscriber(subscriber, this.cls));
+    }
+}
+
+class PlainToClassArraySubscriber<T extends Array<any>, R> extends Subscriber<T> {
+    constructor(destination: Subscriber<R[]>, private cls: ClassType<R>) {
         super(destination);
     }
 

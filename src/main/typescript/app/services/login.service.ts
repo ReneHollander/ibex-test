@@ -1,25 +1,26 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
 import {User} from "../shared/models/user.model";
-import {plainToClassOp} from "../util";
+import {ApiClient} from "./apiclient.service";
 
 @Injectable()
 export class LoginService {
 
-    constructor(private http: HttpClient) {
+    constructor(private api: ApiClient) {
     }
 
-    initial(): Observable<User> {
-        return this.http.get<User>('/api/initial').pipe(plainToClassOp(User));
+    async initial(): Promise<User> {
+        return this.api.getAndConvert(User, '/api/initial');
     }
 
-    login(email: String, password: String): Observable<User> {
-        return this.http.post<User>('/api/login', {email: email, password: password}).pipe(plainToClassOp(User));
+    async login(email: String, password: String): Promise<User> {
+        return this.api.postAndConvert(User, '/api/login', {
+            email: email,
+            password: password
+        });
     }
 
-    logout(): Observable<any> {
-        return this.http.get<any>('/api/logout');
+    async logout(): Promise<any> {
+        return this.api.get<any>('/api/logout');
     }
 
 }

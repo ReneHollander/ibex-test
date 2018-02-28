@@ -13,9 +13,15 @@ export class DeliverySlot {
     }
 }
 
+// TODO: remove once released: https://github.com/angular/angular-cli/pull/9225
+function recurringorderitem() {
+    return () => RecurringOrderItem
+}
+
 export class RecurringOrder {
     deliverySlot?: DeliverySlot;
     enabled?: boolean;
+    // @Type(recurringorderitem)
     @Type(() => RecurringOrderItem)
     items?: RecurringOrderItem[];
 
@@ -26,7 +32,13 @@ export class RecurringOrder {
     }
 }
 
+// TODO: remove once released: https://github.com/angular/angular-cli/pull/9225
+function product() {
+    return () => Product
+}
+
 export class RecurringOrderItem {
+    // @Type(product)
     @Type(() => Product)
     product?: Product;
     amount?: number;

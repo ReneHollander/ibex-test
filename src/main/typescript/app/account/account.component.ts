@@ -18,16 +18,13 @@ export class AccountComponent implements OnInit {
                 private userService: AccountService) {
     }
 
-    ngOnInit() {
-        this.getAccountDetails();
+    async ngOnInit(): Promise<void> {
+        await this.getAccountDetails();
     }
 
-    getAccountDetails() {
-        this.userService.getAccountDetails().subscribe(
-            data => this.accountDetails = data,
-            error => console.log(error),
-            () => this.isLoading = false
-        );
+    async getAccountDetails(): Promise<void> {
+        this.accountDetails = await this.userService.getAccountDetails();
+        this.isLoading = false;
     }
 
 }

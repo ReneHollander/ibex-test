@@ -15,26 +15,9 @@
     </div>
 </div>
 
-<div class="card" *ngIf="!isEditing">
-    <h4 class="card-header">Add product</h4>
-    <div class="card-body">
-        <form class="form-inline" (ngSubmit)="addProduct()">
-            <input type="text" class="form-control" [(ngModel)]="productModel" name="productName"
-                   [ngbTypeahead]="productSearch"
-                   [resultTemplate]="productTemplate"
-                   [inputFormatter]="productFormatter"
-                   (focus)="focus$.next($event.target.value)"
-                   (click)="click$.next($event.target.value)"
-                   #instance="ngbTypeahead"
-            />
-            <button class="btn btn-primary" type="submit">
-                <i class="fa fa-plus"></i>
-                Add
-            </button>
-        </form>
-    </div>
-</div>
-
-<ng-template #productTemplate let-r="result" let-t="term">
-    {{r.name}}, {{r.price | currency:'EUR':'symbol':'1.2-2'}}
-</ng-template>
+<!--<div class="card">-->
+    <!--<h4 class="card-header">Add product</h4>-->
+    <!--<div class="card-body">-->
+        <!--<product-search></product-search>-->
+    <!--</div>-->
+<!--</div>-->

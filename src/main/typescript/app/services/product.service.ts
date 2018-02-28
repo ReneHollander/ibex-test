@@ -1,21 +1,19 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
 import {Product} from "../shared/models/product.model";
-import {plainToClassArrayOp} from "../util";
+import {ApiClient} from "./apiclient.service";
 
 @Injectable()
 export class ProductService {
 
-    constructor(private http: HttpClient) {
+    constructor(private api: ApiClient) {
     }
 
-    getProducts(): Observable<Product[]> {
-        return this.http.get<Product[]>('/api/products').pipe(plainToClassArrayOp(Product));
+    async getProducts(): Promise<Product[]> {
+        return this.api.getAndConvertArray(Product, '/api/products');
     }
 
-    countProducts(): Observable<number> {
-        return this.http.get<number>('/api/products/count');
+    countProducts(): Promise<number> {
+        return this.api.get<number>('/api/products/count');
     }
 
 }

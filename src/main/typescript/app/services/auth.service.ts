@@ -1,11 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {User} from '../shared/models/user.model';
-
-import {Observable} from 'rxjs/Observable';
-import {fromPromise} from 'rxjs/observable/fromPromise';
-import {from} from 'rxjs/observable/from';
-import {catchError, map, mapTo, switchMap} from 'rxjs/operators';
 import {LoginService} from "./login.service";
 
 @Injectable()
@@ -19,44 +14,33 @@ export class AuthService {
                 private router: Router) {
     }
 
-    initial(): Observable<boolean> {
-        return this.loginService.initial()
-            .pipe(switchMap((user) => {
-                    this.currentUser = user;
-                    if (this.currentUser.role == 'ADMIN') {
-                        this.isAdmin = true;
-                    }
-                    this.loggedIn = true;
-                    return from([true]);
-                }
-            ))
-            .pipe(catchError((err, caught) => {
-                return from([false])
-            }));
+    async initial(): Promise<boolean> {
+        try {
+            this.currentUser = await this.loginService.initial();
+            if (this.currentUser.role == 'ADMIN') {
+                this.isAdmin = true;
+            }
+            this.loggedIn = true;
+            return true;
+        } catch (e) {
+            return false;
+        }
     }
 
-    login(email: String, password: String): Observable<User> {
-        return this.loginService.login(email, password)
-            .pipe(map((user) => {
-                    this.currentUser = user;
-                    if (this.currentUser.role == 'ADMIN') {
-                        this.isAdmin = true;
-                    }
-                    this.loggedIn = true;
-                    return user;
-                }
-            ));
+    async login(email: String, password: String): Promise<User> {
+        this.currentUser = await this.loginService.login(email, password);
+        if (this.currentUser.role == 'ADMIN') {
+            this.isAdmin = true;
+        }
+        this.loggedIn = true;
+        return this.currentUser;
     }
 
-    logout(): Observable<any> {
-        return this.loginService.logout()
-            .pipe(switchMap(() => {
-                    this.loggedIn = false;
-                    this.currentUser = null;
-                    console.log("here");
-                    return fromPromise(this.router.navigate(['/'])).pipe(mapTo(void 0))
-                }
-            ));
+    async logout(): Promise<void> {
+        await this.loginService.logout();
+        this.loggedIn = false;
+        this.currentUser = null;
+        await this.router.navigate(['/']);
     }
 
 }

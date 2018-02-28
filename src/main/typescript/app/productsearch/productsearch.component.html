@@ -1,0 +1,13 @@
+<input type="text" class="form-control" [(ngModel)]="productModel" name="productName" placeholder="{{placeholder}}"
+       [ngbTypeahead]="productSearch"
+       [resultTemplate]="productTemplate"
+       [inputFormatter]="productFormatter"
+       (selectItem)="selectProduct($event.item)"
+       (focus)="focus$.next($event.target.value)"
+       (click)="click$.next($event.target.value)"
+       #instance="ngbTypeahead"
+/>
+
+<ng-template #productTemplate let-r="result" let-t="term">
+    {{r.name}}, {{r.price | currency:'EUR':'symbol':'1.2-2'}}
+</ng-template>

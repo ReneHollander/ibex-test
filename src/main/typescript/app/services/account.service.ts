@@ -1,17 +1,15 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
 import {AccountDetails} from "../shared/models/account.model";
-import {plainToClassOp} from "../util";
+import {ApiClient} from "./apiclient.service";
 
 @Injectable()
 export class AccountService {
 
-    constructor(private http: HttpClient) {
+    constructor(private api: ApiClient) {
     }
 
-    getAccountDetails(): Observable<AccountDetails> {
-        return this.http.get<AccountDetails>('/api/accountdetails').pipe(plainToClassOp(AccountDetails));
+    async getAccountDetails(): Promise<AccountDetails> {
+        return this.api.getAndConvert(AccountDetails, '/api/accountdetails');
     }
 
 }

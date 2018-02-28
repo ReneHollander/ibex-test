@@ -22,8 +22,13 @@ import {RecurringOrderRowComponent} from "./recurringorderrow/recurringorderrow.
 import {RecurringOrderService} from "./services/recurringorder.service";
 import {LoginService} from "./services/login.service";
 import {NgPipesModule} from "ngx-pipes";
-import {TabsModule, TypeaheadModule} from "ngx-bootstrap";
+import {AccordionModule, TabsModule, TypeaheadModule} from "ngx-bootstrap";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {ProductSearchComponent} from "./productsearch/productsearch.component";
+import {ApiClient} from "./services/apiclient.service";
+import {InvoicesComponent} from "./invoices/invoices.component";
+import {InvoiceComponent} from "./invoice/invoice.component";
+import {OrderComponent} from "./order/order.component";
 
 @NgModule({
     declarations: [
@@ -38,7 +43,11 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
         LogoutComponent,
         AccountComponent,
         AdminComponent,
-        NotFoundComponent
+        NotFoundComponent,
+        ProductSearchComponent,
+        InvoicesComponent,
+        InvoiceComponent,
+        OrderComponent,
     ],
     imports: [
         RoutingModule,
@@ -46,9 +55,11 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
         NgPipesModule,
         TabsModule.forRoot(),
         TypeaheadModule.forRoot(),
+        AccordionModule.forRoot(),
         NgbModule.forRoot(),
     ],
     providers: [
+        ApiClient,
         AuthService,
         AuthGuardLogin,
         AuthGuardAdmin,

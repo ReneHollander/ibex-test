@@ -1,0 +1,31 @@
+<app-loading [condition]="isLoading"></app-loading>
+
+<div class="card mb-3" *ngIf="!isLoading">
+    <h4 class="card-header">Rechnung #{{id}}</h4>
+    <div class="card-body">
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Bestelldatum</th>
+                <th scope="col">Lieferdatum</th>
+                <th scope="col">Gesamtpreis</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr (click)="onOrderClick(2)">
+                <td>2</td>
+                <td>27.02.2018</td>
+                <td>28.02.2018</td>
+                <td>5.50€</td>
+            </tr>
+            <tr (click)="onOrderClick(1)">
+                <td>1</td>
+                <td>26.02.2018</td>
+                <td>27.02.2018</td>
+                <td>4.50€</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

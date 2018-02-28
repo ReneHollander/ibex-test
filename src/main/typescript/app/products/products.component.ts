@@ -27,8 +27,8 @@ export class ProductsComponent implements OnInit {
                 public toast: ToastComponent) {
     }
 
-    ngOnInit() {
-        this.getProducts();
+    async ngOnInit(): Promise<void> {
+        await this.getProducts();
         this.addProductForm = this.formBuilder.group({
             id: this.id,
             name: this.name,
@@ -36,12 +36,9 @@ export class ProductsComponent implements OnInit {
         });
     }
 
-    getProducts() {
-        this.productService.getProducts().subscribe(
-            data => this.products = data,
-            error => console.log(error),
-            () => this.isLoading = false
-        );
+    async getProducts(): Promise<void> {
+        this.products = await this.productService.getProducts();
+        this.isLoading = false;
     }
 
     addProduct() {

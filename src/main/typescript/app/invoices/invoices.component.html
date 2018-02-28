@@ -1,0 +1,59 @@
+<app-loading [condition]="isLoading"></app-loading>
+
+<div class="card mb-3" *ngIf="!isLoading">
+    <h4 class="card-header">Noch nicht bezahlte Lieferungen</h4>
+    <div class="card-body">
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Bestelldatum</th>
+                <th scope="col">Lieferdatum</th>
+                <th scope="col">Gesamtpreis</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr (click)="onOrderClick(2)">
+                <td>2</td>
+                <td>27.02.2018</td>
+                <td>28.02.2018</td>
+                <td>5.50€</td>
+            </tr>
+            <tr (click)="onOrderClick(1)">
+                <td>1</td>
+                <td>26.02.2018</td>
+                <td>27.02.2018</td>
+                <td>4.50€</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="card mb-3" *ngIf="!isLoading">
+    <h4 class="card-header">Rechnungen</h4>
+    <div class="card-body">
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Rechnungsdatum</th>
+                <th scope="col">Summe</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr (click)="onInvoiceClick(2)">
+                <td>2</td>
+                <td>01.02.2018</td>
+                <td>30.00€</td>
+            </tr>
+            <tr (click)="onInvoiceClick(1)">
+                <td>1</td>
+                <td>01.01.2018</td>
+                <td>15.00€</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

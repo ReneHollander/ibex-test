@@ -46,11 +46,13 @@ export class LoginComponent implements OnInit {
         return {'has-danger': !this.password.pristine && !this.password.valid};
     }
 
-    login() {
-        this.auth.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(
-            res => this.router.navigate(['/']),
-            error => this.toast.setMessage('invalid email or password!', 'danger')
-        );
+    async login() {
+        try {
+            await this.auth.login(this.loginForm.value.email, this.loginForm.value.password);
+            await this.router.navigate(['/']);
+        } catch (e) {
+            this.toast.setMessage('invalid email or password!', 'danger')
+        }
     }
 
 }

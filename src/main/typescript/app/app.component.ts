@@ -10,8 +10,8 @@ export class AppComponent implements OnInit {
     constructor(public auth: AuthService) {
     }
 
-    ngOnInit(): void {
-        this.auth.initial().subscribe();
+    async ngOnInit(): Promise<void> {
+        await this.auth.initial();
     }
 
 }

@@ -6,3 +6,7 @@ td.min {
 .input-width {
     width: 175px;
 }
+
+.input-group {
+    margin-bottom: 0;
+}
