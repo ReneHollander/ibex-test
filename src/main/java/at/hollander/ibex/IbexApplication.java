@@ -145,7 +145,7 @@ public class IbexApplication implements CommandLineRunner {
         recurringOrderItemRepository.save(new RecurringOrderItem(roSonntag, semmel, 2));
         recurringOrderItemRepository.save(new RecurringOrderItem(roSonntag, kornspitz, 2));
 
-        Invoice i01 = invoiceRepository.save(new Invoice(LocalDate.of(2018, 2, 1), "Max Mustermann", "AT621245700000001234"));
+        Invoice i01 = invoiceRepository.save(new Invoice(maxMustermann, LocalDate.of(2018, 2, 1), "Max Mustermann", "AT621245700000001234"));
 
         Order o0101 = orderRepository.save(new Order(maxMustermann, i01, LocalDateTime.of(2018, 01, 01, 07, 00), LocalDateTime.of(2017, 12, 31, 12, 15), "Hauptstrasse 60-62/2/4", 3420, "Kritzendorf", "Zum Postkasten legen", new BigDecimal("1.5")));
         Order o0107 = orderRepository.save(new Order(maxMustermann, i01, LocalDateTime.of(2018, 01, 07, 07, 00), LocalDateTime.of(2018, 1, 6, 11, 45), "Hauptstrasse 60-62/2/4", 3420, "Kritzendorf", "Zum Postkasten legen", new BigDecimal("1.5")));

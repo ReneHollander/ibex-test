@@ -13,8 +13,8 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = "recurringOrders")
-@ToString(exclude = "recurringOrders")
+@EqualsAndHashCode(exclude = {"recurringOrders", "orders", "invoices"})
+@ToString(exclude = {"recurringOrders", "orders", "invoices"})
 @Builder
 @AllArgsConstructor
 public class Account {
@@ -41,6 +41,14 @@ public class Account {
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<RecurringOrder> recurringOrders;
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Order> orders;
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Invoice> invoices;
 
     @JsonGetter("city")
     public String getCityName() {
