@@ -1,6 +1,7 @@
 package at.hollander.ibex.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import at.hollander.ibex.View;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,23 +17,27 @@ import java.util.List;
 @ToString(exclude = "orders")
 public class Invoice {
 
+    @JsonView({View.Invoice.List.class, View.Invoice.Overview.class})
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
-    @JsonIgnore
     private Account account;
 
+    @JsonView({View.Invoice.List.class, View.Invoice.Overview.class})
     @Column(nullable = false)
     private LocalDate date;
 
+    @JsonView({View.Invoice.Overview.class})
     @Column(nullable = false)
     private String accountName;
 
+    @JsonView({View.Invoice.Overview.class})
     @Column(nullable = false)
     private String iban;
 
+    @JsonView({View.Invoice.Overview.class})
     @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Order> orders;
 

@@ -1,6 +1,7 @@
 package at.hollander.ibex.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import at.hollander.ibex.View;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,39 +18,46 @@ import java.util.List;
 @ToString(exclude = "items")
 public class Order {
 
+    @JsonView({View.Order.List.class, View.Order.Overview.class})
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
-    @JsonIgnore
     private Account account;
 
     @ManyToOne(cascade = CascadeType.REFRESH)
-    @JsonIgnore
     private Invoice invoice;
 
+    @JsonView({View.Order.List.class, View.Order.Overview.class})
     @Column(nullable = false)
     private LocalDateTime deliveryTime;
 
+    @JsonView({View.Order.List.class, View.Order.Overview.class})
     @Column(nullable = false)
     private LocalDateTime orderTime;
 
+    @JsonView({View.Order.List.class, View.Order.Overview.class})
     @Column(nullable = false)
     private String address;
 
+    @JsonView({View.Order.List.class, View.Order.Overview.class})
     @Column(nullable = false)
     private int postcode;
 
+    @JsonView({View.Order.List.class, View.Order.Overview.class})
     @Column(nullable = false)
     private String city;
 
+    @JsonView({View.Order.List.class, View.Order.Overview.class})
     @Column(nullable = false)
     private String deliveryNote;
 
+    @JsonView({View.Order.List.class, View.Order.Overview.class})
     @Column(nullable = false)
     private BigDecimal priceShipping;
 
+    @JsonView({View.Order.Overview.class})
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderItem> items;
 
