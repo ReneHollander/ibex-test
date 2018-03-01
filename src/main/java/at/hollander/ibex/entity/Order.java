@@ -1,5 +1,6 @@
 package at.hollander.ibex.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,9 +22,11 @@ public class Order {
     private int id;
 
     @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
+    @JsonIgnore
     private Account account;
 
     @ManyToOne(cascade = CascadeType.REFRESH)
+    @JsonIgnore
     private Invoice invoice;
 
     @Column(nullable = false)

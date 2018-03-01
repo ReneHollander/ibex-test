@@ -1,6 +1,7 @@
 package at.hollander.ibex.entity;
 
 import at.hollander.ibex.entity.id.OrderItemId;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,10 +17,12 @@ import java.math.BigDecimal;
 public class OrderItem {
 
     @EmbeddedId
+    @JsonIgnore
     private OrderItemId id;
 
     @MapsId("order")
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
     private Order order;
 
     @MapsId("product")
