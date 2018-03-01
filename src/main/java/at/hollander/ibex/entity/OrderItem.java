@@ -32,4 +32,11 @@ public class OrderItem {
     @Column(nullable = false)
     private BigDecimal pricePerItem;
 
+    public OrderItem(Order order, Product product, int amount, BigDecimal pricePerItem) {
+        this.id = new OrderItemId(order.getId(), product.getId());
+        this.order = order;
+        this.product = product;
+        this.amount = amount;
+        this.pricePerItem = pricePerItem;
+    }
 }

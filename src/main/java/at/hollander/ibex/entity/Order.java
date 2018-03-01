@@ -17,7 +17,7 @@ import java.util.List;
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
@@ -50,4 +50,15 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderItem> items;
 
+    public Order(Account account, Invoice invoice, LocalDateTime deliveryTime, LocalDateTime orderTime, String address, int postcode, String city, String deliveryNote, BigDecimal priceShipping) {
+        this.account = account;
+        this.invoice = invoice;
+        this.deliveryTime = deliveryTime;
+        this.orderTime = orderTime;
+        this.address = address;
+        this.postcode = postcode;
+        this.city = city;
+        this.deliveryNote = deliveryNote;
+        this.priceShipping = priceShipping;
+    }
 }

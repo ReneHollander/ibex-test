@@ -16,7 +16,7 @@ import java.util.List;
 public class Invoice {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(nullable = false)
@@ -31,4 +31,9 @@ public class Invoice {
     @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Order> orders;
 
+    public Invoice(LocalDate date, String accountName, String iban) {
+        this.date = date;
+        this.accountName = accountName;
+        this.iban = iban;
+    }
 }

@@ -16,6 +16,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import javax.persistence.EntityManager;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @EntityScan(
@@ -43,6 +45,7 @@ public class IbexApplication implements CommandLineRunner {
     private final RecurringOrderRepository recurringOrderRepository;
     private final OrderRepository orderRepository;
     private final OrderItemRepository orderItemRepository;
+    private final InvoiceRepository invoiceRepository;
     private final EntityManager entityManager;
 
     @Autowired
@@ -50,10 +53,14 @@ public class IbexApplication implements CommandLineRunner {
             AdminAccountRepository adminAccountRepository,
             AccountRepository accountRepository,
             CityRepository cityRepository,
-            ProductRepository productRepository, DeliverySlotRepository deliverySlotRepository,
+            ProductRepository productRepository,
+            DeliverySlotRepository deliverySlotRepository,
             RecurringOrderItemRepository recurringOrderItemRepository,
-            RecurringOrderRepository recurringOrderRepository, OrderRepository orderRepository, OrderItemRepository orderItemRepository, EntityManager entityManager,
-            PasswordEncoder passwordEncoder) {
+            RecurringOrderRepository recurringOrderRepository,
+            OrderRepository orderRepository,
+            OrderItemRepository orderItemRepository,
+            EntityManager entityManager,
+            PasswordEncoder passwordEncoder, InvoiceRepository invoiceRepository) {
         this.adminAccountRepository = adminAccountRepository;
         this.accountRepository = accountRepository;
         this.cityRepository = cityRepository;
@@ -65,6 +72,7 @@ public class IbexApplication implements CommandLineRunner {
         this.orderItemRepository = orderItemRepository;
         this.entityManager = entityManager;
         this.passwordEncoder = passwordEncoder;
+        this.invoiceRepository = invoiceRepository;
     }
 
     private static <T, ID extends Serializable> void print(String msg, CrudRepository<T, ID> repository) {
@@ -136,5 +144,24 @@ public class IbexApplication implements CommandLineRunner {
 
         recurringOrderItemRepository.save(new RecurringOrderItem(roSonntag, semmel, 2));
         recurringOrderItemRepository.save(new RecurringOrderItem(roSonntag, kornspitz, 2));
+
+        Invoice i01 = invoiceRepository.save(new Invoice(LocalDate.of(2018, 2, 1), "Max Mustermann", "AT621245700000001234"));
+
+        Order o0101 = orderRepository.save(new Order(maxMustermann, i01, LocalDateTime.of(2018, 01, 01, 07, 00), LocalDateTime.of(2017, 12, 31, 12, 15), "Hauptstrasse 60-62/2/4", 3420, "Kritzendorf", "Zum Postkasten legen", new BigDecimal("1.5")));
+        Order o0107 = orderRepository.save(new Order(maxMustermann, i01, LocalDateTime.of(2018, 01, 07, 07, 00), LocalDateTime.of(2018, 1, 6, 11, 45), "Hauptstrasse 60-62/2/4", 3420, "Kritzendorf", "Zum Postkasten legen", new BigDecimal("1.5")));
+        Order o0201 = orderRepository.save(new Order(maxMustermann, null, LocalDateTime.of(2018, 02, 01, 07, 00), LocalDateTime.of(2018, 1, 31, 13, 00), "Hauptstrasse 60-62/2/4", 3420, "Kritzendorf", "Zum Postkasten legen", new BigDecimal("1.5")));
+        Order o0204 = orderRepository.save(new Order(maxMustermann, null, LocalDateTime.of(2018, 02, 04, 07, 00), LocalDateTime.of(2018, 2, 3, 14, 00), "Hauptstrasse 60-62/2/4", 3420, "Kritzendorf", "Zum Postkasten legen", new BigDecimal("1.5")));
+
+        orderItemRepository.save(new OrderItem(o0101, semmel, 3, new BigDecimal("0.25")));
+        orderItemRepository.save(new OrderItem(o0101, kornspitz, 2, new BigDecimal("0.70")));
+        orderItemRepository.save(new OrderItem(o0107, semmel, 2, new BigDecimal("0.25")));
+        orderItemRepository.save(new OrderItem(o0107, briochekipferl, 1, new BigDecimal("1.2")));
+        orderItemRepository.save(new OrderItem(o0107, kornspitz, 2, new BigDecimal("0.70")));
+
+        orderItemRepository.save(new OrderItem(o0201, semmel, 2, new BigDecimal("0.30")));
+        orderItemRepository.save(new OrderItem(o0201, kornspitz, 3, new BigDecimal("0.80")));
+        orderItemRepository.save(new OrderItem(o0201, dinkelweckerl, 1, new BigDecimal("0.90")));
+        orderItemRepository.save(new OrderItem(o0204, semmel, 3, new BigDecimal("0.30")));
+        orderItemRepository.save(new OrderItem(o0204, briochekipferl, 1, new BigDecimal("1.25")));
     }
 }
