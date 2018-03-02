@@ -29,6 +29,8 @@ import {ApiClient} from "./services/apiclient.service";
 import {InvoicesComponent} from "./invoices/invoices.component";
 import {InvoiceComponent} from "./invoice/invoice.component";
 import {OrderComponent} from "./order/order.component";
+import {InvoiceService} from "./services/invoice.service";
+import {OrderService} from "./services/order.service";
 
 @NgModule({
     declarations: [
@@ -67,6 +69,8 @@ import {OrderComponent} from "./order/order.component";
         ProductService,
         AccountService,
         LoginService,
+        InvoiceService,
+        OrderService,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]

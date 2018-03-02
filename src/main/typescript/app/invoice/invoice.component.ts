@@ -1,5 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
+import {Invoice} from "../shared/models/invoice.model";
+import {InvoiceService} from "../services/invoice.service";
+import {Order} from "../shared/models/order.model";
 
 @Component({
     selector: 'invoice',
@@ -8,16 +11,21 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class InvoiceComponent implements OnInit, OnDestroy {
 
     id: number;
-
     isLoading: boolean = true;
+    invoice: Invoice;
+
     private routeParamsSub: any;
 
-    constructor(private router: Router, private route: ActivatedRoute) {
+    constructor(private router: Router, private route: ActivatedRoute, private invoiceService: InvoiceService) {
     }
 
     ngOnInit() {
-        this.routeParamsSub = this.route.params.subscribe(params => {
+        this.routeParamsSub = this.route.params.subscribe(async params => {
+            this.isLoading = true;
             this.id = +params['id'];
+
+            this.invoice = await this.invoiceService.getInvoice(this.id);
+
             this.isLoading = false;
         });
     }
@@ -26,8 +34,8 @@ export class InvoiceComponent implements OnInit, OnDestroy {
         this.routeParamsSub.unsubscribe();
     }
 
-    onOrderClick(id: number) {
-        this.router.navigate(['/order/' + id])
+    onOrderClick(order: Order) {
+        this.router.navigate(['/order/' + order.id])
     }
 
 }

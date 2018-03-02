@@ -1,5 +1,7 @@
 package at.hollander.ibex.entity;
 
+import at.hollander.ibex.View;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,12 +18,15 @@ import java.math.BigDecimal;
 public class Product {
 
     @Id
+    @JsonView(View.Product.Overview.class)
     private int id;
 
     @Column(nullable = false)
+    @JsonView(View.Product.Overview.class)
     private String name;
 
     @Column(nullable = false)
+    @JsonView(View.Product.Overview.class)
     private BigDecimal price;
 
 }

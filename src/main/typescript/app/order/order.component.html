@@ -1,4 +1,4 @@
-<app-loading [condition]="isLoading"></app-loading>
+<loading-card [condition]="isLoading"></loading-card>
 
 <div class="card mb-3" *ngIf="!isLoading">
     <h4 class="card-header">Bestellung #{{id}}</h4>
@@ -13,21 +13,22 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Semmel</td>
-                <td align="right">5</td>
-                <td class="min" align="right">{{1.5 | currency:'EUR':'symbol':'1.2-2'}}</td>
-                <td class="min" align="right">{{3 | currency:'EUR':'symbol':'1.2-2'}}</td>
+            <tr *ngFor="let item of order.items">
+                <td>{{item.product.name}}</td>
+                <td align="right">{{item.amount}}</td>
+                <td class="min" align="right">{{item.product.price | currency:'EUR':'symbol':'1.2-2'}}</td>
+                <td class="min" align="right">{{item.product.price * item.amount | currency:'EUR':'symbol':'1.2-2'}}
+                </td>
             </tr>
             </tbody>
             <tfoot>
             <tr>
                 <td colspan="3" align="right">Liefergebühr</td>
-                <td align="right">{{1.5 | currency:'EUR':'symbol':'1.2-2'}}</td>
+                <td align="right">{{order.priceShipping | currency:'EUR':'symbol':'1.2-2'}}</td>
             </tr>
             <tr>
                 <td colspan="3" align="right">Gesamt</td>
-                <td align="right">{{1.5 | currency:'EUR':'symbol':'1.2-2'}}</td>
+                <td align="right">{{order.priceTotal | currency:'EUR':'symbol':'1.2-2'}}</td>
             </tr>
             </tfoot>
         </table>

@@ -17,6 +17,15 @@ public interface View {
         }
     }
 
+    interface Product {
+        interface Overview {
+        }
+    }
+
     interface InvoiceOverviewAndOrderList extends Invoice.Overview, Order.List {
     }
+
+    interface OrderOverviewAndProductOverview extends Order.Overview, Product.Overview {
+    }
+
 }

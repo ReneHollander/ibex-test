@@ -155,25 +155,25 @@ public class IbexApplication implements CommandLineRunner {
         Invoice i01 = invoiceRepository.save(new Invoice(maxMustermann, LocalDate.of(2018, 2, 1), "Max Mustermann", "AT621245700000001234"));
         Invoice bi01 = invoiceRepository.save(new Invoice(bettinaReiss, LocalDate.of(2018, 2, 1), "Bettina Reiss", "AT621245700000004321"));
 
-        Order o0101 = orderRepository.save(new Order(maxMustermann, i01, LocalDateTime.of(2018, 01, 01, 07, 00), LocalDateTime.of(2017, 12, 31, 12, 15), "Hauptstrasse 60-62/2/4", 3420, "Kritzendorf", "Zum Postkasten legen", new BigDecimal("1.5")));
-        Order o0107 = orderRepository.save(new Order(maxMustermann, i01, LocalDateTime.of(2018, 01, 07, 07, 00), LocalDateTime.of(2018, 1, 6, 11, 45), "Hauptstrasse 60-62/2/4", 3420, "Kritzendorf", "Zum Postkasten legen", new BigDecimal("1.5")));
-        Order o0201 = orderRepository.save(new Order(maxMustermann, null, LocalDateTime.of(2018, 02, 01, 07, 00), LocalDateTime.of(2018, 1, 31, 13, 00), "Hauptstrasse 60-62/2/4", 3420, "Kritzendorf", "Zum Postkasten legen", new BigDecimal("1.5")));
-        Order o0204 = orderRepository.save(new Order(maxMustermann, null, LocalDateTime.of(2018, 02, 04, 07, 00), LocalDateTime.of(2018, 2, 3, 14, 00), "Hauptstrasse 60-62/2/4", 3420, "Kritzendorf", "Zum Postkasten legen", new BigDecimal("1.5")));
+        Order o0101 = orderRepository.save(new Order(maxMustermann, i01, LocalDateTime.of(2018, 1, 1, 7, 0), LocalDateTime.of(2017, 12, 31, 12, 15), "Hauptstrasse 60-62/2/4", 3420, "Kritzendorf", "Zum Postkasten legen", new BigDecimal("1.5")));
+        Order o0107 = orderRepository.save(new Order(maxMustermann, i01, LocalDateTime.of(2018, 1, 7, 7, 0), LocalDateTime.of(2018, 1, 6, 11, 45), "Hauptstrasse 60-62/2/4", 3420, "Kritzendorf", "Zum Postkasten legen", new BigDecimal("1.5")));
+        Order o0201 = orderRepository.save(new Order(maxMustermann, null, LocalDateTime.of(2018, 2, 1, 7, 0), LocalDateTime.of(2018, 1, 31, 13, 0), "Hauptstrasse 60-62/2/4", 3420, "Kritzendorf", "Zum Postkasten legen", new BigDecimal("1.5")));
+        Order o0204 = orderRepository.save(new Order(maxMustermann, null, LocalDateTime.of(2018, 2, 4, 7, 0), LocalDateTime.of(2018, 2, 3, 14, 0), "Hauptstrasse 60-62/2/4", 3420, "Kritzendorf", "Zum Postkasten legen", new BigDecimal("1.5")));
 
-        Order bo0101 = orderRepository.save(new Order(bettinaReiss, bi01, LocalDateTime.of(2018, 01, 01, 07, 00), LocalDateTime.of(2017, 12, 31, 12, 15), "Franz Rumpler Strasse 24", 3400, "Klosterneuburg", "Zum Postkasten legen", new BigDecimal("1.5")));
+        Order bo0101 = orderRepository.save(new Order(bettinaReiss, bi01, LocalDateTime.of(2018, 1, 1, 7, 0), LocalDateTime.of(2017, 12, 31, 12, 15), "Franz Rumpler Strasse 24", 3400, "Klosterneuburg", "Zum Postkasten legen", new BigDecimal("1.5")));
 
-        orderItemRepository.save(new OrderItem(o0101, semmel, 3, new BigDecimal("0.25")));
-        orderItemRepository.save(new OrderItem(o0101, kornspitz, 2, new BigDecimal("0.70")));
-        orderItemRepository.save(new OrderItem(o0107, semmel, 2, new BigDecimal("0.25")));
-        orderItemRepository.save(new OrderItem(o0107, briochekipferl, 1, new BigDecimal("1.2")));
-        orderItemRepository.save(new OrderItem(o0107, kornspitz, 2, new BigDecimal("0.70")));
+        orderItemRepository.save(new OrderItem(o0101, semmel, new BigDecimal("0.25"), 3));
+        orderItemRepository.save(new OrderItem(o0101, kornspitz, new BigDecimal("0.70"), 2));
+        orderItemRepository.save(new OrderItem(o0107, semmel, new BigDecimal("0.25"), 2));
+        orderItemRepository.save(new OrderItem(o0107, briochekipferl, new BigDecimal("1.2"), 1));
+        orderItemRepository.save(new OrderItem(o0107, kornspitz, new BigDecimal("0.70"), 2));
 
-        orderItemRepository.save(new OrderItem(bo0101, semmel, 1, new BigDecimal("0.25")));
+        orderItemRepository.save(new OrderItem(bo0101, semmel, new BigDecimal("0.25"), 1));
 
-        orderItemRepository.save(new OrderItem(o0201, semmel, 2, new BigDecimal("0.30")));
-        orderItemRepository.save(new OrderItem(o0201, kornspitz, 3, new BigDecimal("0.80")));
-        orderItemRepository.save(new OrderItem(o0201, dinkelweckerl, 1, new BigDecimal("0.90")));
-        orderItemRepository.save(new OrderItem(o0204, semmel, 3, new BigDecimal("0.30")));
-        orderItemRepository.save(new OrderItem(o0204, briochekipferl, 1, new BigDecimal("1.25")));
+        orderItemRepository.save(new OrderItem(o0201, semmel, new BigDecimal("0.30"), 2));
+        orderItemRepository.save(new OrderItem(o0201, kornspitz, new BigDecimal("0.80"), 3));
+        orderItemRepository.save(new OrderItem(o0201, dinkelweckerl, new BigDecimal("0.90"), 1));
+        orderItemRepository.save(new OrderItem(o0204, semmel, new BigDecimal("0.30"), 3));
+        orderItemRepository.save(new OrderItem(o0204, briochekipferl, new BigDecimal("1.25"), 1));
     }
 }

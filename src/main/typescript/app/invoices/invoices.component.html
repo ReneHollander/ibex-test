@@ -1,9 +1,8 @@
-<app-loading [condition]="isLoading"></app-loading>
-
-<div class="card mb-3" *ngIf="!isLoading">
+<div class="card mb-3">
     <h4 class="card-header">Noch nicht bezahlte Lieferungen</h4>
     <div class="card-body">
-        <table class="table table-hover table-bordered">
+        <loading [condition]="isLoadingPendingOrders"></loading>
+        <table *ngIf="!isLoadingPendingOrders" class="table table-hover table-bordered">
             <thead>
             <tr>
                 <th scope="col">#</th>
@@ -13,17 +12,11 @@
             </tr>
             </thead>
             <tbody>
-            <tr (click)="onOrderClick(2)">
-                <td>2</td>
-                <td>27.02.2018</td>
-                <td>28.02.2018</td>
-                <td>5.50€</td>
-            </tr>
-            <tr (click)="onOrderClick(1)">
-                <td>1</td>
-                <td>26.02.2018</td>
-                <td>27.02.2018</td>
-                <td>4.50€</td>
+            <tr *ngFor="let order of pendingOrders" (click)="onOrderClick(order)">
+                <td>{{order.id}}</td>
+                <td>{{order.orderTime | date:'dd.MM.yyyy'}}</td>
+                <td>{{order.deliveryTime | date:'dd.MM.yyyy'}}</td>
+                <td>TODO€</td>
             </tr>
             </tbody>
         </table>
@@ -31,10 +24,11 @@
 </div>
 
 
-<div class="card mb-3" *ngIf="!isLoading">
+<div class="card mb-3">
     <h4 class="card-header">Rechnungen</h4>
     <div class="card-body">
-        <table class="table table-hover table-bordered">
+        <loading [condition]="isLoadingInvoices"></loading>
+        <table *ngIf="!isLoadingInvoices" class="table table-hover table-bordered">
             <thead>
             <tr>
                 <th scope="col">#</th>
@@ -43,15 +37,10 @@
             </tr>
             </thead>
             <tbody>
-            <tr (click)="onInvoiceClick(2)">
-                <td>2</td>
-                <td>01.02.2018</td>
-                <td>30.00€</td>
-            </tr>
-            <tr (click)="onInvoiceClick(1)">
-                <td>1</td>
-                <td>01.01.2018</td>
-                <td>15.00€</td>
+            <tr *ngFor="let invoice of invoices" (click)="onInvoiceClick(invoice)">
+                <td>{{invoice.id}}</td>
+                <td>{{invoice.date | date:'dd.MM.yyyy'}}</td>
+                <td>TODO€</td>
             </tr>
             </tbody>
         </table>

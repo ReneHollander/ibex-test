@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {RecurringOrderService} from "../services/recurringorder.service";
 import {RecurringOrder} from "../shared/models/recurringorder.model";
-import {ToastComponent} from "../shared/toast/toast.component";
 
 @Component({
     selector: 'app-recurring-orders',
@@ -13,8 +12,7 @@ export class RecurringOrdersComponent implements OnInit {
     recurringOrders: RecurringOrder[] = [];
     isLoading = true;
 
-    constructor(private recurringOrderService: RecurringOrderService,
-                public toast: ToastComponent) {
+    constructor(private recurringOrderService: RecurringOrderService) {
     }
 
     async ngOnInit(): Promise<void> {

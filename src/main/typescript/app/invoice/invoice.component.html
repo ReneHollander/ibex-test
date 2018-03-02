@@ -1,7 +1,7 @@
-<app-loading [condition]="isLoading"></app-loading>
+<loading-card [condition]="isLoading"></loading-card>
 
 <div class="card mb-3" *ngIf="!isLoading">
-    <h4 class="card-header">Rechnung #{{id}}</h4>
+    <h4 class="card-header">Rechnung #{{invoice.id}}</h4>
     <div class="card-body">
         <table class="table table-hover table-bordered">
             <thead>
@@ -13,17 +13,11 @@
             </tr>
             </thead>
             <tbody>
-            <tr (click)="onOrderClick(2)">
-                <td>2</td>
-                <td>27.02.2018</td>
-                <td>28.02.2018</td>
-                <td>5.50€</td>
-            </tr>
-            <tr (click)="onOrderClick(1)">
-                <td>1</td>
-                <td>26.02.2018</td>
-                <td>27.02.2018</td>
-                <td>4.50€</td>
+            <tr *ngFor="let order of invoice.orders" (click)="onOrderClick(order)">
+                <td>{{order.id}}</td>
+                <td>{{order.orderTime | date:'dd.MM.yyyy'}}</td>
+                <td>{{order.deliveryTime | date:'dd.MM.yyyy'}}</td>
+                <td>TODO€</td>
             </tr>
             </tbody>
         </table>

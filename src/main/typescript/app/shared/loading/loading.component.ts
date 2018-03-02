@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 
 @Component({
-    selector: 'app-loading',
+    selector: 'loading',
     templateUrl: './loading.component.html'
 })
 export class LoadingComponent {
