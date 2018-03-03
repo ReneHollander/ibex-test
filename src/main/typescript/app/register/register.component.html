@@ -1,41 +1,105 @@
 <app-toast [message]="toast.message"></app-toast>
 
-<div class="card">
+<loading-card [condition]="isLoading"></loading-card>
+
+<div class="card" *ngIf="!isLoading">
     <h4 class="card-header">Register</h4>
     <div class="card-body">
         <form [formGroup]="registerForm" (ngSubmit)="register()">
-            <div class="input-group" [ngClass]="setClassName()">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-user"></i></span>
-                </div>
-                <input class="form-control" type="text" name="name" formControlName="name" placeholder="Name" autofocus>
+            <div class="form-group">
+                <label for="inputName">Name</label>
+                <input type="text" class="form-control" id="inputName" placeholder="Name">
             </div>
-            <div class="input-group" [ngClass]="setClassEmail()">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                </div>
-                <input class="form-control" type="email" name="email" formControlName="email" placeholder="Email">
+            <div class="form-group">
+                <label for="inputEmail">E-Mail-Adresse</label>
+                <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+                       placeholder="E-Mail-Adresse">
+                <small id="emailHelp" class="form-text text-muted">Sie erhalten nur Rechnungen über diese
+                    E-Mail-Adresse,
+                    keine Werbung.
+                </small>
             </div>
-            <div class="input-group" [ngClass]="setClassPassword()">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-key"></i></span>
-                </div>
-                <input class="form-control" type="password" name="password" formControlName="password"
-                       placeholder="Password">
+            <div class="form-group">
+                <label for="inputPassword">Passwort</label>
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
             </div>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-black-tie"></i></span>
-                </div>
-                <select class="custom-select" name="role" formControlName="role">
-                    <option value="" selected disabled>Role</option>
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
-                </select>
+            <div class="form-group">
+                <label for="inputPasswordRepeat">Passwort wiederholen</label>
+                <input type="password" class="form-control" id="inputPasswordRepeat" placeholder="Password wiederholen">
             </div>
-            <button class="btn btn-primary" type="submit" [disabled]="!registerForm.valid"><i
-                    class="fa fa-user-plus"></i> Register
-            </button>
+
+            <div class="form-group">
+                <label for="inputAddress">Adresse</label>
+                <input type="text" class="form-control" id="inputAddress" placeholder="Adresse">
+            </div>
+
+            <div class="form-group">
+                <label for="inputCity">Stadt</label>
+                <city-search id="inputCity" [cities]="cities" aria-describedby="cityHelp"
+                             placeholder="Stadt"></city-search>
+                <small id="cityHelp" class="form-text text-muted">
+                    Lieferungen können nur in das Ortsgebiet des gewählten Ortes gelifert werden. Wenn Ihr Ort nicht
+                    dabei ist, helfen Sie dabei ihn verfügbar zu machen indem Sie auf der Startseite abstimmen oder
+                    kontaktieren Sie uns direkt.
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="inputDeliveryNote">Hinweis für den Lieferanten</label>
+                <textarea class="form-control" id="inputDeliveryNote" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="inputAccountName">Kontoinhaber</label>
+                <input type="text" class="form-control" id="inputAccountName" placeholder="Kontoinhaber">
+            </div>
+            <div class="form-group">
+                <label for="inputIban">IBAN</label>
+                <input type="text" class="form-control" id="inputIban" placeholder="Name" aria-describedby="ibanHelp">
+                <small id="ibanHelp" class="form-text text-muted">
+                    Mit der Eingabe Ihres IBANs sind Sie damit einverstanden, dass mit Monatsanfang der Rechnungsbetrag
+                    des Vormonats eingezogen wird. Sobald dies Erfolgt, erhalten sie eine E-Mail.
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="inputPhone">Telefon</label>
+                <input type="tel" class="form-control" id="inputPhone" placeholder="Telefon"
+                       aria-describedby="phoneHelp">
+                <small id="phoneHelp" class="form-text text-muted">
+                    Sie werden nur im Falle von Problemen bei der Lieferung oder Rechnungsstellung kontaktiert.
+                </small>
+            </div>
+
+            <!--<div class="input-group" [ngClass]="setClassName()">-->
+            <!--<div class="input-group-prepend">-->
+            <!--<span class="input-group-text"><i class="fa fa-user"></i></span>-->
+            <!--</div>-->
+            <!--<input class="form-control" type="text" name="name" formControlName="name" placeholder="Name" autofocus>-->
+            <!--</div>-->
+            <!--<div class="input-group" [ngClass]="setClassEmail()">-->
+            <!--<div class="input-group-prepend">-->
+            <!--<span class="input-group-text"><i class="fa fa-envelope"></i></span>-->
+            <!--</div>-->
+            <!--<input class="form-control" type="email" name="email" formControlName="email" placeholder="Email">-->
+            <!--</div>-->
+            <!--<div class="input-group" [ngClass]="setClassPassword()">-->
+            <!--<div class="input-group-prepend">-->
+            <!--<span class="input-group-text"><i class="fa fa-key"></i></span>-->
+            <!--</div>-->
+            <!--<input class="form-control" type="password" name="password" formControlName="password"-->
+            <!--placeholder="Password">-->
+            <!--</div>-->
+            <!--<div class="input-group">-->
+            <!--<div class="input-group-prepend">-->
+            <!--<span class="input-group-text"><i class="fa fa-black-tie"></i></span>-->
+            <!--</div>-->
+            <!--<select class="custom-select" name="role" formControlName="role">-->
+            <!--<option value="" selected disabled>Role</option>-->
+            <!--<option value="user">User</option>-->
+            <!--<option value="admin">Admin</option>-->
+            <!--</select>-->
+            <!--</div>-->
+            <!--<button class="btn btn-primary" type="submit" [disabled]="!registerForm.valid"><i-->
+            <!--class="fa fa-user-plus"></i> Register-->
+            <!--</button>-->
         </form>
     </div>
 </div>

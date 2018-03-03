@@ -1,8 +1,10 @@
 package at.hollander.ibex.controller.api;
 
+import at.hollander.ibex.View;
 import at.hollander.ibex.component.UserAccountService;
 import at.hollander.ibex.entity.Account;
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonView;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,19 +22,18 @@ public class InitialController {
         this.userAccountService = userAccountService;
     }
 
+    @JsonView({View.Endpoint.Initial.class})
     @RequestMapping(value = "/initial", method = {RequestMethod.GET, RequestMethod.POST})
     public LoginResponse initial() {
-        Account account = userAccountService.getAccount();
-        return LoginResponse.builder().email(account.getEmail()).name(account.getName()).build();
+        return new LoginResponse(userAccountService.getAccount(), "USER");
     }
 
-    @Data
-    @Builder
+    @AllArgsConstructor
     public static class LoginResponse {
-        private String email;
-        private String name;
-        @Builder.Default
-        private String role = "USER";
+        @JsonView(View.Endpoint.Initial.class)
+        private Account account;
+        @JsonView(View.Endpoint.Initial.class)
+        private String role;
     }
 
 }

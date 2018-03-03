@@ -31,7 +31,8 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                 </div>
-                <input class="form-control" type="text" name="city" [(ngModel)]="accountDetails.city" placeholder="City"
+                <input class="form-control" type="text" name="city" [(ngModel)]="accountDetails.city.name"
+                       placeholder="City"
                        required>
             </div>
             <button class="btn btn-primary" type="submit" [disabled]="!accountForm.form.valid">

@@ -7,7 +7,7 @@ import {AuthService} from './services/auth.service';
 import {AuthGuardLogin} from './services/auth-guard-login.service';
 import {AuthGuardAdmin} from './services/auth-guard-admin.service';
 import {AppComponent} from './app.component';
-import {AboutComponent} from './about/about.component';
+import {HomeComponent} from './home/home.component';
 import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
 import {LogoutComponent} from './logout/logout.component';
@@ -31,6 +31,8 @@ import {InvoiceComponent} from "./invoice/invoice.component";
 import {OrderComponent} from "./order/order.component";
 import {InvoiceService} from "./services/invoice.service";
 import {OrderService} from "./services/order.service";
+import {CityService} from "./services/city.service";
+import {CitySearchComponent} from "./citysearch/citysearch.component";
 
 @NgModule({
     declarations: [
@@ -39,7 +41,7 @@ import {OrderService} from "./services/order.service";
         RecurringOrderComponent,
         RecurringOrderRowComponent,
         ProductsComponent,
-        AboutComponent,
+        HomeComponent,
         RegisterComponent,
         LoginComponent,
         LogoutComponent,
@@ -50,6 +52,7 @@ import {OrderService} from "./services/order.service";
         InvoicesComponent,
         InvoiceComponent,
         OrderComponent,
+        CitySearchComponent,
     ],
     imports: [
         RoutingModule,
@@ -71,6 +74,7 @@ import {OrderService} from "./services/order.service";
         LoginService,
         InvoiceService,
         OrderService,
+        CityService,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]

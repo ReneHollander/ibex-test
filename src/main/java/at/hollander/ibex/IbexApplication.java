@@ -88,22 +88,36 @@ public class IbexApplication implements CommandLineRunner {
                 AdminAccount.builder()
                         .email("rene.hollander@hotmail.de")
                         .password(passwordEncoder.encode("1234"))
-                        .name("Rene Hollander").build());
+                        .name("Rene Hollander")
+                        .build());
 
         City klosterneuburg = cityRepository.save(new City(3400, "Klosterneuburg", true));
+        City kierling = cityRepository.save(new City(3400, "Kierling", true));
+        City kritzendorf = cityRepository.save(new City(3420, "Kritzendorf", false));
+        City weidling = cityRepository.save(new City(3400, "Weidling", false));
 
         Account maxMustermann = accountRepository.save(
                 Account.builder()
                         .name("Max Mustermann")
                         .password(passwordEncoder.encode("1234"))
                         .email("max@mustermann.at")
-                        .city(klosterneuburg).build());
+                        .city(klosterneuburg)
+                        .address("Musterstrasse 69")
+                        .deliveryNote("Zum Postkasten")
+                        .iban("AT123456789")
+                        .accountName("Max Mustermann")
+                        .phone("0676123456")
+                        .build());
 
         Account bettinaReiss = accountRepository.save(
                 Account.builder()
                         .name("Bettina Reiss")
                         .password(passwordEncoder.encode("1234"))
                         .email("bettina@reiss.at")
+                        .address("Hauptstrasse 60-62/2/4")
+                        .iban("AT9349618554854")
+                        .accountName("Bettina Reiss")
+                        .phone("069911082373")
                         .city(klosterneuburg).build());
 
         Product semmel = productRepository.save(new Product(1, "Semmel", new BigDecimal("0.30")));

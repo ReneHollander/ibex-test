@@ -35,7 +35,7 @@
                 </li>
                 <li class="nav-item">
                     <a routerLink="/products" class="nav-link" routerLinkActive="active"
-                       *ngIf="auth.loggedIn">
+                       *ngIf="auth.isAdmin">
                         <i class="fa fa-list"></i> Products
                     </a>
                 </li>

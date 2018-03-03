@@ -83,7 +83,6 @@ export class ProductSearchComponent implements OnInit, ControlValueAccessor {
 
     async ngOnInit(): Promise<void> {
         await this.getProducts();
-        console.log(this.placeholder)
     }
 
     selectProduct(item: Product) {

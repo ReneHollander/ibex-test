@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {AboutComponent} from './about/about.component';
+import {HomeComponent} from './home/home.component';
 import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
 import {LogoutComponent} from './logout/logout.component';
@@ -17,12 +17,12 @@ import {InvoiceComponent} from "./invoice/invoice.component";
 import {OrderComponent} from "./order/order.component";
 
 const routes: Routes = [
-    {path: '', component: AboutComponent},
+    {path: '', component: HomeComponent},
     {path: 'login', component: LoginComponent},
     {path: 'logout', component: LogoutComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'recurringorders', component: RecurringOrdersComponent, canActivate: [AuthGuardLogin]},
-    {path: 'products', component: ProductsComponent, canActivate: [AuthGuardLogin]},
+    {path: 'products', component: ProductsComponent, canActivate: [AuthGuardAdmin]},
     {path: 'invoices', component: InvoicesComponent, canActivate: [AuthGuardLogin]},
     {path: 'invoice/:id', component: InvoiceComponent, canActivate: [AuthGuardLogin]},
     {path: 'order/:id', component: OrderComponent, canActivate: [AuthGuardLogin]},
