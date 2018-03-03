@@ -1,26 +1,27 @@
 import {Injectable} from '@angular/core';
 import {User} from "../shared/models/user.model";
-import {ApiClient} from "./apiclient.service";
+import {HttpClient} from "@angular/common/http";
+import {plainToClass} from "class-transformer";
 
 @Injectable()
 export class LoginService {
 
-    constructor(private api: ApiClient) {
+    constructor(private http: HttpClient) {
     }
 
     async initial(): Promise<User> {
-        return this.api.getAndConvert(User, '/api/initial');
+        return plainToClass(User, await this.http.get<User>('/api/initial').toPromise());
     }
 
     async login(email: String, password: String): Promise<User> {
-        return this.api.postAndConvert(User, '/api/login', {
+        return plainToClass(User, await this.http.post<User>('/api/login', {
             email: email,
             password: password
-        });
+        }).toPromise());
     }
 
-    async logout(): Promise<any> {
-        return this.api.get<any>('/api/logout');
+    async logout(): Promise<void> {
+        await this.http.get('/api/logout').toPromise();
     }
 
 }

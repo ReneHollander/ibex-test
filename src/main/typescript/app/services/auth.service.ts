@@ -36,10 +36,15 @@ export class AuthService {
         return this.currentUser;
     }
 
+    clear(): void {
+        this.loggedIn = false;
+        this.isAdmin = false;
+        this.currentUser = null;
+    }
+
     async logout(): Promise<void> {
         await this.loginService.logout();
-        this.loggedIn = false;
-        this.currentUser = null;
+        this.clear();
         await this.router.navigate(['/']);
     }
 
