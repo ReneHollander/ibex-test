@@ -5,7 +5,6 @@ import at.hollander.ibex.component.UserAccountService;
 import at.hollander.ibex.entity.Account;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
