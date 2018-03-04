@@ -9,6 +9,7 @@ export class AuthGuardLogin implements CanActivate {
     }
 
     async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+        await this.authService.initial();
         if (!this.authService.loggedIn) {
             this.router.navigate(['/login']);
             return false;

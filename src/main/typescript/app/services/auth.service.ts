@@ -15,15 +15,19 @@ export class AuthService {
     }
 
     async initial(): Promise<boolean> {
-        try {
-            this.currentUser = await this.loginService.initial();
-            if (this.currentUser.role == 'ADMIN') {
-                this.isAdmin = true;
+        if (this.currentUser == null) {
+            try {
+                this.currentUser = await this.loginService.initial();
+                if (this.currentUser.role == 'ADMIN') {
+                    this.isAdmin = true;
+                }
+                this.loggedIn = true;
+                return true;
+            } catch (e) {
+                return false;
             }
-            this.loggedIn = true;
-            return true;
-        } catch (e) {
-            return false;
+        } else {
+            return this.loggedIn;
         }
     }
 
