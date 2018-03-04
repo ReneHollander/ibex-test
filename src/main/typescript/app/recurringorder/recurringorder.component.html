@@ -19,7 +19,10 @@
     <tr>
         <td colspan="2" align="right">
             <div class="input-group">
-                <product-search placeholder="Produkt hinzufügen" [(ngModel)]="selectedProduct"></product-search>
+                <product-search placeholder="Produkt hinzufügen"
+                                placeholderEmpty="Keine weiteren Produkte"
+                                [products]="availableProducts"
+                                [(ngModel)]="selectedProduct"></product-search>
                 <div class="input-group-append">
                     <button class="btn btn-secondary" type="button" (click)="addProductCancelButtonClick()">
                         <i class="fa fa-close"></i>

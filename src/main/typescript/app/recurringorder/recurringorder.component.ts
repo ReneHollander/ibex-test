@@ -1,24 +1,36 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {RecurringOrder, RecurringOrderItem} from "../shared/models/recurringorder.model";
 import {Product} from "../shared/models/product.model";
+import {ProductService} from "../services/product.service";
 
 @Component({
     selector: 'recurring-order',
     templateUrl: './recurringorder.component.html',
     styleUrls: ['./recurringorder.component.css']
 })
-export class RecurringOrderComponent implements OnChanges {
+export class RecurringOrderComponent implements OnInit, OnChanges {
 
     @Input()
-    recurringOrder: RecurringOrder;
+    recurringOrder: RecurringOrder = new RecurringOrder();
 
     deliveryFee: number = 1.5;
-
     total: number = this.deliveryFee;
-
+    products: Product[] = [];
     selectedProduct: Product;
 
-    constructor() {
+    private isLoading: boolean = true;
+
+    constructor(private productService: ProductService) {
+    }
+
+    async ngOnInit(): Promise<void> {
+        this.isLoading = true;
+        this.products = await this.productService.getProducts();
+        this.isLoading = false;
+    }
+
+    get availableProducts(): Product[] {
+        return this.products.filter((p) => this.recurringOrder.items.map(item => item.product.id).indexOf(p.id) < 0);
     }
 
     updateTotal() {

@@ -1,10 +1,13 @@
-<input type="text" class="form-control" [(ngModel)]="productModel" name="productName" placeholder="{{placeholder}}"
+<input type="text" class="form-control"
+       [(ngModel)]="productModel"
+       [placeholder]="placeholder"
        [ngbTypeahead]="productSearch"
        [resultTemplate]="productTemplate"
        [inputFormatter]="productFormatter"
        (selectItem)="selectProduct($event.item)"
        (focus)="focus$.next($event.target.value)"
        (click)="click$.next($event.target.value)"
+       [disabled]="disabled"
        #instance="ngbTypeahead"
 />
 

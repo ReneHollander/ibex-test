@@ -1,9 +1,6 @@
-import {Component, forwardRef, Input, OnInit, ViewChild} from '@angular/core';
-import {ProductService} from "../services/product.service";
+import {Component, forwardRef, Input, ViewChild} from '@angular/core';
 import {Product} from "../shared/models/product.model";
 import {NgbTypeahead} from "@ng-bootstrap/ng-bootstrap";
-import {ToastComponent} from "../shared/toast/toast.component";
-import {RecurringOrderService} from "../services/recurringorder.service";
 import {Observable} from 'rxjs/Observable';
 import {debounceTime, distinctUntilChanged, filter, map, merge} from 'rxjs/operators';
 import {Subject} from 'rxjs/Subject';
@@ -20,50 +17,55 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
         }
     ]
 })
-export class ProductSearchComponent implements OnInit, ControlValueAccessor {
-    registerOnTouched(fn: any): void {
-        this.onTouched = fn;
+export class ProductSearchComponent implements ControlValueAccessor {
+
+    @Input()
+    products: Product[];
+
+    public productModel: Product;
+
+    private _placeholder: string = "";
+
+    @Input()
+    placeholderEmpty: string = "";
+
+    @Input()
+    set placeholder(str: string) {
+        this._placeholder = str;
     }
 
-    // Function to call when the rating changes.
-    onChange = (product: Product) => {
-    };
-
-    onTouched = () => {
-    };
-
-    writeValue(obj: any): void {
-        this.productModel = obj;
-        this.onChange(this.productModel)
+    get placeholder(): string {
+        return this.disabled ? this.placeholderEmpty : this._placeholder;
     }
 
-    registerOnChange(fn: (product: Product) => void): void {
-        this.onChange = fn;
+    private _disabled: boolean = false;
+
+    @Input()
+    set disabled(b: boolean) {
+        this._disabled = b;
     }
 
     setDisabledState(isDisabled: boolean): void {
-        this.disabled = isDisabled;
+        this._disabled = isDisabled;
     }
 
-    @Input()
-    placeholder: string = "";
-
-    @Input()
-    disabled = false;
-
-    isLoading = true;
-
-    products: Product[] = [];
-    public productModel: Product;
+    get disabled() {
+        return this._disabled || this.products.length == 0;
+    }
 
     @ViewChild('instance') instance: NgbTypeahead;
     focus$ = new Subject<string>();
     click$ = new Subject<string>();
 
-    constructor(private recurringOrderService: RecurringOrderService,
-                private productService: ProductService,
-                public toast: ToastComponent) {
+    registerOnTouched(fn: any): void {
+        this.onTouched = fn;
     }
+
+    onChange = (product: Product) => {
+    };
+
+    onTouched = () => {
+    };
 
     productSearch = (text$: Observable<string>) =>
         text$
@@ -76,13 +78,13 @@ export class ProductSearchComponent implements OnInit, ControlValueAccessor {
 
     productFormatter = (x: { name: string }) => x.name;
 
-    async getProducts(): Promise<void> {
-        this.products = await this.productService.getProducts();
-        this.isLoading = false;
+    writeValue(obj: any): void {
+        this.productModel = obj;
+        this.onChange(this.productModel)
     }
 
-    async ngOnInit(): Promise<void> {
-        await this.getProducts();
+    registerOnChange(fn: (product: Product) => void): void {
+        this.onChange = fn;
     }
 
     selectProduct(item: Product) {
