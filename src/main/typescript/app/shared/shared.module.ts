@@ -6,6 +6,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {ToastComponent} from './toast/toast.component';
 import {LoadingCardComponent} from './loadingcard/loadingcard.component';
 import {LoadingComponent} from "./loading/loading.component";
+import {IbanPipe} from "./pipe/iban";
 
 @NgModule({
     imports: [
@@ -23,12 +24,14 @@ import {LoadingComponent} from "./loading/loading.component";
         // Shared Components
         ToastComponent,
         LoadingComponent,
-        LoadingCardComponent
+        LoadingCardComponent,
+        IbanPipe,
     ],
     declarations: [
         ToastComponent,
         LoadingComponent,
-        LoadingCardComponent
+        LoadingCardComponent,
+        IbanPipe,
     ],
     providers: [
         ToastComponent

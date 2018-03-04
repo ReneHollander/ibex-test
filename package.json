@@ -30,6 +30,7 @@
     "bootstrap": "^4.0.0",
     "class-transformer": "^0.1.9",
     "font-awesome": "^4.7.0",
+    "ibantools": "^1.6.0",
     "jquery": "^3.3.1",
     "ng-bootstrap": "^1.6.3",
     "ngx-bootstrap": "^2.0.2",
