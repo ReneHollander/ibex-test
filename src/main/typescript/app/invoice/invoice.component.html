@@ -3,6 +3,10 @@
 <div class="card mb-3" *ngIf="!isLoading">
     <h4 class="card-header">Rechnung #{{invoice.id}}</h4>
     <div class="card-body">
+        Rechnungsnummer: {{invoice.id}}<br>
+        Rechnungsdatum: {{invoice.date | date:'dd.MM.yyyy'}}<br>
+        Kontoinhaber: {{invoice.accountName}}<br>
+        IBAN: {{invoice.iban}}<br>
         <table class="table table-hover table-bordered">
             <thead>
             <tr>

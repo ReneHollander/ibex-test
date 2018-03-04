@@ -3,6 +3,11 @@
 <div class="card mb-3" *ngIf="!isLoading">
     <h4 class="card-header">Bestellung #{{id}}</h4>
     <div class="card-body">
+        Bestellnummer: {{order.id}}<br>
+        Bestelldatum: {{order.orderTime | date: 'dd.MM.yyy HH:mm:ss'}}<br>
+        Lieferdatum: {{order.deliveryTime | date: 'dd.MM.yyy HH:mm:ss'}}<br>
+        Lieferadresse: {{order.address}}, {{order.postcode}} {{order.city}}<br>
+        Lieferhinweis: {{order.deliveryNote}}<br>
         <table class="table table-hover table-bordered">
             <thead>
             <tr>
