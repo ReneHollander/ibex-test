@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {AccountService} from '../services/account.service';
 import {ToastComponent} from '../shared/toast/toast.component';
@@ -16,24 +16,45 @@ export class RegisterComponent implements OnInit {
     cities: City[];
 
     registerForm: FormGroup;
-    // name = new FormControl('', [
-    //     Validators.required,
-    //     Validators.minLength(2),
-    //     Validators.maxLength(30),
-    //     Validators.pattern('[a-zA-Z0-9_-\\s]*')
-    // ]);
-    // email = new FormControl('', [
-    //     Validators.required,
-    //     Validators.minLength(3),
-    //     Validators.maxLength(100)
-    // ]);
-    // password = new FormControl('', [
-    //     Validators.required,
-    //     Validators.minLength(6)
-    // ]);
-    // role = new FormControl('', [
-    //     Validators.required
-    // ]);
+    name = new FormControl('', [
+        Validators.required,
+        // Validators.minLength(2),
+        // Validators.maxLength(30),
+        // Validators.pattern('[a-zA-Z0-9_-\\s]*')
+    ]);
+    email = new FormControl('', [
+        Validators.required,
+        // Validators.minLength(3),
+        // Validators.maxLength(100),
+        // Validators.email
+    ]);
+    password = new FormControl('', [
+        Validators.required,
+        // Validators.minLength(6)
+    ]);
+    passwordRepeat = new FormControl('', [
+        Validators.required,
+        // Validators.minLength(6)
+    ]);
+    address = new FormControl('', [
+        Validators.required,
+        // Validators.minLength(3)
+    ]);
+    city = new FormControl('', [
+        Validators.required,
+    ]);
+    deliveryNote = new FormControl('');
+    accountName = new FormControl('', [
+        Validators.required,
+        // Validators.minLength(3)
+    ]);
+    iban = new FormControl('', [
+        Validators.required,
+        // Validators.pattern('^AT\\d{18}$')
+    ]);
+    phone = new FormControl('', [
+        Validators.required,
+    ]);
     isLoading: boolean = true;
 
     constructor(private formBuilder: FormBuilder,
@@ -52,32 +73,31 @@ export class RegisterComponent implements OnInit {
     async ngOnInit() {
         await this.getCities();
         this.registerForm = this.formBuilder.group({
-            // name: this.name,
-            // email: this.email,
-            // password: this.password,
-            // role: this.role
+            name: this.name,
+            email: this.email,
+            password: this.password,
+            passwordRepeat: this.passwordRepeat,
+            address: this.address,
+            city: this.city,
+            deliveryNote: this.deliveryNote,
+            accountName: this.accountName,
+            iban: this.iban,
+            phone: this.phone,
         });
     }
 
-    // setClassName() {
-    //     return {'has-danger': !this.name.pristine && !this.name.valid};
-    // }
-    //
-    // setClassEmail() {
-    //     return {'has-danger': !this.email.pristine && !this.email.valid};
-    // }
-    //
-    // setClassPassword() {
-    //     return {'has-danger': !this.password.pristine && !this.password.valid};
-    // }
-    //
-    // register() {
-    //     // this.userService.register(this.registerForm.value).subscribe(
-    //     //     res => {
-    //     //         this.toast.setMessage('you successfully registered!', 'success');
-    //     //         this.router.navigate(['/login']);
-    //     //     },
-    //     //     error => this.toast.setMessage('email already exists', 'danger')
-    //     // );
-    // }
+    setClass(fc: FormControl): any {
+        return {'has-danger': !fc.pristine && !fc.valid};
+    }
+
+    register() {
+        console.log(this.registerForm.value);
+        // this.userService.register(this.registerForm.value).subscribe(
+        //     res => {
+        //         this.toast.setMessage('you successfully registered!', 'success');
+        //         this.router.navigate(['/login']);
+        //     },
+        //     error => this.toast.setMessage('email already exists', 'danger')
+        // );
+    }
 }

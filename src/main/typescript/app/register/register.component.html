@@ -6,36 +6,40 @@
     <h4 class="card-header">Register</h4>
     <div class="card-body">
         <form [formGroup]="registerForm" (ngSubmit)="register()">
-            <div class="form-group">
-                <label for="inputName">Name</label>
-                <input type="text" class="form-control" id="inputName" placeholder="Name">
+            <div class="form-group" [ngClass]="setClass(name)">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" formControlName="name" placeholder="Name">
             </div>
-            <div class="form-group">
-                <label for="inputEmail">E-Mail-Adresse</label>
-                <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+            <div class="form-group" [ngClass]="setClass(email)">
+                <label for="email">E-Mail-Adresse</label>
+                <input type="email" class="form-control" id="email" name="email" formControlName="email"
+                       aria-describedby="emailHelp"
                        placeholder="E-Mail-Adresse">
                 <small id="emailHelp" class="form-text text-muted">Sie erhalten nur Rechnungen über diese
                     E-Mail-Adresse,
                     keine Werbung.
                 </small>
             </div>
-            <div class="form-group">
-                <label for="inputPassword">Passwort</label>
-                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+            <div class="form-group" [ngClass]="setClass(password)">
+                <label for="password">Passwort</label>
+                <input type="password" class="form-control" id="password" name="password" formControlName="password"
+                       placeholder="Password">
             </div>
-            <div class="form-group">
-                <label for="inputPasswordRepeat">Passwort wiederholen</label>
-                <input type="password" class="form-control" id="inputPasswordRepeat" placeholder="Password wiederholen">
-            </div>
-
-            <div class="form-group">
-                <label for="inputAddress">Adresse</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="Adresse">
+            <div class="form-group" [ngClass]="setClass(passwordRepeat)">
+                <label for="passwordRepeat">Passwort wiederholen</label>
+                <input type="password" class="form-control" id="passwordRepeat" name="passwordRepeat"
+                       formControlName="passwordRepeat" placeholder="Password wiederholen">
             </div>
 
-            <div class="form-group">
-                <label for="inputCity">Stadt</label>
-                <city-search id="inputCity" [cities]="cities" aria-describedby="cityHelp"
+            <div class="form-group" [ngClass]="setClass(address)">
+                <label for="address">Adresse</label>
+                <input type="text" class="form-control" id="address" name="address" formControlName="address"
+                       placeholder="Adresse">
+            </div>
+
+            <div class="form-group" [ngClass]="setClass(city)">
+                <label for="city">Stadt</label>
+                <city-search id="city" name="city" formControlName="city" [cities]="cities" aria-describedby="cityHelp"
                              placeholder="Stadt"></city-search>
                 <small id="cityHelp" class="form-text text-muted">
                     Lieferungen können nur in das Ortsgebiet des gewählten Ortes gelifert werden. Wenn Ihr Ort nicht
@@ -43,30 +47,38 @@
                     kontaktieren Sie uns direkt.
                 </small>
             </div>
-            <div class="form-group">
-                <label for="inputDeliveryNote">Hinweis für den Lieferanten</label>
-                <textarea class="form-control" id="inputDeliveryNote" rows="2"></textarea>
+            <div class="form-group" [ngClass]="setClass(deliveryNote)">
+                <label for="deliveryNote">Hinweis für den Lieferanten</label>
+                <textarea class="form-control" id="deliveryNote" name="deliveryNote" formControlName="deliveryNote"
+                          rows="2"></textarea>
             </div>
-            <div class="form-group">
-                <label for="inputAccountName">Kontoinhaber</label>
-                <input type="text" class="form-control" id="inputAccountName" placeholder="Kontoinhaber">
+            <div class="form-group" [ngClass]="setClass(accountName)">
+                <label for="accountName">Kontoinhaber</label>
+                <input type="text" class="form-control" id="accountName" name="accountName"
+                       formControlName="accountName" placeholder="Kontoinhaber">
             </div>
-            <div class="form-group">
-                <label for="inputIban">IBAN</label>
-                <input type="text" class="form-control" id="inputIban" placeholder="Name" aria-describedby="ibanHelp">
+            <div class="form-group" [ngClass]="setClass(iban)">
+                <label for="iban">IBAN</label>
+                <input type="text" class="form-control" id="iban" name="iban" formControlName="iban" placeholder="Name"
+                       aria-describedby="ibanHelp">
                 <small id="ibanHelp" class="form-text text-muted">
                     Mit der Eingabe Ihres IBANs sind Sie damit einverstanden, dass mit Monatsanfang der Rechnungsbetrag
                     des Vormonats eingezogen wird. Sobald dies Erfolgt, erhalten sie eine E-Mail.
                 </small>
             </div>
-            <div class="form-group">
-                <label for="inputPhone">Telefon</label>
-                <input type="tel" class="form-control" id="inputPhone" placeholder="Telefon"
+            <div class="form-group" [ngClass]="setClass(phone)">
+                <label for="phone">Telefon</label>
+                <input type="tel" class="form-control" id="phone" name="phone" formControlName="phone"
+                       placeholder="Telefon"
                        aria-describedby="phoneHelp">
                 <small id="phoneHelp" class="form-text text-muted">
                     Sie werden nur im Falle von Problemen bei der Lieferung oder Rechnungsstellung kontaktiert.
                 </small>
             </div>
+
+            <button class="btn btn-primary" type="submit" [disabled]="!registerForm.valid"><i
+                    class="fa fa-user-plus"></i> Register
+            </button>
 
             <!--<div class="input-group" [ngClass]="setClassName()">-->
             <!--<div class="input-group-prepend">-->
