@@ -4,6 +4,7 @@ import {Product} from "../shared/models/product.model";
 import {ProductService} from "../services/product.service";
 import {classToClass} from "class-transformer";
 import {RecurringOrderService} from "../services/recurringorder.service";
+import {ToastComponent} from "../shared/toast/toast.component";
 import deepEqual = require("deep-equal");
 
 @Component({
@@ -25,7 +26,9 @@ export class RecurringOrderComponent implements OnInit, OnChanges {
 
     private isLoading: boolean = true;
 
-    constructor(private productService: ProductService, private recurringOrderService: RecurringOrderService) {
+    constructor(private productService: ProductService,
+                private recurringOrderService: RecurringOrderService,
+                private toast: ToastComponent) {
     }
 
     async ngOnInit(): Promise<void> {
@@ -72,9 +75,15 @@ export class RecurringOrderComponent implements OnInit, OnChanges {
     }
 
     async saveButton() {
+        for (let i = 0; i < this.recurringOrder.items.length; i++) {
+            if (this.recurringOrder.items[i].amount <= 0) {
+                this.recurringOrder.items.splice(i, 1);
+            }
+        }
         this.recurringOrder = await this.recurringOrderService.update(this.recurringOrder);
         this.initialRecurringOrder = classToClass(this.recurringOrder);
         this.updateTotal();
+        this.toast.setMessage(`Bestellvorlage für ${this.recurringOrder.deliverySlot.name} gespeichert!`, 'success')
     }
 
     cancelButton() {
