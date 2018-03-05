@@ -189,5 +189,10 @@ public class IbexApplication implements CommandLineRunner {
         orderItemRepository.save(new OrderItem(o0201, dinkelweckerl, new BigDecimal("0.90"), 1));
         orderItemRepository.save(new OrderItem(o0204, semmel, new BigDecimal("0.30"), 3));
         orderItemRepository.save(new OrderItem(o0204, briochekipferl, new BigDecimal("1.25"), 1));
+
+        entityManager.clear();
+
+        Order o = orderRepository.findById(1).get();
+        log.info("o0101.getPriceTotal(): " + o.getPriceTotal());
     }
 }

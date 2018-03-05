@@ -3,6 +3,7 @@ package at.hollander.ibex.entity;
 import at.hollander.ibex.View;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.*;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -56,6 +57,10 @@ public class Order {
     @JsonView({View.Order.List.class, View.Order.Overview.class})
     @Column(nullable = false)
     private BigDecimal priceShipping;
+
+    @JsonView({View.Order.List.class, View.Order.Overview.class})
+    @Formula("(SELECT (SUM(oi.amount * oi.price_per_item) + price_shipping) FROM order_item oi WHERE oi.order_id = id)")
+    private BigDecimal priceTotal;
 
     @JsonView({View.Order.Overview.class})
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

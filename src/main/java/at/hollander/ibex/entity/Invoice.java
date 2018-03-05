@@ -1,10 +1,12 @@
 package at.hollander.ibex.entity;
 
 import at.hollander.ibex.View;
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -46,5 +48,11 @@ public class Invoice {
         this.date = date;
         this.accountName = accountName;
         this.iban = iban;
+    }
+
+    @JsonView({View.Invoice.List.class, View.Invoice.Overview.class})
+    @JsonGetter("priceTotal")
+    public BigDecimal getPriceTotal() {
+        return orders.stream().map(Order::getPriceTotal).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

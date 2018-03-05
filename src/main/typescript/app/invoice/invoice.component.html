@@ -13,7 +13,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Bestelldatum</th>
                 <th scope="col">Lieferdatum</th>
-                <th scope="col">Gesamtpreis</th>
+                <th scope="col">Betrag</th>
             </tr>
             </thead>
             <tbody>
@@ -21,9 +21,15 @@
                 <td>{{order.id}}</td>
                 <td>{{order.orderTime | date:'dd.MM.yyyy'}}</td>
                 <td>{{order.deliveryTime | date:'dd.MM.yyyy'}}</td>
-                <td>TODO€</td>
+                <td>{{order.priceTotal | currency:'EUR':'symbol':'1.2-2'}}</td>
             </tr>
             </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3" style="text-align: right">Gesamt</td>
+                <td>{{invoice.priceTotal | currency:'EUR':'symbol':'1.2-2'}}</td>
+            </tr>
+            </tfoot>
         </table>
     </div>
 </div>

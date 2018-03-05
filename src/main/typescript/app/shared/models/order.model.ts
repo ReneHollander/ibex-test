@@ -15,14 +15,12 @@ export class Order {
     city: string;
     deliveryNote: string;
     priceShipping: number;
+    priceTotal: number;
 
     // @Type(orderitem)
     @Type(() => OrderItem)
     items: OrderItem[];
 
-    get priceTotal(): number {
-        return this.priceShipping + this.items.map(item => item.priceTotal).reduce((prev, curr) => prev + curr, 0)
-    }
 }
 
 // TODO: remove once released: https://github.com/angular/angular-cli/pull/9225

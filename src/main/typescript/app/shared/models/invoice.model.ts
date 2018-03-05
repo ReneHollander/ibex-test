@@ -11,6 +11,7 @@ export class Invoice {
     date?: Date;
     accountName: Date;
     iban: string;
+    priceTotal: number;
 
     // @Type(order)
     @Type(() => Order)

@@ -36,6 +36,10 @@ export class InvoicesComponent implements OnInit {
         this.isLoadingInvoices = false;
     }
 
+    get pendingOrdersTotal(): number {
+        return this.pendingOrders.map(o => o.priceTotal).reduce((x, y) => x + y, 0);
+    }
+
     onOrderClick(order: Order) {
         this.router.navigate(['/order/' + order.id])
     }
