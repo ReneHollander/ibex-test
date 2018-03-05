@@ -5,13 +5,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Comparator;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode
-@ToString
+@EqualsAndHashCode(exclude = "recurringOrder")
+@ToString(exclude = "recurringOrder")
 public class RecurringOrderItem {
 
     @EmbeddedId
@@ -35,4 +36,6 @@ public class RecurringOrderItem {
         this.product = product;
         this.amount = amount;
     }
+
+    public static Comparator<RecurringOrderItem> COMPARE_BY_PRODUCT = Comparator.comparingInt(r -> r.getProduct().getId());
 }

@@ -16,4 +16,7 @@ export class RecurringOrderService {
         return (await this.getRecurringOrders()).length;
     }
 
+    async update(recurringOrder: RecurringOrder): Promise<RecurringOrder> {
+        return this.api.postAndConvert(RecurringOrder, '/api/recurringorder', recurringOrder);
+    }
 }

@@ -11,8 +11,8 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = "items")
-@ToString(exclude = "items")
+@EqualsAndHashCode(exclude = {"items", "account"})
+@ToString(exclude = {"items", "account"})
 public class RecurringOrder {
 
     @EmbeddedId
@@ -30,7 +30,7 @@ public class RecurringOrder {
 
     private boolean enabled;
 
-    @OneToMany(mappedBy = "recurringOrder", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "recurringOrder", cascade = {CascadeType.ALL, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     private List<RecurringOrderItem> items;
 
     public RecurringOrder(Account account, DeliverySlot deliverySlot, boolean enabled) {

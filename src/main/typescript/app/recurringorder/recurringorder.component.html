@@ -53,3 +53,13 @@
     </tr>
     </tfoot>
 </table>
+
+<div style="position: relative; float: right;">
+    <button class="btn btn-secondary" type="button" (click)="cancelButton()">
+        <i class="fa fa-close"></i> Abbrechen
+    </button>
+
+    <button class="btn btn-success" type="button" [disabled]="saveButtonDisabled" (click)="saveButton()">
+        <i class="fa fa-save"></i> Speichern
+    </button>
+</div>
