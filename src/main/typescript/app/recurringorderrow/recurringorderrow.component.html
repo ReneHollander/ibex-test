@@ -1,15 +1,6 @@
 <td>{{item.product.name}}</td>
-<td align="right" (click)="onAmountClick($event)">
-    <div *ngIf="!edit">{{item.amount}}</div>
-    <div *ngIf="edit" class="input-group">
-        <input class="form-control" type="number" [(ngModel)]="value" min="0">
-        <div class="input-group-append">
-            <button class="btn btn-secondary" type="button" (click)="onExitEdit($event)"><i class="fa fa-times"></i>
-            </button>
-            <button class="btn btn-success" type="button" (click)="onSaveEdit($event)"><i class="fa fa-check"></i>
-            </button>
-        </div>
-    </div>
+<td align="right">
+    <input class="form-control" type="number" [(ngModel)]="item.amount" (click)="onAmountChange()" min="0">
 </td>
 <td class="min" align="right">{{item.product.price | currency:'EUR':'symbol':'1.2-2'}}</td>
 <td class="min" align="right">{{item.product.price * item.amount | currency:'EUR':'symbol':'1.2-2'}}</td>
