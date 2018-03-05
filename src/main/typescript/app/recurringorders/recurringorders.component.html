@@ -4,7 +4,7 @@
     <h4 class="card-header">Bestellvorlagen</h4>
 
     <div class="card-body">
-        <tabset [justified]="true">
+        <tabset [justified]="true" type="pills">
             <tab *ngFor="let order of recurringOrders">
                 <ng-template tabHeading>
                     {{order.deliverySlot.name}}
