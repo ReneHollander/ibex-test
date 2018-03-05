@@ -30,7 +30,7 @@ export class RecurringOrderComponent implements OnInit, OnChanges {
 
     async ngOnInit(): Promise<void> {
         this.isLoading = true;
-        this.products = await this.productService.getProducts();
+        this.products = await this.productService.getProductsCached();
         this.isLoading = false;
     }
 

@@ -70,3 +70,32 @@ class PlainToClassArraySubscriber<T extends Array<any>, R> extends Subscriber<T>
         this.destination.next(result);
     }
 }
+
+export class CachedValue<T> {
+    private _value: T;
+    private time: number;
+    private loading: boolean;
+    private waiting: ((value?: T | PromiseLike<T>) => void)[] = [];
+
+    constructor(private supplier: () => Promise<T>, private maxAge?: number) {
+    }
+
+    async get(): Promise<T> {
+        if (!this.loading && !this._value || (this.maxAge && Date.now() > this.time + this.maxAge * 1000)) {
+            this.loading = true;
+            this._value = await this.supplier();
+            this.time = Date.now();
+            this.loading = false;
+            for (let f of this.waiting) {
+                f(this._value);
+            }
+        }
+        return new Promise<T>(resolve => {
+            if (this.loading) {
+                this.waiting.push(resolve);
+            } else {
+                resolve(this._value);
+            }
+        });
+    }
+}
