@@ -18,7 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.savedrequest.NullRequestCache;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import sun.plugin.dom.exception.InvalidStateException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -76,7 +75,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         } else if (AuthenticationUtil.isAdmin(authentication)) {
             request.getRequestDispatcher("/api/admin/initial").forward(request, response);
         } else {
-            throw new InvalidStateException("unknown authority");
+            throw new IllegalStateException("unknown authority");
         }
     }
 

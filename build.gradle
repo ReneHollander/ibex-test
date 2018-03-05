@@ -51,4 +51,8 @@ dependencies {
     compile('org.springframework.session:spring-session-jdbc:2.0.2.RELEASE')
 
     testCompile('org.springframework.security:spring-security-test')
+
+    compile('javax.xml.bind:jaxb-api:2.3.0')
+    compile('com.sun.xml.bind:jaxb-core:2.3.0')
+    compile('com.sun.xml.bind:jaxb-impl:2.3.0')
 }
