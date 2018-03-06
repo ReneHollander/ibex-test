@@ -45,6 +45,16 @@ export class RecurringOrderComponent implements OnInit, OnChanges {
         return deepEqual(this.recurringOrder, this.initialRecurringOrder);
     }
 
+    get enabled(): boolean {
+        return this.recurringOrder.enabled && this.recurringOrder.items.length > 0;
+    }
+
+    set enabled(val: boolean) {
+        if (this.recurringOrder.items.length > 0) {
+            this.recurringOrder.enabled = val;
+        }
+    }
+
     updateTotal() {
         this.total = this.recurringOrder.items.map(item => item.amount * item.product.price).reduce((sum, current) => sum + current, 0) + this.deliveryFee;
     }
