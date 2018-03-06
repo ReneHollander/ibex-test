@@ -33,6 +33,7 @@ import {InvoiceService} from "./services/invoice.service";
 import {OrderService} from "./services/order.service";
 import {CityService} from "./services/city.service";
 import {CitySearchComponent} from "./citysearch/citysearch.component";
+import {NgxToggleModule} from "ngx-toggle";
 
 @NgModule({
     declarations: [
@@ -62,6 +63,7 @@ import {CitySearchComponent} from "./citysearch/citysearch.component";
         TypeaheadModule.forRoot(),
         AccordionModule.forRoot(),
         NgbModule.forRoot(),
+        NgxToggleModule,
     ],
     providers: [
         ApiClient,

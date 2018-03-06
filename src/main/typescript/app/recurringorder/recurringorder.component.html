@@ -1,7 +1,5 @@
 <app-toast [message]="toast.message"></app-toast>
 
-<h2>Vorlage für {{recurringOrder.deliverySlot.name}}</h2>
-<span>Lieferung bis: {{recurringOrder.deliverySlot.deliverBy}} Uhr</span>
 <table class="table table-hover table-bordered">
     <thead>
     <tr>
@@ -58,12 +56,29 @@
     </tfoot>
 </table>
 
-<div style="position: relative; float: right;">
-    <button class="btn btn-secondary" type="button" (click)="cancelButton()">
-        <i class="fa fa-close"></i> Abbrechen
-    </button>
-
-    <button class="btn btn-success" type="button" [disabled]="saveButtonDisabled" (click)="saveButton()">
-        <i class="fa fa-save"></i> Speichern
-    </button>
+<div class="container footer-container">
+    <div class="row">
+        <div class="col-auto mr-auto ">
+            <ngx-toggle
+                    onColor="success"
+                    offColor="danger"
+                    [(value)]="recurringOrder.enabled">
+                <ng-template ngxToggleLabel forLabel="off">Lieferung deaktiviert</ng-template>
+                <ng-template ngxToggleLabel forLabel="on">
+                    Lieferung aktiviert
+                </ng-template>
+            </ngx-toggle>
+            <span *ngIf="recurringOrder.enabled">
+                Zeitpunkt: vor {{recurringOrder.deliverySlot.deliverBy}} Uhr
+            </span>
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-secondary" type="button" (click)="cancelButton()">
+                <i class="fa fa-close"></i> Abbrechen
+            </button>
+            <button class="btn btn-success" type="button" [disabled]="saveButtonDisabled" (click)="saveButton()">
+                <i class="fa fa-save"></i> Speichern
+            </button>
+        </div>
+    </div>
 </div>
