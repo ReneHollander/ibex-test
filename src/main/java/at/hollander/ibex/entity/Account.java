@@ -1,7 +1,6 @@
 package at.hollander.ibex.entity;
 
 import at.hollander.ibex.View;
-import at.hollander.ibex.entity.id.CityId;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -84,13 +83,13 @@ public class Account {
 
     @JsonSetter("city")
     public void setCityName(String name) {
-        if (city == null) city = new City(new CityId());
+        if (city == null) city = new City();
         city.getCityId().setName(name);
     }
 
     @JsonSetter("postcode")
     public void setCityPostcode(int postcode) {
-        if (city == null) city = new City(new CityId());
+        if (city == null) city = new City();
         city.getCityId().setPostcode(postcode);
     }
 

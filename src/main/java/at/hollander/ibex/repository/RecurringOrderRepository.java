@@ -6,10 +6,12 @@ import at.hollander.ibex.entity.RecurringOrder;
 import at.hollander.ibex.entity.id.RecurringOrderId;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface RecurringOrderRepository extends CrudRepository<RecurringOrder, RecurringOrderId> {
 
     Optional<RecurringOrder> findByAccountAndDeliverySlot(Account account, DeliverySlot deliverySlot);
 
+    List<RecurringOrder> findAllByDeliverySlotAndEnabledIsTrue(DeliverySlot slot);
 }

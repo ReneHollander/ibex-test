@@ -50,6 +50,10 @@ public class OrderItem {
         this.amount = amount;
     }
 
+    public int getProductId() {
+        return id.getProduct();
+    }
+
     @JsonView(View.Order.Overview.class)
     @JsonGetter("product")
     public Product getProduct() {

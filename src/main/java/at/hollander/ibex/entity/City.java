@@ -6,15 +6,15 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Data
 @Entity
-@NoArgsConstructor
 @AllArgsConstructor
 public class City implements Serializable {
 
@@ -24,16 +24,20 @@ public class City implements Serializable {
     @JsonView({View.City.Details.class})
     private boolean enabled;
 
-    public City(CityId cityId) {
-        this.cityId = cityId;
-    }
+    @JsonView({View.City.Details.class})
+    @Column(nullable = false)
+    private BigDecimal priceShipping = BigDecimal.valueOf(-1);
 
     public City(int postcode, String name) {
-        this(postcode, name, false);
+        this(postcode, name, false, BigDecimal.valueOf(-1));
     }
 
-    public City(int postcode, String name, boolean enabled) {
-        this(new CityId(postcode, name), enabled);
+    public City(int postcode, String name, boolean enabled, BigDecimal priceShipping) {
+        this(new CityId(postcode, name), enabled, priceShipping);
+    }
+
+    public City() {
+        this(new CityId(), false, BigDecimal.valueOf(-1));
     }
 
     @JsonGetter("name")
