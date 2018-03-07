@@ -86,9 +86,11 @@ export class RecurringOrderComponent implements OnInit, OnChanges {
     }
 
     addProductAddButtonClick() {
-        this.recurringOrder.items.push(new RecurringOrderItem(this.selectedProduct, 1));
-        this.selectedProduct = null;
-        this.updateTotal();
+        if (this.selectedProduct) {
+            this.recurringOrder.items.push(new RecurringOrderItem(this.selectedProduct, 1));
+            this.selectedProduct = null;
+            this.updateTotal();
+        }
     }
 
     async saveButton() {

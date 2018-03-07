@@ -26,10 +26,15 @@
                                 [products]="availableProducts"
                                 [(ngModel)]="selectedProduct"></product-search>
                 <div class="input-group-append">
-                    <button class="btn btn-secondary" type="button" (click)="addProductCancelButtonClick()">
+                    <button class="btn btn-secondary"
+                            type="button"
+                            (click)="addProductCancelButtonClick()">
                         <i class="fa fa-close"></i>
                     </button>
-                    <button class="btn btn-success" type="button" (click)="addProductAddButtonClick()">
+                    <button class="btn btn-success"
+                            type="button"
+                            [disabled]="!selectedProduct"
+                            (click)="addProductAddButtonClick()">
                         <i class="fa fa-plus"></i>
                     </button>
                 </div>
