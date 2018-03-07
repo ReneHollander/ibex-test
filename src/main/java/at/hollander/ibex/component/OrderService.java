@@ -48,8 +48,8 @@ public class OrderService {
         order.setDeliveryTime(day.atTime(recurringOrder.getDeliverySlot().getDeliverBy()));
         order.setOrderTime(LocalDateTime.now());
         order.setAddress(recurringOrder.getAccount().getAddress());
-        order.setCity(recurringOrder.getAccount().getCityName());
-        order.setPostcode(recurringOrder.getAccount().getCityPostcode());
+        order.setCity(recurringOrder.getAccount().getCity().getName());
+        order.setPostcode(recurringOrder.getAccount().getCity().getPostcode());
         order.setDeliveryNote(recurringOrder.getAccount().getDeliveryNote());
         order.setPriceShipping(recurringOrder.getAccount().getCity().getPriceShipping());
         order.setItems(recurringOrder

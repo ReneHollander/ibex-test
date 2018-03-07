@@ -1,8 +1,6 @@
 package at.hollander.ibex.entity;
 
 import at.hollander.ibex.View;
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.*;
 
@@ -38,6 +36,7 @@ public class Account {
     private String password;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @JsonView({View.Account.Basic.class, View.Account.Details.class})
     private City city;
 
     @Column(nullable = false)
@@ -68,29 +67,5 @@ public class Account {
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Invoice> invoices;
-
-    @JsonGetter("city")
-    @JsonView({View.Account.Details.class})
-    public String getCityName() {
-        return city.getCityId().getName();
-    }
-
-    @JsonGetter("postcode")
-    @JsonView({View.Account.Details.class})
-    public int getCityPostcode() {
-        return city.getCityId().getPostcode();
-    }
-
-    @JsonSetter("city")
-    public void setCityName(String name) {
-        if (city == null) city = new City();
-        city.getCityId().setName(name);
-    }
-
-    @JsonSetter("postcode")
-    public void setCityPostcode(int postcode) {
-        if (city == null) city = new City();
-        city.getCityId().setPostcode(postcode);
-    }
 
 }

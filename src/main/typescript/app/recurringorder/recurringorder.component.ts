@@ -5,6 +5,7 @@ import {ProductService} from "../services/product.service";
 import {classToClass} from "class-transformer";
 import {RecurringOrderService} from "../services/recurringorder.service";
 import {ToastComponent} from "../shared/toast/toast.component";
+import {AuthService} from "../services/auth.service";
 import deepEqual = require("deep-equal");
 
 @Component({
@@ -19,8 +20,8 @@ export class RecurringOrderComponent implements OnInit, OnChanges {
 
     initialRecurringOrder: RecurringOrder = new RecurringOrder();
 
-    deliveryFee: number = 1.5;
-    total: number = this.deliveryFee;
+    deliveryFee: number = 0;
+    total: number = 0;
     products: Product[] = [];
     selectedProduct: Product;
 
@@ -28,11 +29,13 @@ export class RecurringOrderComponent implements OnInit, OnChanges {
 
     constructor(private productService: ProductService,
                 private recurringOrderService: RecurringOrderService,
+                private authService: AuthService,
                 private toast: ToastComponent) {
     }
 
     async ngOnInit(): Promise<void> {
         this.isLoading = true;
+        this.deliveryFee = this.authService.currentUser.account.city.priceShipping;
         this.products = await this.productService.getProductsCached();
         this.isLoading = false;
     }
@@ -56,7 +59,11 @@ export class RecurringOrderComponent implements OnInit, OnChanges {
     }
 
     updateTotal() {
-        this.total = this.recurringOrder.items.map(item => item.amount * item.product.price).reduce((sum, current) => sum + current, 0) + this.deliveryFee;
+        if (this.recurringOrder.items.length > 0) {
+            this.total = this.recurringOrder.items.map(item => item.amount * item.product.price).reduce((sum, current) => sum + current, 0) + this.deliveryFee;
+        } else {
+            this.total = 0;
+        }
     }
 
     ngOnChanges(changes: SimpleChanges) {

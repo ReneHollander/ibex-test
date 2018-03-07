@@ -21,7 +21,7 @@ public class InitialController {
         this.userAccountService = userAccountService;
     }
 
-    @JsonView({View.Endpoint.Initial.class})
+    @JsonView(View.Endpoint.Initial.class)
     @RequestMapping(value = "/initial", method = {RequestMethod.GET, RequestMethod.POST})
     public LoginResponse initial() {
         return new LoginResponse(userAccountService.getAccount(), "USER");
@@ -29,9 +29,9 @@ public class InitialController {
 
     @AllArgsConstructor
     public static class LoginResponse {
-        @JsonView(View.Endpoint.Initial.class)
+        @JsonView({View.Endpoint.Initial.class})
         private Account account;
-        @JsonView(View.Endpoint.Initial.class)
+        @JsonView({View.Endpoint.Initial.class})
         private String role;
     }
 
