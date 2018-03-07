@@ -201,7 +201,7 @@ public class IbexApplication implements CommandLineRunner {
         entityManager.flush();
         entityManager.clear();
 
-        List<Order> orders = orderService.recurringOrdersToOrders(LocalDate.now().plusDays(1));
+        List<Order> orders = orderService.createOrdersFromRecurringOrders(LocalDate.now().plusDays(1));
         orderService.addProducts(orders).forEach((key, value) -> log.info(key.getName() + ": " + value));
 
         entityManager.flush();

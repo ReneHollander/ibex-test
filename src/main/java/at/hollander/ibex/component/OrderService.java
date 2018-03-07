@@ -30,7 +30,7 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public List<Order> recurringOrdersToOrders(LocalDate day) {
+    public List<Order> createOrdersFromRecurringOrders(LocalDate day) {
         DeliverySlot slot = deliverySlotRepository.slotForDay(day);
         List<Order> orders = recurringOrderRepository
                 .findAllByDeliverySlotAndEnabledIsTrue(slot).stream()
