@@ -24,10 +24,10 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Account account;
 
-    @ManyToOne(cascade = CascadeType.REFRESH)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Invoice invoice;
 
     @JsonView({View.Order.List.class, View.Order.Overview.class})

@@ -20,12 +20,12 @@ public class RecurringOrderItem {
     private RecurringOrderItemId recurringOrderItemId;
 
     @MapsId("recurringOrderId")
-    @ManyToOne(cascade = CascadeType.REFRESH)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JsonIgnore
     private RecurringOrder recurringOrder;
 
     @MapsId("product")
-    @ManyToOne(cascade = CascadeType.REFRESH)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Product product;
 
     private int amount;

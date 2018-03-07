@@ -24,7 +24,7 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(cascade = CascadeType.REFRESH, optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Account account;
 
     @JsonView({View.Invoice.List.class, View.Invoice.Overview.class})

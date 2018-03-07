@@ -37,7 +37,7 @@ public class Account {
     @Column(nullable = false, length = 60)
     private String password;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private City city;
 
     @Column(nullable = false)

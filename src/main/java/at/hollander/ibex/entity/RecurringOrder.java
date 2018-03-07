@@ -20,12 +20,12 @@ public class RecurringOrder {
     private RecurringOrderId recurringOrderId;
 
     @MapsId("account")
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JsonIgnore
     private Account account;
 
     @MapsId("deliverySlot")
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private DeliverySlot deliverySlot;
 
     private boolean enabled;

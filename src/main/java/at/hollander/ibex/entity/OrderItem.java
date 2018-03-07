@@ -21,7 +21,7 @@ public class OrderItem {
     private OrderItemId id;
 
     @MapsId("order")
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Order order;
 
     @Column(nullable = false)
