@@ -31,7 +31,7 @@ public class User {
     @JsonView({View.User.Details.class})
     private String name;
 
-    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonView({View.User.Details.class})
     private Account account;
 

@@ -30,7 +30,7 @@ public class RecurringOrder {
 
     private boolean enabled;
 
-    @OneToMany(mappedBy = "recurringOrder", cascade = {CascadeType.ALL, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "recurringOrder", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<RecurringOrderItem> items;
 
     public RecurringOrder(Account account, DeliverySlot deliverySlot, boolean enabled) {

@@ -55,4 +55,6 @@ dependencies {
     compile('javax.xml.bind:jaxb-api:2.3.0')
     compile('com.sun.xml.bind:jaxb-core:2.3.0')
     compile('com.sun.xml.bind:jaxb-impl:2.3.0')
+
+    compile('io.codearte.jfairy:jfairy:0.5.9')
 }

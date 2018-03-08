@@ -3,8 +3,11 @@ package at.hollander.ibex.util;
 import org.jooq.lambda.tuple.Tuple;
 import org.jooq.lambda.tuple.Tuple2;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.stream.Stream;
 
 public class CollectionUtil {
 
@@ -43,6 +46,12 @@ public class CollectionUtil {
             }
         }
         return found;
+    }
+
+    public static Stream<LocalDate> streamDateRange(LocalDate start, LocalDate end) {
+        return Stream
+                .iterate(start, date -> date.plusDays(1))
+                .limit(ChronoUnit.DAYS.between(start, end) + 1);
     }
 
 }
