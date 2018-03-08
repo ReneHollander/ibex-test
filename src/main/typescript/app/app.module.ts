@@ -4,7 +4,7 @@ import {RoutingModule} from './routing.module';
 import {SharedModule} from './shared/shared.module';
 import {AccountService} from './services/account.service';
 import {AuthService} from './services/auth.service';
-import {AuthGuardLogin} from './services/auth-guard-login.service';
+import {AuthGuardUser} from './services/auth-guard-login.service';
 import {AuthGuardAdmin} from './services/auth-guard-admin.service';
 import {AppComponent} from './app.component';
 import {HomeComponent} from './home/home.component';
@@ -34,6 +34,7 @@ import {OrderService} from "./services/order.service";
 import {CityService} from "./services/city.service";
 import {CitySearchComponent} from "./citysearch/citysearch.component";
 import {NgxToggleModule} from "ngx-toggle";
+import {AuthGuardLoggedIn} from "./services/auth-guard-loggedin.service";
 
 @NgModule({
     declarations: [
@@ -68,8 +69,9 @@ import {NgxToggleModule} from "ngx-toggle";
     providers: [
         ApiClient,
         AuthService,
-        AuthGuardLogin,
+        AuthGuardUser,
         AuthGuardAdmin,
+        AuthGuardLoggedIn,
         RecurringOrderService,
         ProductService,
         AccountService,

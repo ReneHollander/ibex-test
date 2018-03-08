@@ -14,43 +14,42 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/login" class="nav-link" routerLinkActive="active" *ngIf="!auth.loggedIn">
+                    <a routerLink="/login" class="nav-link" routerLinkActive="active" *ngIf="!auth.isLoggedIn">
                         <i class="fa fa-sign-in"></i> Login
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/register" class="nav-link" routerLinkActive="active" *ngIf="!auth.loggedIn">
+                    <a routerLink="/register" class="nav-link" routerLinkActive="active" *ngIf="!auth.isLoggedIn">
                         <i class="fa fa-user-plus"></i> Register
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/recurringorders" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
+                    <a routerLink="/recurringorders" class="nav-link" routerLinkActive="active" *ngIf="auth.isUser">
                         <i class="fa fa-list"></i> Bestellvorlagen
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/invoices" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
+                    <a routerLink="/invoices" class="nav-link" routerLinkActive="active" *ngIf="auth.isUser">
                         <i class="fa fa-list"></i> Rechnungen
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/products" class="nav-link" routerLinkActive="active"
-                       *ngIf="auth.isAdmin">
+                    <a routerLink="/products" class="nav-link" routerLinkActive="active" *ngIf="auth.isAdmin">
                         <i class="fa fa-list"></i> Products
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/account" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
-                        <i class="fa fa-user"></i> Account ({{auth.currentUser.name}})
+                    <a routerLink="/admin" class="nav-link" routerLinkActive="active" *ngIf="auth.isAdmin">
+                        <i class="fa fa-lock"></i> Admin
                     </a>
                 </li>
-                <!--<li class="nav-item">-->
-                <!--<a routerLink="/admin" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn && auth.isAdmin">-->
-                <!--<i class="fa fa-lock"></i> Admin-->
-                <!--</a>-->
-                <!--</li>-->
                 <li class="nav-item">
-                    <a routerLink="/logout" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
+                    <a routerLink="/account" class="nav-link" routerLinkActive="active" *ngIf="auth.isLoggedIn">
+                        <i class="fa fa-user"></i> Account ({{auth.user.name}})
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/logout" class="nav-link" routerLinkActive="active" *ngIf="auth.isLoggedIn">
                         <i class="fa fa-sign-out"></i> Logout
                     </a>
                 </li>

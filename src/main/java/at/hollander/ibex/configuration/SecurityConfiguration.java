@@ -2,7 +2,6 @@ package at.hollander.ibex.configuration;
 
 
 import at.hollander.ibex.filter.RequestBodyReaderAuthenticationFilter;
-import at.hollander.ibex.util.AuthenticationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -70,13 +69,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     private void loginSuccessHandler(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException, IOException {
-        if (AuthenticationUtil.isUser(authentication)) {
-            request.getRequestDispatcher("/api/initial").forward(request, response);
-        } else if (AuthenticationUtil.isAdmin(authentication)) {
-            request.getRequestDispatcher("/api/admin/initial").forward(request, response);
-        } else {
-            throw new IllegalStateException("unknown authority");
-        }
+        request.getRequestDispatcher("/api/initial").forward(request, response);
     }
 
     private void loginFailureHandler(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) {

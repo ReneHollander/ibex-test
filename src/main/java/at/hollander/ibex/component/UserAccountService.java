@@ -3,7 +3,6 @@ package at.hollander.ibex.component;
 import at.hollander.ibex.entity.Account;
 import at.hollander.ibex.entity.User;
 import at.hollander.ibex.repository.UserRepository;
-import at.hollander.ibex.util.AuthenticationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,9 +21,6 @@ public class UserAccountService {
 
     public String getEmail() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (!AuthenticationUtil.isUser(authentication)) {
-            throw new IllegalStateException("authentication doesn't have accountDetails authority");
-        }
         Object principal = authentication.getPrincipal();
         if (principal instanceof UserDetails) {
             return ((UserDetails) principal).getUsername();

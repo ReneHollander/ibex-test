@@ -5,51 +5,59 @@ import {LoginService} from "./login.service";
 
 @Injectable()
 export class AuthService {
-    loggedIn = false;
-    isAdmin = false;
 
-    currentUser: User;
+    private _loggedIn = false;
+    private _user: User;
 
     constructor(private loginService: LoginService,
                 private router: Router) {
     }
 
     async initial(): Promise<boolean> {
-        if (this.currentUser == null) {
+        if (this._user == null) {
             try {
-                this.currentUser = await this.loginService.initial();
-                if (this.currentUser.role == Role.ADMIN) {
-                    this.isAdmin = true;
-                }
-                this.loggedIn = true;
+                this._user = await this.loginService.initial();
+                this._loggedIn = true;
                 return true;
             } catch (e) {
                 return false;
             }
         } else {
-            return this.loggedIn;
+            return this._loggedIn;
         }
     }
 
     async login(email: String, password: String): Promise<User> {
-        this.currentUser = await this.loginService.login(email, password);
-        if (this.currentUser.role == Role.ADMIN) {
-            this.isAdmin = true;
-        }
-        this.loggedIn = true;
-        return this.currentUser;
+        this._user = await this.loginService.login(email, password);
+        this._loggedIn = true;
+        return this._user;
     }
 
     clear(): void {
-        this.loggedIn = false;
-        this.isAdmin = false;
-        this.currentUser = null;
+        this._loggedIn = false;
+        this._user = null;
     }
 
     async logout(): Promise<void> {
         await this.loginService.logout();
         this.clear();
         await this.router.navigate(['/']);
+    }
+
+    get isLoggedIn(): boolean {
+        return this._loggedIn;
+    }
+
+    get isUser(): boolean {
+        return this.isLoggedIn && this._user.role === Role.USER;
+    }
+
+    get isAdmin(): boolean {
+        return this.isLoggedIn && this._user.role == Role.ADMIN;
+    }
+
+    get user(): User {
+        return this._user;
     }
 
 }
