@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {AccountDetails} from "../shared/models/account.model";
 import {ApiClient} from "./apiclient.service";
+import {User} from "../shared/models/user.model";
 
 @Injectable()
 export class AccountService {
@@ -8,8 +8,8 @@ export class AccountService {
     constructor(private api: ApiClient) {
     }
 
-    async getAccountDetails(): Promise<AccountDetails> {
-        return this.api.getAndConvert(AccountDetails, '/api/accountdetails');
+    async getAccountDetails(): Promise<User> {
+        return this.api.getAndConvert(User, '/api/accountdetails');
     }
 
 }

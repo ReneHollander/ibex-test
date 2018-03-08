@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ToastComponent} from '../shared/toast/toast.component';
 import {AuthService} from '../services/auth.service';
 import {AccountService} from '../services/account.service';
-import {AccountDetails} from "../shared/models/account.model";
+import {User} from "../shared/models/user.model";
 
 @Component({
     selector: 'app-account',
@@ -10,7 +10,7 @@ import {AccountDetails} from "../shared/models/account.model";
 })
 export class AccountComponent implements OnInit {
 
-    accountDetails: AccountDetails;
+    user: User;
     isLoading = true;
 
     constructor(private auth: AuthService,
@@ -23,7 +23,7 @@ export class AccountComponent implements OnInit {
     }
 
     async getAccountDetails(): Promise<void> {
-        this.accountDetails = await this.userService.getAccountDetails();
+        this.user = await this.userService.getAccountDetails();
         this.isLoading = false;
     }
 

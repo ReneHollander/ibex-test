@@ -41,7 +41,7 @@ public class IbexApplication implements CommandLineRunner {
 
     private final PasswordEncoder passwordEncoder;
 
-    private final AdminAccountRepository adminAccountRepository;
+    private final UserRepository userRepository;
     private final AccountRepository accountRepository;
     private final CityRepository cityRepository;
     private final ProductRepository productRepository;
@@ -56,7 +56,7 @@ public class IbexApplication implements CommandLineRunner {
 
     @Autowired
     public IbexApplication(
-            AdminAccountRepository adminAccountRepository,
+            UserRepository userRepository,
             AccountRepository accountRepository,
             CityRepository cityRepository,
             ProductRepository productRepository,
@@ -67,7 +67,7 @@ public class IbexApplication implements CommandLineRunner {
             OrderItemRepository orderItemRepository,
             EntityManager entityManager,
             PasswordEncoder passwordEncoder, InvoiceRepository invoiceRepository, OrderService orderService) {
-        this.adminAccountRepository = adminAccountRepository;
+        this.userRepository = userRepository;
         this.accountRepository = accountRepository;
         this.cityRepository = cityRepository;
         this.productRepository = productRepository;
@@ -92,12 +92,24 @@ public class IbexApplication implements CommandLineRunner {
     @Override
     @Transactional
     public void run(String... args) {
-        AdminAccount reneHollander = adminAccountRepository.save(
-                AdminAccount.builder()
-                        .email("rene.hollander@hotmail.de")
-                        .password(passwordEncoder.encode("1234"))
-                        .name("Rene Hollander")
-                        .build());
+        User userReneHollander = userRepository.save(User.builder()
+                .role(User.Role.ADMIN)
+                .email("rene.hollander@hotmail.de")
+                .password(passwordEncoder.encode("1234"))
+                .name("Rene Hollander")
+                .build());
+
+        User userMaxMustermann = userRepository.save(User.builder()
+                .name("Max Mustermann")
+                .password(passwordEncoder.encode("1234"))
+                .email("max@mustermann.at")
+                .build());
+
+        User userBettinaReiss = userRepository.save(User.builder()
+                .name("Bettina Reiss")
+                .password(passwordEncoder.encode("1234"))
+                .email("bettina@reiss.at")
+                .build());
 
         City klosterneuburg = cityRepository.save(new City(3400, "Klosterneuburg", true, new BigDecimal("0.5")));
         City kierling = cityRepository.save(new City(3400, "Kierling"));
@@ -106,9 +118,8 @@ public class IbexApplication implements CommandLineRunner {
 
         Account maxMustermann = accountRepository.save(
                 Account.builder()
-                        .name("Max Mustermann")
-                        .password(passwordEncoder.encode("1234"))
-                        .email("max@mustermann.at")
+                        .enabled(true)
+                        .user(userMaxMustermann)
                         .city(klosterneuburg)
                         .address("Musterstrasse 69")
                         .deliveryNote("Zum Postkasten")
@@ -119,9 +130,8 @@ public class IbexApplication implements CommandLineRunner {
 
         Account bettinaReiss = accountRepository.save(
                 Account.builder()
-                        .name("Bettina Reiss")
-                        .password(passwordEncoder.encode("1234"))
-                        .email("bettina@reiss.at")
+                        .enabled(true)
+                        .user(userBettinaReiss)
                         .address("Hauptstrasse 60-62/2/4")
                         .iban("AT9349618554854")
                         .accountName("Bettina Reiss")

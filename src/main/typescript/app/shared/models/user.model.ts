@@ -1,22 +1,20 @@
-import {AccountDetails} from "./account.model";
+import {Account} from "./account.model";
 import {Type} from "class-transformer";
 
 // TODO: remove once released: https://github.com/angular/angular-cli/pull/9225
-function accountdetails() {
-    return () => AccountDetails
+function account() {
+    return () => Account
+}
+
+export enum Role {
+    USER, ADMIN
 }
 
 export class User {
-    // @Type(accountdetails)
-    @Type(() => AccountDetails)
-    account?: AccountDetails;
-    role?: string;
-
-    get name(): string {
-        return this.account.name;
-    }
-
-    get email(): string {
-        return this.account.email;
-    }
+    email?: string;
+    name?: string;
+    role?: Role;
+    // @Type(account)
+    @Type(() => Account)
+    account?: Account;
 }

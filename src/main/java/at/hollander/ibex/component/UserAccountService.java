@@ -1,7 +1,8 @@
 package at.hollander.ibex.component;
 
 import at.hollander.ibex.entity.Account;
-import at.hollander.ibex.repository.AccountRepository;
+import at.hollander.ibex.entity.User;
+import at.hollander.ibex.repository.UserRepository;
 import at.hollander.ibex.util.AuthenticationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -12,11 +13,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserAccountService {
 
-    private final AccountRepository accountRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public UserAccountService(AccountRepository accountRepository) {
-        this.accountRepository = accountRepository;
+    public UserAccountService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     public String getEmail() {
@@ -33,7 +34,11 @@ public class UserAccountService {
     }
 
     public Account getAccount() {
-        return accountRepository.findByEmail(getEmail()).orElseThrow(() -> new IllegalStateException("no account found"));
+        return getUser().getAccount();
+    }
+
+    public User getUser() {
+        return userRepository.findById(getEmail()).orElseThrow(() -> new IllegalStateException("no user found"));
     }
 
 }

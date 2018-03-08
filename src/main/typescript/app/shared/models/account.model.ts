@@ -6,9 +6,8 @@ function city() {
     return () => City
 }
 
-export class AccountDetails {
-    name?: string;
-    email?: string;
+export class Account {
+    id?: number;
     postcode?: number;
     // @Type(city)
     @Type(() => City)

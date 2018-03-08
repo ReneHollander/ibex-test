@@ -5,33 +5,33 @@
 <div class="card" *ngIf="!isLoading">
     <h4 class="card-header">Account settings</h4>
     <div class="card-body">
-        <form #accountForm="ngForm" (ngSubmit)="save(accountDetails)">
+        <form #accountForm="ngForm" (ngSubmit)="save(user)">
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-user"></i></span>
                 </div>
-                <input class="form-control" type="text" name="name" [(ngModel)]="accountDetails.name" placeholder="Name"
+                <input class="form-control" type="text" name="name" [(ngModel)]="user.name" placeholder="Name"
                        required>
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                 </div>
-                <input class="form-control" type="email" name="email" [(ngModel)]="accountDetails.email"
+                <input class="form-control" type="email" name="email" [(ngModel)]="user.email"
                        placeholder="Email" required>
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                 </div>
-                <input class="form-control" type="number" name="postcode" [(ngModel)]="accountDetails.postcode"
+                <input class="form-control" type="number" name="postcode" [(ngModel)]="user.account.city.postcode"
                        placeholder="Postcode" required>
             </div>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                 </div>
-                <input class="form-control" type="text" name="city" [(ngModel)]="accountDetails.city.name"
+                <input class="form-control" type="text" name="city" [(ngModel)]="user.account.city.name"
                        placeholder="City"
                        required>
             </div>

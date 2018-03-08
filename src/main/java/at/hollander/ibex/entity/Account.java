@@ -19,21 +19,15 @@ public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonView({View.Account.Basic.class, View.Account.Details.class})
     private int id;
 
     @Column
+    @Builder.Default
     private boolean enabled = false;
 
-    @Column(nullable = false)
-    @JsonView({View.Account.Basic.class, View.Account.Details.class})
-    private String name;
-
-    @Column(unique = true, nullable = false)
-    @JsonView({View.Account.Basic.class, View.Account.Details.class})
-    private String email;
-
-    @Column(nullable = false, length = 60)
-    private String password;
+    @OneToOne(optional = false, fetch = FetchType.EAGER)
+    private User user;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JsonView({View.Account.Basic.class, View.Account.Details.class})

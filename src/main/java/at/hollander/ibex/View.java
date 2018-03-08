@@ -7,6 +7,11 @@ public interface View {
         }
     }
 
+    interface User {
+        interface Details {
+        }
+    }
+
     interface Account {
         interface Basic {
         }
@@ -43,10 +48,10 @@ public interface View {
     }
 
     interface Endpoint {
-        interface Initial extends Account.Basic, City.Details {
+        interface Initial extends User.Details, Account.Basic, City.Details {
         }
 
-        interface AccountDetails extends Account.Details, City.Details {
+        interface AccountDetails extends User.Details, Account.Details, City.Details {
         }
 
         interface DisabledCities extends City.Details {

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
-import {User} from '../shared/models/user.model';
+import {Role, User} from '../shared/models/user.model';
 import {LoginService} from "./login.service";
 
 @Injectable()
@@ -18,7 +18,7 @@ export class AuthService {
         if (this.currentUser == null) {
             try {
                 this.currentUser = await this.loginService.initial();
-                if (this.currentUser.role == 'ADMIN') {
+                if (this.currentUser.role == Role.ADMIN) {
                     this.isAdmin = true;
                 }
                 this.loggedIn = true;
@@ -33,7 +33,7 @@ export class AuthService {
 
     async login(email: String, password: String): Promise<User> {
         this.currentUser = await this.loginService.login(email, password);
-        if (this.currentUser.role == 'ADMIN') {
+        if (this.currentUser.role == Role.ADMIN) {
             this.isAdmin = true;
         }
         this.loggedIn = true;
