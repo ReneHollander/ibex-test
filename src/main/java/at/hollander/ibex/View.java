@@ -41,6 +41,11 @@ public interface View {
         }
     }
 
+    interface ProductAmount {
+        interface Details {
+        }
+    }
+
     interface InvoiceOverviewAndOrderList extends Invoice.Overview, Order.List {
     }
 

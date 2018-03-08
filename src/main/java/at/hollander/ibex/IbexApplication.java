@@ -151,13 +151,13 @@ public class IbexApplication implements CommandLineRunner {
         DeliverySlot samstag = deliverySlotRepository.save(new DeliverySlot("Samstag", LocalTime.of(7, 0)));
         DeliverySlot sonntag = deliverySlotRepository.save(new DeliverySlot("Sonntag", LocalTime.of(7, 0)));
 
-        RecurringOrder roMontag = recurringOrderRepository.save(new RecurringOrder(maxMustermann, montag, false));
-        RecurringOrder roDienstag = recurringOrderRepository.save(new RecurringOrder(maxMustermann, dienstag, false));
-        RecurringOrder roMittwoch = recurringOrderRepository.save(new RecurringOrder(maxMustermann, mittwoch, false));
+        RecurringOrder roMontag = recurringOrderRepository.save(new RecurringOrder(maxMustermann, montag, true));
+        RecurringOrder roDienstag = recurringOrderRepository.save(new RecurringOrder(maxMustermann, dienstag, true));
+        RecurringOrder roMittwoch = recurringOrderRepository.save(new RecurringOrder(maxMustermann, mittwoch, true));
         RecurringOrder roDonnerstag = recurringOrderRepository.save(new RecurringOrder(maxMustermann, donnerstag, true));
-        RecurringOrder roFreitag = recurringOrderRepository.save(new RecurringOrder(maxMustermann, freitag, false));
-        RecurringOrder roSamstag = recurringOrderRepository.save(new RecurringOrder(maxMustermann, samstag, false));
-        RecurringOrder roSonntag = recurringOrderRepository.save(new RecurringOrder(maxMustermann, sonntag, false));
+        RecurringOrder roFreitag = recurringOrderRepository.save(new RecurringOrder(maxMustermann, freitag, true));
+        RecurringOrder roSamstag = recurringOrderRepository.save(new RecurringOrder(maxMustermann, samstag, true));
+        RecurringOrder roSonntag = recurringOrderRepository.save(new RecurringOrder(maxMustermann, sonntag, true));
 
         recurringOrderItemRepository.save(new RecurringOrderItem(roMontag, semmel, 1));
         recurringOrderItemRepository.save(new RecurringOrderItem(roMontag, kornspitz, 2));
