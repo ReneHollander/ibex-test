@@ -30,7 +30,7 @@ public class OrderItem {
     @Column(nullable = false)
     private BigDecimal pricePerItem;
 
-    @JsonView(View.Order.Overview.class)
+    @JsonView(View.Order.Details.class)
     @Column(nullable = false)
     private int amount;
 
@@ -54,7 +54,7 @@ public class OrderItem {
         return id.getProduct();
     }
 
-    @JsonView(View.Order.Overview.class)
+    @JsonView(View.Order.Details.class)
     @JsonGetter("product")
     public Product getProduct() {
         return new Product(id.getProduct(), productName, pricePerItem);

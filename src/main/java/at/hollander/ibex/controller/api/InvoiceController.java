@@ -25,7 +25,7 @@ public class InvoiceController {
         this.userAccountService = userAccountService;
     }
 
-    @JsonView(View.Invoice.List.class)
+    @JsonView({View.Endpoint.Invoices.class})
     @RequestMapping(value = "/invoices", method = {RequestMethod.GET})
     public Iterable<Invoice> invoices() {
         Account account = userAccountService.getAccount();
@@ -38,7 +38,7 @@ public class InvoiceController {
         return invoiceRepository.countByAccount(account);
     }
 
-    @JsonView({View.InvoiceOverviewAndOrderList.class})
+    @JsonView({View.Endpoint.InvoiceDetails.class})
     @RequestMapping(value = "/invoice/{id}", method = {RequestMethod.GET})
     public Invoice invoice(@PathVariable("id") int id) {
         Account account = userAccountService.getAccount();

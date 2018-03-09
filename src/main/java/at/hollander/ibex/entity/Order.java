@@ -19,50 +19,51 @@ import java.util.List;
 @ToString(exclude = "items")
 public class Order {
 
-    @JsonView({View.Order.List.class, View.Order.Overview.class})
+    @JsonView({View.Order.Overview.class, View.Order.Details.class})
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @JsonView({View.Order.Account.class})
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Account account;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Invoice invoice;
 
-    @JsonView({View.Order.List.class, View.Order.Overview.class})
+    @JsonView({View.Order.Overview.class, View.Order.Details.class})
     @Column(nullable = false)
     private LocalDateTime deliveryTime;
 
-    @JsonView({View.Order.List.class, View.Order.Overview.class})
+    @JsonView({View.Order.Overview.class, View.Order.Details.class})
     @Column(nullable = false)
     private LocalDateTime orderTime;
 
-    @JsonView({View.Order.List.class, View.Order.Overview.class})
+    @JsonView({View.Order.Overview.class, View.Order.Details.class})
     @Column(nullable = false)
     private String address;
 
-    @JsonView({View.Order.List.class, View.Order.Overview.class})
+    @JsonView({View.Order.Overview.class, View.Order.Details.class})
     @Column(nullable = false)
     private int postcode;
 
-    @JsonView({View.Order.List.class, View.Order.Overview.class})
+    @JsonView({View.Order.Overview.class, View.Order.Details.class})
     @Column(nullable = false)
     private String city;
 
-    @JsonView({View.Order.List.class, View.Order.Overview.class})
+    @JsonView({View.Order.Overview.class, View.Order.Details.class})
     @Column(nullable = false)
     private String deliveryNote;
 
-    @JsonView({View.Order.List.class, View.Order.Overview.class})
+    @JsonView({View.Order.Overview.class, View.Order.Details.class})
     @Column(nullable = false)
     private BigDecimal priceShipping;
 
-    @JsonView({View.Order.List.class, View.Order.Overview.class})
+    @JsonView({View.Order.Overview.class, View.Order.Details.class})
     @Formula("(SELECT (SUM(oi.amount * oi.price_per_item) + price_shipping) FROM order_item oi WHERE oi.order_id = id)")
     private BigDecimal priceTotal;
 
-    @JsonView({View.Order.Overview.class})
+    @JsonView({View.Order.Details.class})
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderItem> items;
 

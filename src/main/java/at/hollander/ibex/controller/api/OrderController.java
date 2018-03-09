@@ -25,14 +25,14 @@ public class OrderController {
         this.userAccountService = userAccountService;
     }
 
-    @JsonView(View.Order.List.class)
+    @JsonView({View.Endpoint.PendingOrders.class})
     @RequestMapping(value = "/orders/pending", method = {RequestMethod.GET})
     public Iterable<Order> ordersPending() {
         Account account = userAccountService.getAccount();
         return orderRepository.findAllByAccountAndInvoiceIsNull(account);
     }
 
-    @JsonView(View.OrderOverviewAndProductOverview.class)
+    @JsonView(View.Endpoint.OrderDetails.class)
     @RequestMapping(value = "/order/{id}", method = {RequestMethod.GET})
     public Order order(@PathVariable("id") int id) {
         Account account = userAccountService.getAccount();

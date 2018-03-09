@@ -19,7 +19,7 @@ public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonView({View.Account.Basic.class, View.Account.Details.class})
+    @JsonView({View.Account.Basic.class, View.Account.Overview.class, View.Account.Details.class})
     private int id;
 
     @Column
@@ -27,18 +27,19 @@ public class Account {
     private boolean enabled = false;
 
     @OneToOne(optional = false, fetch = FetchType.EAGER)
+    @JsonView({View.Account.User.class})
     private User user;
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    @JsonView({View.Account.Basic.class, View.Account.Details.class})
+    @JsonView({View.Account.Overview.class, View.Account.Details.class, View.Account.AddressInfo.class})
     private City city;
 
     @Column(nullable = false)
-    @JsonView({View.Account.Details.class})
+    @JsonView({View.Account.Details.class, View.Account.AddressInfo.class})
     private String address;
 
     @Column
-    @JsonView({View.Account.Details.class})
+    @JsonView({View.Account.Details.class, View.Account.AddressInfo.class})
     private String deliveryNote;
 
     @Column(nullable = false)
@@ -50,7 +51,7 @@ public class Account {
     private String iban;
 
     @Column(nullable = false)
-    @JsonView({View.Account.Details.class})
+    @JsonView({View.Account.Details.class, View.Account.AddressInfo.class})
     private String phone;
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

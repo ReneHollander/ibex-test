@@ -19,7 +19,7 @@ import java.util.List;
 @ToString(exclude = "orders")
 public class Invoice {
 
-    @JsonView({View.Invoice.List.class, View.Invoice.Overview.class})
+    @JsonView({View.Invoice.Overview.class, View.Invoice.Details.class})
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -27,19 +27,19 @@ public class Invoice {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Account account;
 
-    @JsonView({View.Invoice.List.class, View.Invoice.Overview.class})
+    @JsonView({View.Invoice.Overview.class, View.Invoice.Details.class})
     @Column(nullable = false)
     private LocalDate date;
 
-    @JsonView({View.Invoice.Overview.class})
+    @JsonView({View.Invoice.Details.class})
     @Column(nullable = false)
     private String accountName;
 
-    @JsonView({View.Invoice.Overview.class})
+    @JsonView({View.Invoice.Details.class})
     @Column(nullable = false)
     private String iban;
 
-    @JsonView({View.Invoice.Overview.class})
+    @JsonView({View.Invoice.Details.class})
     @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Order> orders;
 
@@ -50,7 +50,7 @@ public class Invoice {
         this.iban = iban;
     }
 
-    @JsonView({View.Invoice.List.class, View.Invoice.Overview.class})
+    @JsonView({View.Invoice.Overview.class, View.Invoice.Details.class})
     @JsonGetter("priceTotal")
     public BigDecimal getPriceTotal() {
         return orders.stream().map(Order::getPriceTotal).reduce(BigDecimal.ZERO, BigDecimal::add);

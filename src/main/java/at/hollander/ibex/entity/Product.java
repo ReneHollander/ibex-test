@@ -20,15 +20,15 @@ import java.math.BigDecimal;
 public class Product {
 
     @Id
-    @JsonView(View.Product.Overview.class)
+    @JsonView({View.Product.Overview.class, View.Product.Details.class})
     private int id;
 
     @Column(nullable = false)
-    @JsonView(View.Product.Overview.class)
+    @JsonView({View.Product.Overview.class, View.Product.Details.class})
     private String name;
 
     @Column(nullable = false)
-    @JsonView(View.Product.Overview.class)
+    @JsonView(View.Product.Details.class)
     private BigDecimal price;
 
 }

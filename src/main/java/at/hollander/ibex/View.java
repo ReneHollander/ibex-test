@@ -10,34 +10,52 @@ public interface View {
     interface User {
         interface Details {
         }
+
+        interface Name {
+        }
     }
 
     interface Account {
         interface Basic {
         }
 
+        interface Overview {
+        }
+
         interface Details {
+        }
+
+        interface AddressInfo {
+        }
+
+        interface User {
         }
     }
 
     interface Invoice {
-        interface List {
+        interface Overview {
         }
 
-        interface Overview {
+        interface Details {
         }
     }
 
     interface Order {
-        interface List {
+        interface Overview {
         }
 
-        interface Overview {
+        interface Details {
+        }
+
+        interface Account {
         }
     }
 
     interface Product {
         interface Overview {
+        }
+
+        interface Details {
         }
     }
 
@@ -46,14 +64,9 @@ public interface View {
         }
     }
 
-    interface InvoiceOverviewAndOrderList extends Invoice.Overview, Order.List {
-    }
-
-    interface OrderOverviewAndProductOverview extends Order.Overview, Product.Overview {
-    }
 
     interface Endpoint {
-        interface Initial extends User.Details, Account.Basic, City.Details {
+        interface Initial extends User.Details, Account.Overview, City.Details {
         }
 
         interface AccountDetails extends User.Details, Account.Details, City.Details {
@@ -64,6 +77,25 @@ public interface View {
 
         interface EnabledCities extends City.Details {
         }
-    }
 
+        interface Invoices extends Invoice.Overview {
+        }
+
+        interface InvoiceDetails extends Invoice.Details, Order.Overview {
+        }
+
+        interface OrderDetails extends Order.Details, Product.Details {
+        }
+
+        interface PendingOrders extends Order.Overview {
+        }
+
+        interface Admin {
+            interface ProductAmounts extends ProductAmount.Details, Product.Overview {
+            }
+
+            interface OrderSummary extends Order.Details, Product.Overview, Order.Account, Account.User, Account.Basic, User.Name {
+            }
+        }
+    }
 }

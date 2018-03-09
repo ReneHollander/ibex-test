@@ -24,4 +24,7 @@ public interface OrderRepository extends CrudRepository<Order, Integer> {
             "GROUP BY oi.id.product")
     List<ProductAmount> addProducts(@Param("deliveryDate") Date deliveryDate);
 
+    @Query(value = "SELECT o FROM Order o WHERE DATE(o.deliveryTime) = DATE(:deliveryDate)")
+    List<Order> findAllByDeliveryTimeDate(@Param("deliveryDate") Date date);
+
 }
