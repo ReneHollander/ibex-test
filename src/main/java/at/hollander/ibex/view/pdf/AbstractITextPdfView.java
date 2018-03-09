@@ -40,6 +40,12 @@ public abstract class AbstractITextPdfView extends AbstractView {
         buildPdfDocument(model, document, writer, request, response);
         document.close();
 
+        // Add name to allow easier saving.
+        String name = getName(model, request, response);
+        if (name != null) {
+            response.addHeader("Content-Disposition", "inline; filename=" + name + ".pdf");
+        }
+
         // Flush to HTTP response.
         writeToResponse(response, baos);
     }
@@ -61,6 +67,10 @@ public abstract class AbstractITextPdfView extends AbstractView {
     }
 
     protected void buildPdfMetadata(Map<String, Object> model, Document document, HttpServletRequest request) {
+    }
+
+    protected String getName(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) {
+        return null;
     }
 
     protected abstract void buildPdfDocument(Map<String, Object> model, Document document, PdfWriter writer, HttpServletRequest request, HttpServletResponse response) throws Exception;
