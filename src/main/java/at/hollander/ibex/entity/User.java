@@ -28,7 +28,7 @@ public class User {
     private Role role = Role.USER;
 
     @Column(nullable = false)
-    @JsonView({View.User.Name.class})
+    @JsonView({View.User.Details.class, View.User.Name.class})
     private String name;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
