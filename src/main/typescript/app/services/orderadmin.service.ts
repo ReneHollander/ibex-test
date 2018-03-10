@@ -17,7 +17,7 @@ export class OrderAdminService {
         return this.api.getAndConvertArray(Order, '/api/admin/ordersummary/' + date.toISOString().slice(0, 10));
     }
 
-    async createOrdersFromRecurringOrders(date: Date): Promise<void> {
+    async createOrdersFromRecurringOrders(date: Date): Promise<any> {
         return this.api.post('/api/admin/ordersummary/' + date.toISOString().slice(0, 10) + '/create', {});
     }
 }
