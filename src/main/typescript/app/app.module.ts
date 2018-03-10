@@ -37,6 +37,7 @@ import {OrderAdminService} from "./services/orderadmin.service";
 import {OrderSummaryComponent} from "./ordersummary/ordersummary.component";
 import {defineLocale} from 'ngx-bootstrap/chronos';
 import {deLocale} from 'ngx-bootstrap/locale';
+import {ImpressComponent} from "./impress/impress.component";
 
 defineLocale('de', deLocale);
 
@@ -58,6 +59,7 @@ defineLocale('de', deLocale);
         OrderComponent,
         CitySearchComponent,
         OrderSummaryComponent,
+        ImpressComponent,
     ],
     imports: [
         RoutingModule,

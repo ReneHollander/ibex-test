@@ -15,6 +15,7 @@ import {InvoiceComponent} from "./invoice/invoice.component";
 import {OrderComponent} from "./order/order.component";
 import {AuthGuardLoggedIn} from "./services/auth-guard-loggedin.service";
 import {OrderSummaryComponent} from "./ordersummary/ordersummary.component";
+import {ImpressComponent} from "./impress/impress.component";
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
     {path: 'order/:id', component: OrderComponent, canActivate: [AuthGuardUser]},
     {path: 'account', component: AccountComponent, canActivate: [AuthGuardLoggedIn]},
     {path: 'admin/ordersummary', component: OrderSummaryComponent, canActivate: [AuthGuardAdmin]},
+    {path: 'impress', component: ImpressComponent},
     {path: 'notfound', component: NotFoundComponent},
     {path: '**', redirectTo: '/notfound'},
 ];
