@@ -1,0 +1,86 @@
+<div class="card mb-3">
+    <h4 class="card-header">Bestellungen</h4>
+    <div class="card-body">
+        <div class="input-group">
+            <input type="text"
+                   class="form-control"
+                   #dp="bsDatepicker"
+                   bsDatepicker [(bsValue)]="selectedDate"
+                   (bsValueChange)="onSelectDate()">
+        </div>
+    </div>
+</div>
+
+<loading-card [condition]="isLoading"></loading-card>
+
+<div class="card mb-3" *ngIf="shouldShow">
+    <h4 class="card-header">Downloads {{selectedDate | date: 'dd.MM.yyyy'}}</h4>
+    <div class="card-body center">
+        <button type="button" class="btn btn-success" (click)="onClickProductAmountDownload()">Produktmengen</button>
+        <button type="button" class="btn btn-success" (click)="onClickOrdersDownload()">Etiketten</button>
+    </div>
+</div>
+
+<div class="card mb-3" *ngIf="!isLoading && !hasOrders">
+    <h4 class="card-header">Bestellungen umwandeln für {{selectedDate | date: 'dd.MM.yyyy'}}</h4>
+    <div class="card-body">
+        Wenn keine Bestellungen angezeigt werden, sind für diesen Tag unter Umständen keine vorhanden, oder es wurde
+        noch
+        nicht umgewandelt!
+        <div class="center">
+            <button type="button" class="btn btn-danger" (click)="onCreateOrdersFromRecurringOrdersClick()">
+                Bestellungen umwandeln<br>
+                Dies kann nicht rückgängig gemacht werden!
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-3" *ngIf="shouldShow">
+    <h4 class="card-header">Produktmengen {{selectedDate | date: 'dd.MM.yyyy'}}</h4>
+    <div class="card-body">
+        <table class="table table-hover table-bordered table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Produkt</th>
+                <th scope="col">Menge</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of productAmounts">
+                <td>{{item.product.id}}</td>
+                <td>{{item.product.name}}</td>
+                <td align="right">{{item.amount}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="card-columns mb-3" *ngIf="shouldShow">
+    <div class="card mb-4" *ngFor="let order of orders">
+        <h4 class="card-header">#{{order.id}} - {{order.account.user.name}}</h4>
+        <div class="card-body">
+            <div>Telefon: {{order.account.phone}}</div>
+            <div>Adresse: {{order.address}}, {{order.city}}</div>
+            <div>Hinweis: {{order.deliveryNote}}</div>
+            <table class="table table-hover table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Produkt</th>
+                    <th scope="col">Menge</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of order.items">
+                    <td>{{item.product.id}}</td>
+                    <td>{{item.product.name}}</td>
+                    <td align="right">{{item.amount}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

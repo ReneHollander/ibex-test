@@ -1,5 +1,6 @@
 import {City} from "./city.model";
 import {Type} from "class-transformer";
+import {User} from "./user.model";
 
 // TODO: remove once released: https://github.com/angular/angular-cli/pull/9225
 function city() {
@@ -16,4 +17,7 @@ export class Account {
     deliveryNote?: string;
     accountName?: string;
     iban?: string;
+    phone: string;
+    @Type(() => User)
+    user: User;
 }

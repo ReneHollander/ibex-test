@@ -1,5 +1,6 @@
 import {Product} from "./product.model";
 import {Type} from "class-transformer";
+import {Account} from "./account.model";
 
 export class Order {
     id?: number;
@@ -13,10 +14,10 @@ export class Order {
     deliveryNote: string;
     priceShipping: number;
     priceTotal: number;
-
+    @Type(() => Account)
+    account: Account;
     @Type(() => OrderItem)
     items: OrderItem[];
-
 }
 
 export class OrderItem {

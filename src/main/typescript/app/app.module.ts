@@ -12,17 +12,15 @@ import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
 import {LogoutComponent} from './logout/logout.component';
 import {AccountComponent} from './account/account.component';
-import {AdminComponent} from './admin/admin.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 import {ProductService} from "./services/product.service";
-import {ProductsComponent} from "./products/products.component";
 import {RecurringOrdersComponent} from "./recurringorders/recurringorders.component";
 import {RecurringOrderComponent} from "./recurringorder/recurringorder.component";
 import {RecurringOrderRowComponent} from "./recurringorderrow/recurringorderrow.component";
 import {RecurringOrderService} from "./services/recurringorder.service";
 import {LoginService} from "./services/login.service";
 import {NgPipesModule} from "ngx-pipes";
-import {AccordionModule, TabsModule, TypeaheadModule} from "ngx-bootstrap";
+import {AccordionModule, BsDatepickerModule, TabsModule, TypeaheadModule} from "ngx-bootstrap";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {ProductSearchComponent} from "./productsearch/productsearch.component";
 import {ApiClient} from "./services/apiclient.service";
@@ -35,6 +33,12 @@ import {CityService} from "./services/city.service";
 import {CitySearchComponent} from "./citysearch/citysearch.component";
 import {NgxToggleModule} from "ngx-toggle";
 import {AuthGuardLoggedIn} from "./services/auth-guard-loggedin.service";
+import {OrderAdminService} from "./services/orderadmin.service";
+import {OrderSummaryComponent} from "./ordersummary/ordersummary.component";
+import {defineLocale} from 'ngx-bootstrap/chronos';
+import {deLocale} from 'ngx-bootstrap/locale';
+
+defineLocale('de', deLocale);
 
 @NgModule({
     declarations: [
@@ -42,19 +46,18 @@ import {AuthGuardLoggedIn} from "./services/auth-guard-loggedin.service";
         RecurringOrdersComponent,
         RecurringOrderComponent,
         RecurringOrderRowComponent,
-        ProductsComponent,
         HomeComponent,
         RegisterComponent,
         LoginComponent,
         LogoutComponent,
         AccountComponent,
-        AdminComponent,
         NotFoundComponent,
         ProductSearchComponent,
         InvoicesComponent,
         InvoiceComponent,
         OrderComponent,
         CitySearchComponent,
+        OrderSummaryComponent,
     ],
     imports: [
         RoutingModule,
@@ -65,6 +68,7 @@ import {AuthGuardLoggedIn} from "./services/auth-guard-loggedin.service";
         AccordionModule.forRoot(),
         NgbModule.forRoot(),
         NgxToggleModule,
+        BsDatepickerModule.forRoot(),
     ],
     providers: [
         ApiClient,
@@ -79,6 +83,7 @@ import {AuthGuardLoggedIn} from "./services/auth-guard-loggedin.service";
         InvoiceService,
         OrderService,
         CityService,
+        OrderAdminService,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]

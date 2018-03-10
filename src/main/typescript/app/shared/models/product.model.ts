@@ -1,3 +1,5 @@
+import {Type} from "class-transformer";
+
 export class Product {
     id?: number;
     name?: string;
@@ -8,4 +10,10 @@ export class Product {
         this.name = name;
         this.price = price;
     }
+}
+
+export class ProductAmount {
+    @Type(() => Product)
+    product?: Product;
+    amoumt?: number;
 }
