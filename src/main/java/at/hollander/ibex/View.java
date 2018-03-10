@@ -30,6 +30,9 @@ public interface View {
 
         interface User {
         }
+
+        interface ContactInfo {
+        }
     }
 
     interface Invoice {
@@ -94,7 +97,7 @@ public interface View {
             interface ProductAmounts extends ProductAmount.Details, Product.Overview {
             }
 
-            interface OrderSummary extends Order.Details, Product.Overview, Order.Account, Account.User, Account.Basic, User.Name {
+            interface OrderSummary extends Order.Details, Product.Overview, Order.Account, Account.User, Account.Basic, User.Name, Account.ContactInfo {
             }
         }
     }

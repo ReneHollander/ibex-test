@@ -51,7 +51,7 @@ public class Account {
     private String iban;
 
     @Column(nullable = false)
-    @JsonView({View.Account.Details.class, View.Account.AddressInfo.class})
+    @JsonView({View.Account.Details.class, View.Account.AddressInfo.class, View.Account.ContactInfo.class})
     private String phone;
 
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
