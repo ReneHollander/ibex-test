@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {AuthService} from '../services/auth.service';
-import {ToastComponent} from '../shared/toast/toast.component';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
     selector: 'app-login',
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     constructor(private auth: AuthService,
                 private formBuilder: FormBuilder,
                 private router: Router,
-                public toast: ToastComponent) {
+                private toastr: ToastrService) {
     }
 
     ngOnInit() {
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
             await this.auth.login(this.loginForm.value.email, this.loginForm.value.password);
             await this.router.navigate(['/']);
         } catch (e) {
-            this.toast.setMessage('invalid email or password!', 'danger')
+            this.toastr.error('Ungültige E-Mail Adresse oder Passwort.')
         }
     }
 

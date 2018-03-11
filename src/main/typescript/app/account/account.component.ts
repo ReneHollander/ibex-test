@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ToastComponent} from '../shared/toast/toast.component';
 import {AuthService} from '../services/auth.service';
 import {AccountService} from '../services/account.service';
 import {User} from "../shared/models/user.model";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {validateEqual} from "../util";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
     selector: 'app-account',
@@ -30,7 +30,7 @@ export class AccountComponent implements OnInit {
 
     constructor(private auth: AuthService,
                 private formBuilder: FormBuilder,
-                private toast: ToastComponent,
+                private toastr: ToastrService,
                 private accountService: AccountService) {
     }
 
@@ -55,11 +55,11 @@ export class AccountComponent implements OnInit {
         if (this.passwordChangeForm.valid) {
             try {
                 await this.accountService.changePassword(this.currentPassword.value, this.newPassword.value);
-                this.toast.setMessage("Ihr Passwort wurde geändert.", "success");
+                this.toastr.success("Ihr Passwort wurde geändert.");
                 this.passwordChangeForm.reset();
             } catch (e) {
                 if (e.error.message === 'invalid password') {
-                    this.toast.setMessage("Das angegebene aktuelle Passwort ist ungültig.", "danger");
+                    this.toastr.error("Das angegebene aktuelle Passwort ist ungültig.");
                 }
             }
         }

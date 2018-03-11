@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {City} from "../shared/models/city.model";
 import {CityService} from "../services/city.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ToastComponent} from "../shared/toast/toast.component";
 import {NewsletterService} from "../services/newsletter.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
     selector: 'newsletterregister',
@@ -26,7 +26,7 @@ export class NewsletterRegisterComponent implements OnInit {
 
     constructor(private cityService: CityService,
                 private formBuilder: FormBuilder,
-                private toast: ToastComponent,
+                private toastr: ToastrService,
                 private newsletterService: NewsletterService) {
     }
 
@@ -44,13 +44,13 @@ export class NewsletterRegisterComponent implements OnInit {
         if (this.form.valid) {
             try {
                 await this.newsletterService.register(this.form.value);
-                this.toast.setMessage("Sie erhalten nun updates an Ihre E-Mail Adresse.", "success");
+                this.toastr.success("Sie erhalten nun updates an Ihre E-Mail Adresse.");
             } catch (e) {
                 console.log(e);
                 if (e.error.message === 'email already subscribed') {
-                    this.toast.setMessage("Die angegebene E-Mail Adresse wurde schon registriert!", "danger");
+                    this.toastr.error("Die angegebene E-Mail Adresse wurde schon registriert!");
                 } else {
-                    this.toast.setMessage("Ein unbekannter Fehler ist aufgetreten!", "danger");
+                    this.toastr.error("Ein unbekannter Fehler ist aufgetreten!");
                 }
             }
             this.form.reset();

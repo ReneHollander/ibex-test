@@ -3,9 +3,9 @@ import {Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {AccountService} from '../services/account.service';
-import {ToastComponent} from '../shared/toast/toast.component';
 import {City} from "../shared/models/city.model";
 import {CityService} from "../services/city.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
     selector: 'app-register',
@@ -59,7 +59,7 @@ export class RegisterComponent implements OnInit {
 
     constructor(private formBuilder: FormBuilder,
                 private router: Router,
-                public toast: ToastComponent,
+                private toastr: ToastrService,
                 private userService: AccountService,
                 private cityService: CityService) {
     }

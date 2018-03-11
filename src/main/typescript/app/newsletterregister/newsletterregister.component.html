@@ -1,7 +1,5 @@
 <loading [condition]="isLoading"></loading>
 
-<app-toast [message]="toast.message"></app-toast>
-
 <form class="form-inline needs-validation" *ngIf="!isLoading" [formGroup]="form" (ngSubmit)="subscribe()" novalidate>
     <div class="form-group mr-2">
         <label for="city" class="sr-only">Stadt</label>

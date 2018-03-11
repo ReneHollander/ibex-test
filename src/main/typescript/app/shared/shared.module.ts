@@ -3,7 +3,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
-import {ToastComponent} from './toast/toast.component';
 import {LoadingCardComponent} from './loadingcard/loadingcard.component';
 import {LoadingComponent} from "./loading/loading.component";
 import {IbanPipe} from "./pipe/iban";
@@ -22,20 +21,16 @@ import {IbanPipe} from "./pipe/iban";
         ReactiveFormsModule,
         HttpClientModule,
         // Shared Components
-        ToastComponent,
         LoadingComponent,
         LoadingCardComponent,
         IbanPipe,
     ],
     declarations: [
-        ToastComponent,
         LoadingComponent,
         LoadingCardComponent,
         IbanPipe,
     ],
-    providers: [
-        ToastComponent
-    ]
+    providers: []
 })
 export class SharedModule {
 }

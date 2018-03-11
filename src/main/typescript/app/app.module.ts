@@ -39,6 +39,8 @@ import {deLocale} from 'ngx-bootstrap/locale';
 import {ImpressComponent} from "./impress/impress.component";
 import {NewsletterRegisterComponent} from "./newsletterregister/newsletterregister.component";
 import {NewsletterService} from "./services/newsletter.service";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ToastrModule} from "ngx-toastr";
 
 defineLocale('de', deLocale);
 
@@ -72,6 +74,11 @@ defineLocale('de', deLocale);
         NgbModule.forRoot(),
         NgxToggleModule,
         BsDatepickerModule.forRoot(),
+        BrowserAnimationsModule,
+        ToastrModule.forRoot({
+            positionClass: 'toast-bottom-center',
+            timeOut: 3000,
+        }),
     ],
     providers: [
         ApiClient,
