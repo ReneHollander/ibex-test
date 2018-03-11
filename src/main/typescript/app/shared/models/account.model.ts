@@ -2,15 +2,8 @@ import {City} from "./city.model";
 import {Type} from "class-transformer";
 import {User} from "./user.model";
 
-// TODO: remove once released: https://github.com/angular/angular-cli/pull/9225
-function city() {
-    return () => City
-}
-
 export class Account {
     id?: number;
-    postcode?: number;
-    // @Type(city)
     @Type(() => City)
     city?: City;
     address?: string;

@@ -9,8 +9,6 @@ export class Invoice {
     accountName: Date;
     iban: string;
     priceTotal: number;
-
-    // @Type(order)
     @Type(() => Order)
     orders: Order[];
 
