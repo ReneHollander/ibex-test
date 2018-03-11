@@ -1,15 +1,16 @@
 import {Type} from "class-transformer";
 import {Order} from "./order.model";
+import {serializeType} from "../../util";
 
 export class Invoice {
     id?: number;
-    @Type(() => Date)
+    @Type(serializeType(Date))
     date?: Date;
-    @Type(() => Date)
+    @Type(serializeType(Date))
     accountName: Date;
     iban: string;
     priceTotal: number;
-    @Type(() => Order)
+    @Type(serializeType(Order))
     orders: Order[];
 
     constructor(id: number, date: Date, accountName: Date, iban: string) {

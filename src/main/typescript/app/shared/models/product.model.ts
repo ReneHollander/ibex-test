@@ -1,4 +1,5 @@
 import {Type} from "class-transformer";
+import {serializeType} from "../../util";
 
 export class Product {
     id?: number;
@@ -13,7 +14,7 @@ export class Product {
 }
 
 export class ProductAmount {
-    @Type(() => Product)
+    @Type(serializeType(Product))
     product?: Product;
-    amoumt?: number;
+    amount?: number;
 }

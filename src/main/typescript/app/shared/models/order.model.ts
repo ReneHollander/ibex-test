@@ -1,27 +1,10 @@
 import {Product} from "./product.model";
 import {Type} from "class-transformer";
 import {Account} from "./account.model";
-
-export class Order {
-    id?: number;
-    @Type(() => Date)
-    deliveryTime?: Date;
-    @Type(() => Date)
-    orderTime: Date;
-    address: string;
-    postcode: number;
-    city: string;
-    deliveryNote: string;
-    priceShipping: number;
-    priceTotal: number;
-    @Type(() => Account)
-    account: Account;
-    @Type(() => OrderItem)
-    items: OrderItem[];
-}
+import {serializeType} from "../../util";
 
 export class OrderItem {
-    @Type(() => Product)
+    @Type(serializeType(Product))
     product?: Product;
     amount?: number;
 
@@ -33,4 +16,22 @@ export class OrderItem {
     get priceTotal(): number {
         return this.product.price * this.amount;
     }
+}
+
+export class Order {
+    id?: number;
+    @Type(serializeType(Date))
+    deliveryTime?: Date;
+    @Type(serializeType(Date))
+    orderTime: Date;
+    address: string;
+    postcode: number;
+    city: string;
+    deliveryNote: string;
+    priceShipping: number;
+    priceTotal: number;
+    @Type(serializeType(Account))
+    account: Account;
+    @Type(serializeType(OrderItem))
+    items: OrderItem[];
 }

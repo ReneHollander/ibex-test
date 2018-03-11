@@ -1,10 +1,11 @@
 import {Product} from "./product.model";
 import {Type} from "class-transformer";
+import {serializeType} from "../../util";
 
 export class DeliverySlot {
     id?: number;
     name?: string;
-    @Type(() => Date)
+    @Type(serializeType(Date))
     deliverBy: Date;
 
     constructor(id?: number, name?: string, deliverBy?: Date) {
@@ -14,10 +15,21 @@ export class DeliverySlot {
     }
 }
 
+export class RecurringOrderItem {
+    @Type(serializeType(Product))
+    product?: Product;
+    amount?: number;
+
+    constructor(product?: Product, amount?: number) {
+        this.product = product;
+        this.amount = amount;
+    }
+}
+
 export class RecurringOrder {
     deliverySlot?: DeliverySlot;
     enabled?: boolean;
-    @Type(() => RecurringOrderItem)
+    @Type(serializeType(RecurringOrderItem))
     items?: RecurringOrderItem[];
 
     constructor(deliverySlot?: DeliverySlot, enabled?: boolean, items?: RecurringOrderItem[]) {
@@ -27,14 +39,3 @@ export class RecurringOrder {
     }
 }
 
-export class RecurringOrderItem {
-    @Type(() => Product)
-    product?: Product;
-    amount?: number;
-
-    constructor(product?: Product, amount?: number) {
-        this.product = product;
-        this.amount = amount;
-    }
-
-}

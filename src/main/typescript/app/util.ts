@@ -117,3 +117,7 @@ export function validateEqual(key1: string, key2: string) {
         control2.setErrors(errors);
     }
 }
+
+export function serializeType<T>(object: T) {
+    return function () { return object; };
+}
