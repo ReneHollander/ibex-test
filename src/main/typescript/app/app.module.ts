@@ -30,7 +30,6 @@ import {OrderComponent} from "./order/order.component";
 import {InvoiceService} from "./services/invoice.service";
 import {OrderService} from "./services/order.service";
 import {CityService} from "./services/city.service";
-import {CitySearchComponent} from "./citysearch/citysearch.component";
 import {NgxToggleModule} from "ngx-toggle";
 import {AuthGuardLoggedIn} from "./services/auth-guard-loggedin.service";
 import {OrderAdminService} from "./services/orderadmin.service";
@@ -38,6 +37,8 @@ import {OrderSummaryComponent} from "./ordersummary/ordersummary.component";
 import {defineLocale} from 'ngx-bootstrap/chronos';
 import {deLocale} from 'ngx-bootstrap/locale';
 import {ImpressComponent} from "./impress/impress.component";
+import {NewsletterRegisterComponent} from "./newsletterregister/newsletterregister.component";
+import {NewsletterService} from "./services/newsletter.service";
 
 defineLocale('de', deLocale);
 
@@ -57,9 +58,9 @@ defineLocale('de', deLocale);
         InvoicesComponent,
         InvoiceComponent,
         OrderComponent,
-        CitySearchComponent,
         OrderSummaryComponent,
         ImpressComponent,
+        NewsletterRegisterComponent,
     ],
     imports: [
         RoutingModule,
@@ -86,6 +87,7 @@ defineLocale('de', deLocale);
         OrderService,
         CityService,
         OrderAdminService,
+        NewsletterService,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]

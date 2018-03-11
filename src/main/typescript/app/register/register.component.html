@@ -39,8 +39,9 @@
 
             <div class="form-group" [ngClass]="setClass(city)">
                 <label for="city">Stadt</label>
-                <city-search id="city" name="city" formControlName="city" [cities]="cities" aria-describedby="cityHelp"
-                             placeholder="Stadt"></city-search>
+                <select class="form-control" id="city" name="city" formControlName="city">
+                    <option selected value="" disabled>Stadt...</option>
+                </select>
                 <small id="cityHelp" class="form-text text-muted">
                     Lieferungen können nur in das Ortsgebiet des gewählten Ortes gelifert werden. Wenn Ihr Ort nicht
                     dabei ist, helfen Sie dabei ihn verfügbar zu machen indem Sie auf der Startseite abstimmen oder

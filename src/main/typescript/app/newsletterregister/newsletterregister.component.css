@@ -1,0 +1,15 @@
+.input-group {
+    margin-bottom: 0;
+}
+
+.fix-tooltips {
+    position: relative;
+}
+
+.input-width {
+    width: 250px;
+}
+
+select option[disabled]:first-child {
+    display: none;
+}

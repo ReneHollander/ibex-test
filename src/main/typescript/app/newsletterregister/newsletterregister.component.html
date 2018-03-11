@@ -1,0 +1,37 @@
+<loading [condition]="isLoading"></loading>
+
+<app-toast [message]="toast.message"></app-toast>
+
+<form class="form-inline needs-validation" *ngIf="!isLoading" [formGroup]="form" (ngSubmit)="subscribe()" novalidate>
+    <div class="form-group mr-2">
+        <label for="city" class="sr-only">Stadt</label>
+        <div class="fix-tooltips">
+            <select class="form-control input-width" [ngClass]="setClass(city)" id="city" name="city"
+                    formControlName="city">
+                <option selected value="" disabled>Stadt...</option>
+                <option *ngFor="let city of cities" [ngValue]="city">{{city.postcode}} {{city.name}}</option>
+            </select>
+            <div class="invalid-tooltip">
+                Bitte wählen Sie eine Stadt aus.
+            </div>
+        </div>
+    </div>
+    <div class="form-group mr-2">
+        <label for="email" class="sr-only">E-Mail</label>
+        <div class="fix-tooltips">
+            <input type="email" class="form-control input-width" [ngClass]="setClass(email)" id="email" name="email"
+                   formControlName="email"
+                   placeholder="E-Mail">
+            <div class="invalid-tooltip">
+                Bitte geben Sie eine E-Mail Adresse an.
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Abbonieren</button>
+    <small class="form-text text-muted">
+        Durch Angabe meiner E-Mail-Adresse und Anklicken des Buttons „Abbonieren“ erkläre ich mich damit
+        einverstanden, dass die Bäckerei-Konditorei Hollander mir regelmäßig folgende Informationen per E-Mail
+        zuschickt: Verfügbarkeit neuer Regionen, neue Produkte. Meine Einwilligung kann ich jederzeit gegenüber
+        der Bäckerei-Konditorei Hollander widerrufen.
+    </small>
+</form>
