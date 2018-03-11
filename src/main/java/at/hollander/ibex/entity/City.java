@@ -3,6 +3,8 @@ package at.hollander.ibex.entity;
 import at.hollander.ibex.View;
 import at.hollander.ibex.entity.id.CityId;
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,6 +12,8 @@ import lombok.Data;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -18,6 +22,9 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class City implements Serializable {
 
+    @Valid
+    @NotNull
+    @JsonIgnore
     @EmbeddedId
     private CityId cityId;
 
@@ -50,6 +57,16 @@ public class City implements Serializable {
     @JsonView({View.City.Details.class})
     public int getPostcode() {
         return cityId.getPostcode();
+    }
+
+    @JsonSetter("name")
+    public void setName(String name) {
+        this.cityId.setName(name);
+    }
+
+    @JsonSetter("postcode")
+    public void setPostcode(int postcode) {
+        this.cityId.setPostcode(postcode);
     }
 
 }

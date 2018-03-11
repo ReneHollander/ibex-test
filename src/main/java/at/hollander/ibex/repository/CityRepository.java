@@ -10,4 +10,6 @@ public interface CityRepository extends CrudRepository<City, CityId> {
 
     public Iterable<City> findAllByEnabledIsFalse();
 
+    public boolean existsCityByCityId(CityId cityId);
+
 }
