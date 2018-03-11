@@ -6,7 +6,7 @@ import {classToClass} from "class-transformer";
 import {RecurringOrderService} from "../services/recurringorder.service";
 import {AuthService} from "../services/auth.service";
 import {ToastrService} from "ngx-toastr";
-import deepEqual = require("deep-equal");
+import {deepEqual} from "../../deepequal";
 
 @Component({
     selector: 'recurring-order',
