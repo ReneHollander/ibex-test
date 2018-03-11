@@ -69,10 +69,12 @@ public interface View {
 
 
     interface Endpoint {
-        interface Initial extends User.Details, Account.Overview, City.Details {
+        interface Initial extends User.Details, View.Account.Overview, City.Details {
         }
 
-        interface AccountDetails extends User.Details, Account.Details, City.Details {
+        interface Account {
+            interface Details extends User.Details, View.Account.Details, City.Details {
+            }
         }
 
         interface DisabledCities extends City.Details {
@@ -97,7 +99,7 @@ public interface View {
             interface ProductAmounts extends ProductAmount.Details, Product.Overview {
             }
 
-            interface OrderSummary extends Order.Details, Product.Overview, Order.Account, Account.User, Account.Basic, User.Name, Account.ContactInfo {
+            interface OrderSummary extends Order.Details, Product.Overview, Order.Account, View.Account.User, View.Account.Basic, User.Name, View.Account.ContactInfo {
             }
         }
     }

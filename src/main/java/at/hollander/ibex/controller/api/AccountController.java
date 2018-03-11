@@ -10,20 +10,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-public class AccountDetailsController {
+public class AccountController {
 
     private final UserAccountService userAccountService;
 
     @Autowired
-    public AccountDetailsController(UserAccountService userAccountService) {
+    public AccountController(UserAccountService userAccountService) {
         this.userAccountService = userAccountService;
     }
 
-    @RequestMapping("/accountdetails")
-    @JsonView({View.Endpoint.AccountDetails.class})
-    User account() {
+    @RequestMapping("/account/details")
+    @JsonView({View.Endpoint.Account.Details.class})
+    public User details() {
         return userAccountService.getUser();
     }
-
 
 }

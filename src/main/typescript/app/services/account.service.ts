@@ -9,7 +9,7 @@ export class AccountService {
     }
 
     async getAccountDetails(): Promise<User> {
-        return this.api.getAndConvert(User, '/api/accountdetails');
+        return this.api.getAndConvert(User, '/api/account/details');
     }
 
 }
