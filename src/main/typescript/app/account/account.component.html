@@ -2,42 +2,81 @@
 
 <app-toast [message]="toast.message"></app-toast>
 
-<div class="card" *ngIf="!isLoading">
-    <h4 class="card-header">Account settings</h4>
+<div class="card mb-3" *ngIf="!isLoading">
+    <h4 class="card-header">Passwort ändern</h4>
     <div class="card-body">
-        <form #accountForm="ngForm" (ngSubmit)="save(user)">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+        <form class="needs-validation"
+              *ngIf="!isLoading"
+              [formGroup]="passwordChangeForm"
+              (ngSubmit)="changePassword()"
+              novalidate>
+            <div class="form-group">
+                <label for="currentPassword">Aktuelles Passwort</label>
+                <input class="form-control"
+                       type="password"
+                       id="currentPassword"
+                       name="currentPassword"
+                       formControlName="currentPassword"
+                       placeholder="Aktuelles Passwort"
+                       [ngClass]="setClass(currentPassword)">
+                <div class="invalid-feedback">
+                    Bitte geben Sie Ihr aktulles Passwort an.
                 </div>
-                <input class="form-control" type="text" name="name" [(ngModel)]="user.name" placeholder="Name"
-                       required>
             </div>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+            <div class="form-group">
+                <label for="newPassword">Neues Passwort</label>
+                <input class="form-control"
+                       type="password"
+                       id="newPassword"
+                       name="newPassword"
+                       formControlName="newPassword"
+                       placeholder="Neues Passwort"
+                       [ngClass]="setClass(newPassword)">
+                <div class="invalid-feedback">
+                    Das Passwort muss mindestens 8 Zeichen lang sein.
                 </div>
-                <input class="form-control" type="email" name="email" [(ngModel)]="user.email"
-                       placeholder="Email" required>
             </div>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+            <div class="form-group">
+                <label for="newPasswordRepeat">Neues Passwort wiederholen</label>
+                <input class="form-control"
+                       type="password"
+                       id="newPasswordRepeat"
+                       name="newPasswordRepeat"
+                       formControlName="newPasswordRepeat"
+                       placeholder="Neues Passwort wiederholen"
+                       [ngClass]="setClass(newPasswordRepeat)">
+                <div class="invalid-feedback">
+                    Die Passwörter müssen übereinstimmen.
                 </div>
-                <input class="form-control" type="number" name="postcode" [(ngModel)]="user.account.city.postcode"
-                       placeholder="Postcode" required>
             </div>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                </div>
-                <input class="form-control" type="text" name="city" [(ngModel)]="user.account.city.name"
-                       placeholder="City"
-                       required>
-            </div>
-            <button class="btn btn-primary" type="submit" [disabled]="!accountForm.form.valid">
-                <i class="fa fa-save"></i> Save
+            <button class="btn btn-primary" type="submit" [disabled]="!passwordChangeForm.valid">
+                <i class="fa fa-save"></i> Passwort ändern
             </button>
         </form>
+    </div>
+</div>
+
+<div class="card mb-3" *ngIf="!isLoading">
+    <h4 class="card-header">Kontoeinstellungen</h4>
+    <div class="card-body">
+        <div class="alert alert-warning" role="alert">
+            Derzeit ist es noch nicht möglich andere Kontoeinstellungen zu ändern.<br>
+            Bitte kontaktieren Sie uns direkt falls doch etwas geändert werden muss:
+            <a href="mailto:support@hollander.at">support@hollander.at</a>
+        </div>
+        <div>
+            Name: {{user.name}}<br>
+            E-Mail: {{user.email}}<br>
+            <div *ngIf="user.account">
+                Kundennummer: {{user.account.id}}<br>
+                Postleitzahl: {{user.account.city.postcode}}<br>
+                Stadt: {{user.account.city.name}}<br>
+                Adresse: {{user.account.address}}<br>
+                Liefernotiz: {{user.account.deliveryNote}}<br>
+                Kontoname: {{user.account.accountName}}<br>
+                IBAN: {{user.account.iban}}<br>
+                Telefon: {{user.account.phone}}<br>
+            </div>
+        </div>
     </div>
 </div>

@@ -12,4 +12,8 @@ export class AccountService {
         return this.api.getAndConvert(User, '/api/account/details');
     }
 
+    async changePassword(oldPassword: string, newPassword: string): Promise<any> {
+        return this.api.post('/api/account/password', {'oldPassword': oldPassword, 'newPassword': newPassword});
+    }
+
 }
