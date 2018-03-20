@@ -7,13 +7,13 @@ import {LogoutComponent} from './logout/logout.component';
 import {AccountComponent} from './account/account.component';
 import {NotFoundComponent} from './not-found/not-found.component';
 
-import {AuthGuardUser} from './services/auth-guard-login.service';
-import {AuthGuardAdmin} from './services/auth-guard-admin.service';
+import {AuthGuardUser} from './service/guard/auth-guard-login.service';
+import {AuthGuardAdmin} from './service/guard/auth-guard-admin.service';
 import {RecurringOrdersComponent} from "./recurringorders/recurringorders.component";
 import {InvoicesComponent} from "./invoices/invoices.component";
 import {InvoiceComponent} from "./invoice/invoice.component";
 import {OrderComponent} from "./order/order.component";
-import {AuthGuardLoggedIn} from "./services/auth-guard-loggedin.service";
+import {AuthGuardLoggedIn} from "./service/guard/auth-guard-loggedin.service";
 import {OrderSummaryComponent} from "./ordersummary/ordersummary.component";
 import {ImpressComponent} from "./impress/impress.component";
 
@@ -37,6 +37,5 @@ const routes: Routes = [
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })
-
 export class RoutingModule {
 }

@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {ApiClient} from "./apiclient.service";
-import {City} from "../shared/models/city.model";
-import {Product} from "../shared/models/product.model";
-import {CachedValue} from "../util";
+import {City} from "../../shared/models/city.model";
+import {Product} from "../../shared/models/product.model";
+import {CachedValue} from "../../util";
 
 @Injectable()
 export class CityService {

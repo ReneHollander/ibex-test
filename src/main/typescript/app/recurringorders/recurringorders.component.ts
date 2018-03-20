@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {RecurringOrderService} from "../services/recurringorder.service";
+import {RecurringOrderService} from "../service/api/recurringorder.service";
 import {RecurringOrder} from "../shared/models/recurringorder.model";
 
 @Component({

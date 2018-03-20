@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {ProductAmount} from "../shared/models/product.model";
+import {ProductAmount} from "../../shared/models/product.model";
 import {ApiClient} from "./apiclient.service";
-import {Order} from "../shared/models/order.model";
+import {Order} from "../../shared/models/order.model";
 
 @Injectable()
 export class OrderAdminService {

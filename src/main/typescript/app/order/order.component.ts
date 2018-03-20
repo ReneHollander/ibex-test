@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {OrderService} from "../services/order.service";
+import {OrderService} from "../service/api/order.service";
 import {Order} from "../shared/models/order.model";
 
 @Component({

@@ -1,10 +1,10 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {RecurringOrder, RecurringOrderItem} from "../shared/models/recurringorder.model";
 import {Product} from "../shared/models/product.model";
-import {ProductService} from "../services/product.service";
+import {ProductService} from "../service/api/product.service";
 import {classToClass} from "class-transformer";
-import {RecurringOrderService} from "../services/recurringorder.service";
-import {AuthService} from "../services/auth.service";
+import {RecurringOrderService} from "../service/api/recurringorder.service";
+import {AuthService} from "../service/auth/auth.service";
 import {ToastrService} from "ngx-toastr";
 import {deepEqual} from "../../deepequal";
 

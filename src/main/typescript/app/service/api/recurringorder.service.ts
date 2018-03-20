@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {RecurringOrder} from "../shared/models/recurringorder.model";
+import {RecurringOrder} from "../../shared/models/recurringorder.model";
 import {ApiClient} from "./apiclient.service";
 
 @Injectable()

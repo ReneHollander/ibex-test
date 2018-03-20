@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {InvoiceService} from "../services/invoice.service";
+import {InvoiceService} from "../service/api/invoice.service";
 import {Invoice} from "../shared/models/invoice.model";
-import {OrderService} from "../services/order.service";
+import {OrderService} from "../service/api/order.service";
 import {Order} from "../shared/models/order.model";
 
 @Component({

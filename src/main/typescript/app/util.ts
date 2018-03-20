@@ -119,5 +119,7 @@ export function validateEqual(key1: string, key2: string) {
 }
 
 export function serializeType<T>(object: T) {
-    return function () { return object; };
+    return function () {
+        return object;
+    };
 }

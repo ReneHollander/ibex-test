@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ProductAmount} from "../shared/models/product.model";
-import {OrderAdminService} from "../services/orderadmin.service";
+import {OrderAdminService} from "../service/api/orderadmin.service";
 import {BsLocaleService} from "ngx-bootstrap";
 import {Order} from "../shared/models/order.model";
 

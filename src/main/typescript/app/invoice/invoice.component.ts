@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Invoice} from "../shared/models/invoice.model";
-import {InvoiceService} from "../services/invoice.service";
+import {InvoiceService} from "../service/api/invoice.service";
 import {Order} from "../shared/models/order.model";
 
 @Component({

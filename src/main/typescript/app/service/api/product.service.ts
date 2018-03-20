@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Product} from "../shared/models/product.model";
+import {Product} from "../../shared/models/product.model";
 import {ApiClient} from "./apiclient.service";
-import {CachedValue} from "../util";
+import {CachedValue} from "../../util";
 
 @Injectable()
 export class ProductService {

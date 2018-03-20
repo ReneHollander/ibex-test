@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
 
 import {LoadingCardComponent} from './loadingcard/loadingcard.component';
 import {LoadingComponent} from "./loading/loading.component";
@@ -12,14 +11,12 @@ import {IbanPipe} from "./pipe/iban";
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule
     ],
     exports: [
         // Shared Modules
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule,
         // Shared Components
         LoadingComponent,
         LoadingCardComponent,
