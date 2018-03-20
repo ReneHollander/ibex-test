@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {ProductAmount} from "../shared/models/product.model";
+import {ProductAmount} from "../models/product.model";
 import {OrderAdminService} from "../service/api/orderadmin.service";
 import {BsLocaleService} from "ngx-bootstrap";
-import {Order} from "../shared/models/order.model";
+import {Order} from "../models/order.model";
 
 @Component({
     selector: 'ordersummary',

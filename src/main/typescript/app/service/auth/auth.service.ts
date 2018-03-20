@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
-import {Role, User} from '../../shared/models/user.model';
+import {Role, User} from '../../models/user.model';
 import {LoginService} from "../api/login.service";
 
 @Injectable()

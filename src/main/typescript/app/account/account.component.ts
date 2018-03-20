@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../service/auth/auth.service';
 import {AccountService} from '../service/api/account.service';
-import {User} from "../shared/models/user.model";
+import {User} from "../models/user.model";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {validateEqual} from "../util";
 import {ToastrService} from "ngx-toastr";

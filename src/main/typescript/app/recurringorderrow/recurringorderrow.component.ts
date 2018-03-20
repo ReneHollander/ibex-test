@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {RecurringOrderItem} from "../shared/models/recurringorder.model";
+import {RecurringOrderItem} from "../models/recurringorder.model";
 
 @Component({
     selector: '[recurring-orders-row]',

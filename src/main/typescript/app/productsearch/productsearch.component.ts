@@ -1,5 +1,5 @@
 import {Component, forwardRef, Input, ViewChild} from '@angular/core';
-import {Product} from "../shared/models/product.model";
+import {Product} from "../models/product.model";
 import {NgbTypeahead} from "@ng-bootstrap/ng-bootstrap";
 import {Observable} from 'rxjs/Observable';
 import {debounceTime, distinctUntilChanged, filter, map, merge} from 'rxjs/operators';

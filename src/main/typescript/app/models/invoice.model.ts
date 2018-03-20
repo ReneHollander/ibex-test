@@ -1,6 +1,6 @@
 import {Type} from "class-transformer";
 import {Order} from "./order.model";
-import {serializeType} from "../../util";
+import {serializeType} from "../util";
 
 export class Invoice {
     id?: number;

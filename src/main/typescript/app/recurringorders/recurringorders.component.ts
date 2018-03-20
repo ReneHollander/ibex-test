@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {RecurringOrderService} from "../service/api/recurringorder.service";
-import {RecurringOrder} from "../shared/models/recurringorder.model";
+import {RecurringOrder} from "../models/recurringorder.model";
 
 @Component({
     selector: 'app-recurring-orders',

@@ -1,6 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {RecurringOrder, RecurringOrderItem} from "../shared/models/recurringorder.model";
-import {Product} from "../shared/models/product.model";
+import {RecurringOrder, RecurringOrderItem} from "../models/recurringorder.model";
+import {Product} from "../models/product.model";
 import {ProductService} from "../service/api/product.service";
 import {classToClass} from "class-transformer";
 import {RecurringOrderService} from "../service/api/recurringorder.service";

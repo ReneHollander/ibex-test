@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {AccountService} from '../service/api/account.service';
-import {City} from "../shared/models/city.model";
+import {City} from "../models/city.model";
 import {CityService} from "../service/api/city.service";
 import {ToastrService} from "ngx-toastr";
 

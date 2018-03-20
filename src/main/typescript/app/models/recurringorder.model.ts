@@ -1,6 +1,6 @@
 import {Product} from "./product.model";
 import {Type} from "class-transformer";
-import {serializeType} from "../../util";
+import {serializeType} from "../util";
 
 export class DeliverySlot {
     id?: number;

@@ -1,7 +1,7 @@
 import {Product} from "./product.model";
 import {Type} from "class-transformer";
 import {Account} from "./account.model";
-import {serializeType} from "../../util";
+import {serializeType} from "../util";
 
 export class OrderItem {
     @Type(serializeType(Product))
