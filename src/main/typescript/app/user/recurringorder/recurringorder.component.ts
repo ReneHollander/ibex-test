@@ -33,13 +33,6 @@ export class RecurringOrderComponent implements OnInit, OnChanges {
                 private toastr: ToastrService) {
     }
 
-    async ngOnInit(): Promise<void> {
-        this.isLoading = true;
-        this.deliveryFee = this.authService.user.account.city.priceShipping;
-        this.products = await this.productService.getProductsCached();
-        this.isLoading = false;
-    }
-
     get availableProducts(): Product[] {
         return this.products.filter((p) => this.recurringOrder.items.map(item => item.product.id).indexOf(p.id) < 0);
     }
@@ -56,6 +49,13 @@ export class RecurringOrderComponent implements OnInit, OnChanges {
         if (this.recurringOrder.items.length > 0) {
             this.recurringOrder.enabled = val;
         }
+    }
+
+    async ngOnInit(): Promise<void> {
+        this.isLoading = true;
+        this.deliveryFee = this.authService.user.account.city.priceShipping;
+        this.products = await this.productService.getProductsCached();
+        this.isLoading = false;
     }
 
     updateTotal() {

@@ -19,6 +19,10 @@ export class InvoicesComponent implements OnInit {
     constructor(private router: Router, private invoiceService: InvoiceService, private orderService: OrderService) {
     }
 
+    get pendingOrdersTotal(): number {
+        return this.pendingOrders.map(o => o.priceTotal).reduce((x, y) => x + y, 0);
+    }
+
     async ngOnInit(): Promise<void> {
         await this.getInvoices();
         await this.getPendingOrders();
@@ -34,10 +38,6 @@ export class InvoicesComponent implements OnInit {
         this.isLoadingInvoices = true;
         this.invoices = await this.invoiceService.getInvoices();
         this.isLoadingInvoices = false;
-    }
-
-    get pendingOrdersTotal(): number {
-        return this.pendingOrders.map(o => o.priceTotal).reduce((x, y) => x + y, 0);
     }
 
     onOrderClick(order: Order) {

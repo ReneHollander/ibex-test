@@ -7,10 +7,27 @@ import {LoginService} from "../api/login.service";
 export class AuthService {
 
     private _loggedIn = false;
-    private _user: User;
 
     constructor(private loginService: LoginService,
                 private router: Router) {
+    }
+
+    private _user: User;
+
+    get user(): User {
+        return this._user;
+    }
+
+    get isLoggedIn(): boolean {
+        return this._loggedIn;
+    }
+
+    get isUser(): boolean {
+        return this.isLoggedIn && this._user.role === Role.USER;
+    }
+
+    get isAdmin(): boolean {
+        return this.isLoggedIn && this._user.role == Role.ADMIN;
     }
 
     async initial(): Promise<boolean> {
@@ -42,22 +59,6 @@ export class AuthService {
         await this.loginService.logout();
         this.clear();
         await this.router.navigate(['/']);
-    }
-
-    get isLoggedIn(): boolean {
-        return this._loggedIn;
-    }
-
-    get isUser(): boolean {
-        return this.isLoggedIn && this._user.role === Role.USER;
-    }
-
-    get isAdmin(): boolean {
-        return this.isLoggedIn && this._user.role == Role.ADMIN;
-    }
-
-    get user(): User {
-        return this._user;
     }
 
 }

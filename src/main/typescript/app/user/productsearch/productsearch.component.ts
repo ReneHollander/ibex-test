@@ -23,22 +23,41 @@ export class ProductSearchComponent implements ControlValueAccessor {
     products: Product[];
 
     public productModel: Product;
+    @Input()
+    placeholderEmpty: string = "";
+    @ViewChild('instance') instance: NgbTypeahead;
+    focus$ = new Subject<string>();
+    click$ = new Subject<string>();
+    onChange = (product: Product) => {
+    };
+    onTouched = () => {
+    };
+    productSearch = (text$: Observable<string>) =>
+        text$
+            .pipe(debounceTime(200))
+            .pipe(distinctUntilChanged())
+            .pipe(merge(this.focus$))
+            .pipe(merge(this.click$.pipe(filter(() => !this.instance.isPopupOpen()))))
+            .pipe(map(term => term === '' ? this.products
+                : this.products.filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)));
+    productFormatter = (x: { name: string }) => x.name;
 
     private _placeholder: string = "";
 
-    @Input()
-    placeholderEmpty: string = "";
+    get placeholder(): string {
+        return this.disabled ? this.placeholderEmpty : this._placeholder;
+    }
 
     @Input()
     set placeholder(str: string) {
         this._placeholder = str;
     }
 
-    get placeholder(): string {
-        return this.disabled ? this.placeholderEmpty : this._placeholder;
-    }
-
     private _disabled: boolean = false;
+
+    get disabled() {
+        return this._disabled || this.products.length == 0;
+    }
 
     @Input()
     set disabled(b: boolean) {
@@ -49,34 +68,9 @@ export class ProductSearchComponent implements ControlValueAccessor {
         this._disabled = isDisabled;
     }
 
-    get disabled() {
-        return this._disabled || this.products.length == 0;
-    }
-
-    @ViewChild('instance') instance: NgbTypeahead;
-    focus$ = new Subject<string>();
-    click$ = new Subject<string>();
-
     registerOnTouched(fn: any): void {
         this.onTouched = fn;
     }
-
-    onChange = (product: Product) => {
-    };
-
-    onTouched = () => {
-    };
-
-    productSearch = (text$: Observable<string>) =>
-        text$
-            .pipe(debounceTime(200))
-            .pipe(distinctUntilChanged())
-            .pipe(merge(this.focus$))
-            .pipe(merge(this.click$.pipe(filter(() => !this.instance.isPopupOpen()))))
-            .pipe(map(term => term === '' ? this.products
-                : this.products.filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)));
-
-    productFormatter = (x: { name: string }) => x.name;
 
     writeValue(obj: any): void {
         this.productModel = obj;
