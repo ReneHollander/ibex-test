@@ -53,15 +53,15 @@ public class City implements Serializable {
         return cityId.getName();
     }
 
+    @JsonSetter("name")
+    public void setName(String name) {
+        this.cityId.setName(name);
+    }
+
     @JsonGetter("postcode")
     @JsonView({View.City.Details.class})
     public int getPostcode() {
         return cityId.getPostcode();
-    }
-
-    @JsonSetter("name")
-    public void setName(String name) {
-        this.cityId.setName(name);
     }
 
     @JsonSetter("postcode")

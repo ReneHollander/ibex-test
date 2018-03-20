@@ -21,6 +21,12 @@ public class ProductAmountsPDF extends AbstractITextPdfView {
     private static final float ROW_HEIGHT = 20f;
     private static final float CELL_LEFT_RIGHT_PADDING = 5f;
 
+    public static ModelAndView create(List<ProductAmount> productAmounts) {
+        Map<String, Object> model = new HashMap<>();
+        model.put("productAmounts", productAmounts);
+        return new ModelAndView(new ProductAmountsPDF(), model);
+    }
+
     @Override
     protected void buildPdfDocument(Map<String, Object> model, Document doc, PdfWriter writer, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Date date = getDate(model);
@@ -89,12 +95,6 @@ public class ProductAmountsPDF extends AbstractITextPdfView {
     @SuppressWarnings("unchecked")
     private List<ProductAmount> getProductAmounts(Map<String, Object> model) {
         return (List<ProductAmount>) model.get("productAmounts");
-    }
-
-    public static ModelAndView create(List<ProductAmount> productAmounts) {
-        Map<String, Object> model = new HashMap<>();
-        model.put("productAmounts", productAmounts);
-        return new ModelAndView(new ProductAmountsPDF(), model);
     }
 
 }

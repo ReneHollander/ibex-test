@@ -20,6 +20,12 @@ public class OrderSummaryPDF extends AbstractITextPdfView {
 
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy");
 
+    public static ModelAndView create(List<Order> orders) {
+        Map<String, Object> model = new HashMap<>();
+        model.put("orders", orders);
+        return new ModelAndView(new OrderSummaryPDF(), model);
+    }
+
     @Override
     protected void buildPdfDocument(Map<String, Object> model, Document doc, PdfWriter writer, HttpServletRequest request, HttpServletResponse response) throws Exception {
         Date date = getDate(model);
@@ -87,12 +93,6 @@ public class OrderSummaryPDF extends AbstractITextPdfView {
     @SuppressWarnings("unchecked")
     private List<Order> getOrders(Map<String, Object> model) {
         return (List<Order>) model.get("orders");
-    }
-
-    public static ModelAndView create(List<Order> orders) {
-        Map<String, Object> model = new HashMap<>();
-        model.put("orders", orders);
-        return new ModelAndView(new OrderSummaryPDF(), model);
     }
 
     public class MarginBorder implements PdfPCellEvent {

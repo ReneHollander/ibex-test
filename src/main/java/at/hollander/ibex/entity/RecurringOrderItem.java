@@ -15,19 +15,17 @@ import java.util.Comparator;
 @ToString(exclude = "recurringOrder")
 public class RecurringOrderItem {
 
+    public static Comparator<RecurringOrderItem> COMPARE_BY_PRODUCT = Comparator.comparingInt(r -> r.getProduct().getId());
     @EmbeddedId
     @JsonIgnore
     private RecurringOrderItemId recurringOrderItemId;
-
     @MapsId("recurringOrderId")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JsonIgnore
     private RecurringOrder recurringOrder;
-
     @MapsId("product")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Product product;
-
     private int amount;
 
     public RecurringOrderItem(RecurringOrder recurringOrder, Product product, int amount) {
@@ -36,6 +34,4 @@ public class RecurringOrderItem {
         this.product = product;
         this.amount = amount;
     }
-
-    public static Comparator<RecurringOrderItem> COMPARE_BY_PRODUCT = Comparator.comparingInt(r -> r.getProduct().getId());
 }
