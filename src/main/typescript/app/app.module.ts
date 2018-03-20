@@ -2,21 +2,26 @@ import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 
 import {RoutingModule} from './routing.module';
 import {AppComponent} from './app.component';
-import {AdminModule} from "./admin/admin.module";
 import {MainModule} from "./main/main.module";
-import {UserModule} from "./user/user.module";
 import {SharedModule} from "./shared/shared.module";
+import {BrowserModule} from "@angular/platform-browser";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
     declarations: [
         AppComponent,
     ],
     imports: [
-        SharedModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        ToastrModule.forRoot({
+            positionClass: 'toast-bottom-center',
+            timeOut: 3000,
+        }),
         RoutingModule,
-        AdminModule,
+        SharedModule,
         MainModule,
-        UserModule,
     ],
     providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],

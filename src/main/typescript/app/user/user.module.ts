@@ -10,6 +10,7 @@ import {RecurringOrderRowComponent} from "./recurringorderrow/recurringorderrow.
 import {TabsModule} from "ngx-bootstrap";
 import {NgxToggleModule} from "ngx-toggle";
 import {NgbTypeaheadModule} from "@ng-bootstrap/ng-bootstrap";
+import {UserRoutingModule} from "./user-routing.module";
 
 @NgModule({
     imports: [
@@ -17,11 +18,7 @@ import {NgbTypeaheadModule} from "@ng-bootstrap/ng-bootstrap";
         TabsModule.forRoot(),
         NgbTypeaheadModule.forRoot(),
         NgxToggleModule,
-    ],
-    exports: [
-        RecurringOrdersComponent,
-        InvoicesComponent,
-        OrderComponent,
+        UserRoutingModule,
     ],
     declarations: [
         RecurringOrdersComponent,
@@ -32,7 +29,6 @@ import {NgbTypeaheadModule} from "@ng-bootstrap/ng-bootstrap";
         InvoiceComponent,
         OrderComponent,
     ],
-    providers: []
 })
 export class UserModule {
 }

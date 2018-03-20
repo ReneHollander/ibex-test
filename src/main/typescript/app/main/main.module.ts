@@ -8,10 +8,15 @@ import {NewsletterRegisterComponent} from "./newsletterregister/newsletterregist
 import {RegisterComponent} from "./register/register.component";
 import {AccountComponent} from "./account/account.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {BrowserModule} from "@angular/platform-browser";
 
 @NgModule({
     imports: [
         SharedModule,
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
     ],
     exports: [
         HomeComponent,

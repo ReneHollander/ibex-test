@@ -27,13 +27,13 @@
                     <button class="btn btn-secondary"
                             type="button"
                             (click)="addProductCancelButtonClick()">
-                        <i class="fa fa-close"></i>
+                        <i class="icon-cancel"></i>
                     </button>
                     <button class="btn btn-success"
                             type="button"
                             [disabled]="!selectedProduct"
                             (click)="addProductAddButtonClick()">
-                        <i class="fa fa-plus"></i>
+                        <i class="icon-plus"></i>
                     </button>
                 </div>
             </div>
@@ -78,10 +78,10 @@
         </div>
         <div class="col-auto">
             <button class="btn btn-secondary" type="button" (click)="cancelButton()">
-                <i class="fa fa-close"></i> Abbrechen
+                <i class="icon-cancel"></i> Abbrechen
             </button>
             <button class="btn btn-success" type="button" [disabled]="saveButtonDisabled" (click)="saveButton()">
-                <i class="fa fa-save"></i> Speichern
+                <i class="icon-floppy"></i> Speichern
             </button>
         </div>
     </div>
