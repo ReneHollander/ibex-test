@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {City} from "../models/city.model";
-import {CityService} from "../service/api/city.service";
+import {City} from "../../models/city.model";
+import {CityService} from "../../service/api/city.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {NewsletterService} from "../service/api/newsletter.service";
+import {NewsletterService} from "../../service/api/newsletter.service";
 import {ToastrService} from "ngx-toastr";
 
 @Component({

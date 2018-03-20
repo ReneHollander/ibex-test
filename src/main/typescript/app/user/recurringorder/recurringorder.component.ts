@@ -1,12 +1,12 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {RecurringOrder, RecurringOrderItem} from "../models/recurringorder.model";
-import {Product} from "../models/product.model";
-import {ProductService} from "../service/api/product.service";
+import {RecurringOrder, RecurringOrderItem} from "../../models/recurringorder.model";
+import {Product} from "../../models/product.model";
+import {ProductService} from "../../service/api/product.service";
 import {classToClass} from "class-transformer";
-import {RecurringOrderService} from "../service/api/recurringorder.service";
-import {AuthService} from "../service/auth/auth.service";
+import {RecurringOrderService} from "../../service/api/recurringorder.service";
+import {AuthService} from "../../service/auth/auth.service";
 import {ToastrService} from "ngx-toastr";
-import {deepEqual} from "../../deepequal";
+import {deepEqual} from "../../../deepequal";
 
 @Component({
     selector: 'recurring-order',

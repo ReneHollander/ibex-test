@@ -1,21 +1,21 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {HomeComponent} from './home/home.component';
-import {RegisterComponent} from './register/register.component';
-import {LoginComponent} from './login/login.component';
-import {LogoutComponent} from './logout/logout.component';
-import {AccountComponent} from './account/account.component';
-import {NotFoundComponent} from './not-found/not-found.component';
+import {HomeComponent} from './main/home/home.component';
+import {RegisterComponent} from './main/register/register.component';
+import {LoginComponent} from './main/login/login.component';
+import {LogoutComponent} from './main/logout/logout.component';
+import {AccountComponent} from './main/account/account.component';
+import {NotFoundComponent} from './main/not-found/not-found.component';
 
 import {AuthGuardUser} from './service/guard/auth-guard-login.service';
 import {AuthGuardAdmin} from './service/guard/auth-guard-admin.service';
-import {RecurringOrdersComponent} from "./recurringorders/recurringorders.component";
-import {InvoicesComponent} from "./invoices/invoices.component";
-import {InvoiceComponent} from "./invoice/invoice.component";
-import {OrderComponent} from "./order/order.component";
+import {RecurringOrdersComponent} from "./user/recurringorders/recurringorders.component";
+import {InvoicesComponent} from "./user/invoices/invoices.component";
+import {InvoiceComponent} from "./user/invoice/invoice.component";
+import {OrderComponent} from "./user/order/order.component";
 import {AuthGuardLoggedIn} from "./service/guard/auth-guard-loggedin.service";
-import {OrderSummaryComponent} from "./ordersummary/ordersummary.component";
-import {ImpressComponent} from "./impress/impress.component";
+import {OrderSummaryComponent} from "./admin/ordersummary/ordersummary.component";
+import {ImpressComponent} from "./main/impress/impress.component";
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
