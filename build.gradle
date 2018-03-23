@@ -36,7 +36,6 @@ dependencies {
     compile('com.google.guava:guava:24.0-jre')
     compile('commons-io:commons-io:2.6')
     compile('org.jooq:jool-java-8:0.9.13')
-    compile('net.sf.trove4j:trove4j:3.0.3')
 
     compile('com.itextpdf:itextpdf:5.5.13')
 
@@ -49,7 +48,6 @@ dependencies {
     runtime('org.springframework.boot:spring-boot-devtools')
     compileOnly('org.springframework.boot:spring-boot-configuration-processor')
     testCompile('org.springframework.boot:spring-boot-starter-test')
-    testCompile('org.mockito:mockito-all:1.10.19')
 
     compile('org.springframework.session:spring-session-core:2.0.1.RELEASE')
     compile('org.springframework.session:spring-session-jdbc:2.0.2.RELEASE')

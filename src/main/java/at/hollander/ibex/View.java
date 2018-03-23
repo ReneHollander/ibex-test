@@ -86,7 +86,7 @@ public interface View {
         interface Invoices extends Invoice.Overview {
         }
 
-        interface InvoiceDetails extends Invoice.Details, Order.Overview, ProductAmount.Details, Product.Overview {
+        interface InvoiceDetails extends Invoice.Details, Order.Overview {
         }
 
         interface OrderDetails extends Order.Details, Product.Details {

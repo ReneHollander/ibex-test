@@ -2,7 +2,6 @@ package at.hollander.ibex.entity;
 
 import at.hollander.ibex.View;
 import com.fasterxml.jackson.annotation.JsonView;
-import gnu.trove.strategy.HashingStrategy;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -31,18 +30,5 @@ public class Product {
     @Column(nullable = false)
     @JsonView(View.Product.Details.class)
     private BigDecimal price;
-
-    public static class ProductIdHasingStrategy implements HashingStrategy<Product> {
-
-        @Override
-        public int computeHashCode(Product product) {
-            return product.getId();
-        }
-
-        @Override
-        public boolean equals(Product product1, Product product2) {
-            return product1.getId() == product2.getId();
-        }
-    }
 
 }
