@@ -20,6 +20,11 @@ public class ProductAmount {
     @JsonView({View.ProductAmount.Details.class})
     private long amount;
 
+    public ProductAmount(Product product, long amount) {
+        this.product = product;
+        this.amount = amount;
+    }
+
     public ProductAmount(int id, String name, long amount) {
         this.product = new Product(id, name, BigDecimal.ZERO);
         this.amount = amount;
