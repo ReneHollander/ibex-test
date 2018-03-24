@@ -41,10 +41,10 @@ export class InvoicesComponent implements OnInit {
     }
 
     onOrderClick(order: Order) {
-        this.router.navigate(['/order/' + order.id])
+        this.router.navigate(['/user/order/' + order.id])
     }
 
     onInvoiceClick(invoice: Invoice) {
-        this.router.navigate(['/invoice/' + invoice.id])
+        this.router.navigate(['/user/invoice/' + invoice.id])
     }
 }

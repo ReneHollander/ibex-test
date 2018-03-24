@@ -35,7 +35,7 @@ export class InvoiceComponent implements OnInit, OnDestroy {
     }
 
     onOrderClick(order: Order) {
-        this.router.navigate(['/order/' + order.id])
+        this.router.navigate(['/user/order/' + order.id])
     }
 
 }
