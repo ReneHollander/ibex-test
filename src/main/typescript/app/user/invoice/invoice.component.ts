@@ -6,7 +6,8 @@ import {Order} from "../../models/order.model";
 
 @Component({
     selector: 'invoice',
-    templateUrl: './invoice.component.html'
+    templateUrl: './invoice.component.html',
+    styleUrls: ['./invoice.component.css']
 })
 export class InvoiceComponent implements OnInit, OnDestroy {
 

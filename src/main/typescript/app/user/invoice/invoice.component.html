@@ -1,12 +1,59 @@
 <loading-card [condition]="isLoading"></loading-card>
 
 <div class="card mb-3" *ngIf="!isLoading">
-    <h4 class="card-header">Rechnung #{{invoice.id}}</h4>
+    <div class="card-header">
+        <div class="row justify-content-between">
+            <h4 class="col">
+                Rechnung #{{invoice.id}}
+            </h4>
+            <div class="col-auto header-link">
+                <a target="_blank" href="/api/invoice/{{invoice.id}}/pdf">
+                    <i class="icon-download"></i> Als PDF herunterladen
+                </a>
+            </div>
+        </div>
+    </div>
     <div class="card-body">
         Rechnungsnummer: {{invoice.id}}<br>
         Rechnungsdatum: {{invoice.date | date:'dd.MM.yyyy'}}<br>
         Kontoinhaber: {{invoice.accountName}}<br>
         IBAN: {{invoice.iban | iban}}<br>
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">Menge</th>
+                <th scope="col">Produkt</th>
+                <th scope="col">Einzelpreis</th>
+                <th scope="col">Gesamtpreis</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let pa of invoice.productAmounts">
+                <td>{{pa.amount}}</td>
+                <td>{{pa.product.name}}</td>
+                <td>{{pa.product.price | currency:'EUR':'symbol':'1.2-2'}}</td>
+                <td>{{pa.total | currency:'EUR':'symbol':'1.2-2'}}</td>
+            </tr>
+            <tr *ngFor="let da of invoice.deliveryFeeAmounts">
+                <td>{{da.amount}}</td>
+                <td>Liefergebühr</td>
+                <td>{{da.priceShipping | currency:'EUR':'symbol':'1.2-2'}}</td>
+                <td>{{da.total | currency:'EUR':'symbol':'1.2-2'}}</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3" style="text-align: right">Gesamt</td>
+                <td>{{invoice.priceTotal | currency:'EUR':'symbol':'1.2-2'}}</td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<div class="card mb-3" *ngIf="!isLoading">
+    <h4 class="card-header">Bestellungen in Rechnung #{{invoice.id}}</h4>
+    <div class="card-body">
         <table class="table table-hover table-bordered">
             <thead>
             <tr>
