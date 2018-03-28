@@ -41,6 +41,12 @@ public interface View {
 
         interface Details {
         }
+
+        interface ProductAmounts extends ProductAmount.Details {
+        }
+
+        interface DeliveryFees extends DeliveryFeeAmount.Details {
+        }
     }
 
     interface Order {
@@ -63,10 +69,14 @@ public interface View {
     }
 
     interface ProductAmount {
-        interface Details {
+        interface Details extends Product.Overview {
         }
     }
 
+    interface DeliveryFeeAmount {
+        interface Details {
+        }
+    }
 
     interface Endpoint {
         interface Initial extends User.Details, View.Account.Overview, City.Details {
@@ -86,7 +96,7 @@ public interface View {
         interface Invoices extends Invoice.Overview {
         }
 
-        interface InvoiceDetails extends Invoice.Details, Order.Overview {
+        interface InvoiceDetails extends Invoice.Details, Order.Overview, Invoice.ProductAmounts, Invoice.DeliveryFees {
         }
 
         interface OrderDetails extends Order.Details, Product.Details {
@@ -96,7 +106,7 @@ public interface View {
         }
 
         interface Admin {
-            interface ProductAmounts extends ProductAmount.Details, Product.Overview {
+            interface ProductAmounts extends ProductAmount.Details {
             }
 
             interface OrderSummary extends Order.Details, Product.Overview, Order.Account, View.Account.User, View.Account.Basic, User.Name, View.Account.ContactInfo {

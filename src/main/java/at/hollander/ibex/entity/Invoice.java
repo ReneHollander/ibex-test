@@ -1,6 +1,8 @@
 package at.hollander.ibex.entity;
 
 import at.hollander.ibex.View;
+import at.hollander.ibex.repository.helper.DeliveryFeeAmount;
+import at.hollander.ibex.repository.helper.ProductAmount;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.*;
@@ -8,7 +10,10 @@ import lombok.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -55,4 +60,30 @@ public class Invoice {
     public BigDecimal getPriceTotal() {
         return orders.stream().map(Order::getPriceTotal).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
+
+    @JsonView({View.Invoice.ProductAmounts.class})
+    @JsonGetter("productAmounts")
+    public List<ProductAmount> getProductAmounts() {
+        return getOrders().stream()
+                .map(Order::getItems)
+                .flatMap(Collection::stream)
+                .collect(Collectors.groupingBy(
+                        OrderItem::getProduct,
+                        Collectors.summingInt(OrderItem::getAmount)))
+                .entrySet().stream()
+                .map(e -> new ProductAmount(e.getKey(), e.getValue()))
+                .collect(Collectors.toList());
+    }
+
+    @JsonView({View.Invoice.DeliveryFees.class})
+    @JsonGetter("deliveryFeeAmounts")
+    public List<DeliveryFeeAmount> getDeliveryFeeAmounts() {
+        return getOrders().stream()
+                .map(Order::getPriceShipping)
+                .collect(Collectors.groupingBy(Function.identity()))
+                .entrySet().stream()
+                .map(e -> new DeliveryFeeAmount(e.getKey(), e.getValue().size()))
+                .collect(Collectors.toList());
+    }
+
 }

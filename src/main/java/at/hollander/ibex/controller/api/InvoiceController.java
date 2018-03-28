@@ -5,12 +5,14 @@ import at.hollander.ibex.component.UserAccountService;
 import at.hollander.ibex.entity.Account;
 import at.hollander.ibex.entity.Invoice;
 import at.hollander.ibex.repository.InvoiceRepository;
+import at.hollander.ibex.view.pdf.impl.InvoicePDF;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/api")
@@ -44,6 +46,12 @@ public class InvoiceController {
         Account account = userAccountService.getAccount();
         // TODO: set appropriate http status
         return invoiceRepository.findByIdAndAccount(id, account).orElseThrow(() -> new IllegalArgumentException("invoice doesn't exist for this user"));
+    }
+
+    @RequestMapping("/invoice/{id}/pdf")
+    public ModelAndView invoicePdf(@PathVariable("id") int id) {
+        Account account = userAccountService.getAccount();
+        return InvoicePDF.create(invoiceRepository.findByIdAndAccount(id, account).orElseThrow(() -> new IllegalArgumentException("invoice doesn't exist for this user")));
     }
 
 }

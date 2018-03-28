@@ -6,14 +6,13 @@ export class Invoice {
     id?: number;
     @Type(serializeType(Date))
     date?: Date;
-    @Type(serializeType(Date))
-    accountName: Date;
+    accountName: string;
     iban: string;
     priceTotal: number;
     @Type(serializeType(Order))
     orders: Order[];
 
-    constructor(id: number, date: Date, accountName: Date, iban: string) {
+    constructor(id: number, date: Date, accountName: string, iban: string) {
         this.id = id;
         this.date = date;
         this.accountName = accountName;

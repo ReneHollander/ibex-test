@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode
 public class Product {
 
     @Id
