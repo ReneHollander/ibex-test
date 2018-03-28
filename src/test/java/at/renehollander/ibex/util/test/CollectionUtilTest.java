@@ -1,4 +1,4 @@
-package at.renehollander.util.test;
+package at.renehollander.ibex.util.test;
 
 import at.hollander.ibex.util.CollectionUtil;
 import org.jooq.lambda.tuple.Tuple;
