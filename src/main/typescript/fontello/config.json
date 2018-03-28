@@ -49,12 +49,6 @@
       "src": "fontawesome"
     },
     {
-      "uid": "4ffd8122933b9ee0183b925e1554969f",
-      "css": "circle-notch",
-      "code": 61902,
-      "src": "fontawesome"
-    },
-    {
       "uid": "f2aa28a2548ed3d2be718d087b65ee21",
       "css": "key",
       "code": 59397,
@@ -77,6 +71,12 @@
       "css": "spin6",
       "code": 59449,
       "src": "fontelico"
+    },
+    {
+      "uid": "9a76bc135eac17d2c8b8ad4a5774fc87",
+      "css": "download",
+      "code": 59400,
+      "src": "fontawesome"
     }
   ]
 }
