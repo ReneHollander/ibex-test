@@ -3,6 +3,8 @@ package at.hollander.ibex.view.pdf.impl;
 import at.hollander.ibex.entity.Invoice;
 import at.hollander.ibex.entity.Order;
 import at.hollander.ibex.entity.OrderItem;
+import at.hollander.ibex.repository.helper.DeliveryFeeAmount;
+import at.hollander.ibex.repository.helper.ProductAmount;
 import at.hollander.ibex.view.pdf.AbstractITextPdfView;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -42,6 +44,47 @@ public class InvoicePDF extends AbstractITextPdfView {
         doc.add(header);
 
         doc.add(new Paragraph(invoice.getDate().toString()));
+
+        PdfPTable amountsTable = new PdfPTable(4);
+
+        amountsTable.setWidthPercentage(100);
+        amountsTable.setSpacingAfter(10);
+        amountsTable.setSpacingBefore(10);
+
+        amountsTable.setHeaderRows(2);
+        amountsTable.addCell("Produkt");
+        amountsTable.addCell("Menge");
+        amountsTable.addCell("Einzelpreis");
+        amountsTable.addCell("Gesamtpreis");
+
+        amountsTable.setFooterRows(1);
+        PdfPCell deliveryFeeCellText = new PdfPCell(new Phrase("Gesamt"));
+        deliveryFeeCellText.setColspan(3);
+        deliveryFeeCellText.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);
+        amountsTable.addCell(deliveryFeeCellText);
+        amountsTable.addCell(new Phrase(String.valueOf(
+                invoice.getProductAmounts().stream()
+                        .map(ProductAmount::getTotal)
+                        .reduce(BigDecimal.ZERO, BigDecimal::add)
+                        .add(invoice.getDeliveryFeeAmounts().stream()
+                                .map(DeliveryFeeAmount::getTotalPriceShipping)
+                                .reduce(BigDecimal.ZERO, BigDecimal::add)))));
+
+        for (ProductAmount productAmount : invoice.getProductAmounts()) {
+            amountsTable.addCell(String.valueOf(productAmount.getAmount()));
+            amountsTable.addCell(productAmount.getProduct().getName());
+            amountsTable.addCell(String.valueOf(productAmount.getProduct().getPrice()));
+            amountsTable.addCell(String.valueOf(productAmount.getTotal()));
+        }
+
+        for (DeliveryFeeAmount deliveryAmount : invoice.getDeliveryFeeAmounts()) {
+            amountsTable.addCell(String.valueOf(deliveryAmount.getAmount()));
+            amountsTable.addCell("Liefergebühr");
+            amountsTable.addCell(String.valueOf(deliveryAmount.getPriceShipping()));
+            amountsTable.addCell(String.valueOf(deliveryAmount.getTotalPriceShipping()));
+        }
+
+        doc.add(amountsTable);
 
         doc.newPage();
 

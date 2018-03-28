@@ -20,4 +20,8 @@ public class DeliveryFeeAmount {
     @JsonView({View.DeliveryFeeAmount.Details.class})
     private long amount;
 
+    public BigDecimal getTotalPriceShipping() {
+        return priceShipping.multiply(BigDecimal.valueOf(amount));
+    }
+
 }

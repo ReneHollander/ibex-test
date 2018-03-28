@@ -30,4 +30,8 @@ public class ProductAmount {
         this.product = product;
         this.amount = amount;
     }
+
+    public BigDecimal getTotal() {
+        return product.getPrice().multiply(BigDecimal.valueOf(this.amount));
+    }
 }
