@@ -52,8 +52,8 @@ public class InvoicePDF extends AbstractITextPdfView {
         amountsTable.setSpacingBefore(10);
 
         amountsTable.setHeaderRows(2);
-        amountsTable.addCell("Produkt");
         amountsTable.addCell("Menge");
+        amountsTable.addCell("Produkt");
         amountsTable.addCell("Einzelpreis");
         amountsTable.addCell("Gesamtpreis");
 
@@ -106,8 +106,8 @@ public class InvoicePDF extends AbstractITextPdfView {
         itemTable.setSpacingAfter(20);
 
         itemTable.setHeaderRows(3);
-        itemTable.addCell("Produkt");
         itemTable.addCell("Menge");
+        itemTable.addCell("Produkt");
         itemTable.addCell("Einzelpreis");
         itemTable.addCell("Gesamtpreis");
 
@@ -124,8 +124,8 @@ public class InvoicePDF extends AbstractITextPdfView {
         itemTable.addCell(new Phrase(String.valueOf(order.getPriceTotal())));
 
         for (OrderItem item : order.getItems()) {
-            itemTable.addCell(item.getProductName());
             itemTable.addCell(String.valueOf(item.getAmount()));
+            itemTable.addCell(item.getProductName());
             itemTable.addCell(String.valueOf(item.getPricePerItem()));
             itemTable.addCell(item.getPricePerItem().multiply(BigDecimal.valueOf(item.getAmount())).toString());
         }
