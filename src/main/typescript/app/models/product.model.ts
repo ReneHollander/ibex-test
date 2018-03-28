@@ -17,4 +17,8 @@ export class ProductAmount {
     @Type(serializeType(Product))
     product?: Product;
     amount?: number;
+
+    get total(): number {
+        return this.product.price * this.amount;
+    }
 }
