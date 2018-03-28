@@ -1,7 +1,7 @@
 <div class="card mb-3">
     <h4 class="card-header">Bestellungen</h4>
     <div class="card-body">
-        <div class="input-group">
+        <div class="input-group mb-0">
             <input type="text"
                    class="form-control"
                    #dp="bsDatepicker"
@@ -39,7 +39,7 @@
 <div class="card mb-3" *ngIf="shouldShow">
     <h4 class="card-header">Produktmengen {{selectedDate | date: 'dd.MM.yyyy'}}</h4>
     <div class="card-body">
-        <table class="table table-hover table-bordered table-striped">
+        <table class="table table-hover table-bordered table-striped mb-0">
             <thead>
             <tr>
                 <th scope="col">#</th>
@@ -65,7 +65,7 @@
             <div>Telefon: {{order.account.phone}}</div>
             <div>Adresse: {{order.address}}, {{order.city}}</div>
             <div>Hinweis: {{order.deliveryNote}}</div>
-            <table class="table table-hover table-bordered table-striped">
+            <table class="table table-hover table-bordered table-striped mb-0">
                 <thead>
                 <tr>
                     <th scope="col">#</th>

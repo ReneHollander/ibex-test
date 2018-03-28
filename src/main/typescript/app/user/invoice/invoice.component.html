@@ -18,7 +18,7 @@
         Rechnungsdatum: {{invoice.date | date:'dd.MM.yyyy'}}<br>
         Kontoinhaber: {{invoice.accountName}}<br>
         IBAN: {{invoice.iban | iban}}<br>
-        <table class="table table-hover table-bordered">
+        <table class="table table-hover table-bordered mb-0">
             <thead>
             <tr>
                 <th scope="col">Menge</th>
@@ -54,7 +54,7 @@
 <div class="card mb-3" *ngIf="!isLoading">
     <h4 class="card-header">Bestellungen in Rechnung #{{invoice.id}}</h4>
     <div class="card-body">
-        <table class="table table-hover table-bordered">
+        <table class="table table-hover table-bordered mb-0">
             <thead>
             <tr>
                 <th scope="col">#</th>

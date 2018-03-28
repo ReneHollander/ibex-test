@@ -2,7 +2,7 @@
     <h4 class="card-header">Noch nicht bezahlte Lieferungen</h4>
     <div class="card-body">
         <loading [condition]="isLoadingPendingOrders"></loading>
-        <table *ngIf="!isLoadingPendingOrders" class="table table-hover table-bordered">
+        <table *ngIf="!isLoadingPendingOrders" class="table table-hover table-bordered mb-0">
             <thead>
             <tr>
                 <th scope="col">#</th>
@@ -34,7 +34,7 @@
     <h4 class="card-header">Rechnungen</h4>
     <div class="card-body">
         <loading [condition]="isLoadingInvoices"></loading>
-        <table *ngIf="!isLoadingInvoices" class="table table-hover table-bordered">
+        <table *ngIf="!isLoadingInvoices" class="table table-hover table-bordered mb-0">
             <thead>
             <tr>
                 <th scope="col">#</th>
