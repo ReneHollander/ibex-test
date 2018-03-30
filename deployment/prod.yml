@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  ibex-database:
+    image: mariadb:10
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=ibex
+      - MYSQL_USER=ibex
+      - MYSQL_PASSWORD=ibex
+  ibex-backend:
+    build:
+      context: ../
+      dockerfile: ./deployment/backend/Dockerfile
+    depends_on:
+      - ibex-database
+    links:
+      - ibex-database
+    ports:
+      - 8080:8080
+    environment:
+      - spring.profiles.active=production
+      - DATABASE_HOST=ibex-database
+      - DATABASE_PORT=3306
+      - DATABASE_NAME=ibex
+      - DATABASE_USER=ibex
+      - DATABASE_PASSWORD=ibex
+  ibex-frontend:
+    build:
+      context: ../
+      dockerfile: ./deployment/frontend/Dockerfile
+    depends_on:
+      - ibex-backend
+    links:
+      - ibex-database
+    ports:
+      - 80:80
