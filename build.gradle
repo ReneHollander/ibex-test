@@ -1,3 +1,5 @@
+import java.time.Instant
+
 buildscript {
     ext {
         springBootVersion = '2.0.0.RELEASE'
@@ -22,8 +24,25 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group = 'at.hollander'
-version = gitVersion()
 sourceCompatibility = 1.8
+def buildRevision = ""
+if (new File(".git").exists()) {
+    version = gitVersion()
+    buildRevision = versionDetails().gitHashFull
+} else {
+    version = "0.0.0"
+}
+def buildTime = Instant.now()
+
+bootJar {
+    archiveName = 'ibex.jar'
+    manifest {
+        attributes 'Implementation-Title': 'Ibex Backend',
+                'Implementation-Version': version,
+                'Build-Revision': buildRevision,
+                'Built-Date': buildTime.toString()
+    }
+}
 
 repositories {
     mavenCentral()
@@ -61,4 +80,12 @@ dependencies {
     compile('com.sun.xml.bind:jaxb-impl:2.3.0')
 
     compile('io.codearte.jfairy:jfairy:0.5.9')
+}
+
+task frontendInjectVersion() {
+    new File("$projectDir/src/main/typescript/version.ts").text = """export const buildVersion = "$version";
+export const buildRevision = "$buildRevision";
+export const buildTime = new Date(${buildTime.toEpochMilli()});
+"""
+    ant.replace(file: "$projectDir/package.json", token: "\"version\": \"0.0.0\",", value: "\"version\": \"$version\",")
 }
