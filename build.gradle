@@ -82,10 +82,12 @@ dependencies {
     compile('io.codearte.jfairy:jfairy:0.5.9')
 }
 
-task frontendInjectVersion() {
-    new File("$projectDir/src/main/typescript/version.ts").text = """export const buildVersion = "$version";
+task frontendInjectVersion {
+    doLast {
+        new File("$projectDir/src/main/typescript/version.ts").text = """export const buildVersion = "$version";
 export const buildRevision = "$buildRevision";
 export const buildTime = new Date(${buildTime.toEpochMilli()});
 """
-    ant.replace(file: "$projectDir/package.json", token: "\"version\": \"0.0.0\",", value: "\"version\": \"$version\",")
+        ant.replace(file: "$projectDir/package.json", token: "\"version\": \"0.0.0\",", value: "\"version\": \"$version\",")
+    }
 }
