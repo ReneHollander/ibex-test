@@ -1,5 +1,9 @@
 FROM openjdk:8-jdk AS builder
 WORKDIR /root/
+COPY build.gradle gradlew /root/
+COPY gradle /root/gradle
+# download dependencies
+RUN ./gradlew build -x :bootJar -x test --continue
 COPY . .
 RUN ./gradlew build
 
