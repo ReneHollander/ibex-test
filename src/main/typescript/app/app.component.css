@@ -26,3 +26,8 @@ main.container {
     align-items: center;
     padding: 0;
 }
+
+.version-string {
+    text-align: center;
+    color: gray;
+}

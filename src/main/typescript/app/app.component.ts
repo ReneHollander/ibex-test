@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from './service/auth/auth.service';
+import {buildVersion} from "../version";
 
 @Component({
     selector: 'app-root',
@@ -7,6 +8,8 @@ import {AuthService} from './service/auth/auth.service';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
+    buildVersion = buildVersion;
 
     constructor(public auth: AuthService) {
     }
