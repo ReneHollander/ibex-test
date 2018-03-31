@@ -9,9 +9,7 @@ services:
       - MYSQL_USER=ibex
       - MYSQL_PASSWORD=ibex
   ibex-backend:
-    build:
-      context: ../
-      dockerfile: ./deployment/backend/Dockerfile
+    image: ${registry}ibex/backend:production
     depends_on:
       - ibex-database
     links:
@@ -26,9 +24,7 @@ services:
       - DATABASE_USER=ibex
       - DATABASE_PASSWORD=ibex
   ibex-frontend:
-    build:
-      context: ../
-      dockerfile: ./deployment/frontend/Dockerfile
+    image: ${registry}ibex/frontend:production
     depends_on:
       - ibex-backend
     links:
