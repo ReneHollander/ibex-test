@@ -8,15 +8,17 @@ services:
       - MYSQL_DATABASE=ibex
       - MYSQL_USER=ibex
       - MYSQL_PASSWORD=ibex
+    restart: always
   ibex-session-store:
     image: redis:4
+    restart: always
   ibex-backend:
     depends_on:
       - ibex-database
     links:
       - ibex-database
     ports:
-      - 8080:8080
+      - "8080:8080"
     environment:
       - DATABASE_HOST=ibex-database
       - DATABASE_PORT=3306
@@ -25,10 +27,12 @@ services:
       - DATABASE_PASSWORD=ibex
       - SESSION_STORE_HOST=ibex-session-store
       - SESSION_STORE_PORT=6379
+    restart: always
   ibex-frontend:
     depends_on:
       - ibex-backend
     links:
-      - ibex-database
+      - ibex-backend
     ports:
-      - 80:80
+      - "8070:80"
+    restart: always

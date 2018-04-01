@@ -1,6 +1,9 @@
-version: '3'
+version: '3.6'
 
 services:
+  ibex-database:
+    volumes:
+      - /var/ibex/database:/var/lib/mysql
   ibex-backend:
     image: registry.ibex.renehollander.at/ibex/backend:production
     environment:
