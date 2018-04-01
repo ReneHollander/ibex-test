@@ -1,0 +1,33 @@
+*               text=auto
+
+Dockerfile      text
+.dockerignore   text
+gradlew         text
+Jenkinsfile     text
+
+*.bat           text
+*.css           text
+*.conf          text
+*.gradle        text
+*.html          text
+*.java          text
+*.js            text
+*.json          text
+*.md            text
+*.properties    text
+*.sh            text
+*.sql           text
+*.svg           text
+*.ts            text
+*.xml           text
+*.yml           text
+
+*.eot           binary
+*.gif           binary
+*.ico           binary
+*.jpg           binary
+*.jpeg          binary
+*.png           binary
+*.ttf           binary
+*.woff          binary
+*.woff2         binary
