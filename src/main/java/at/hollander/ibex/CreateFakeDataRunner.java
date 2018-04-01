@@ -29,7 +29,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 @Component
-@Profile("development")
+@Profile({"develop", "develop-standalone"})
 public class CreateFakeDataRunner implements CommandLineRunner {
 
     private static final String[] ADRESSES_KLOSTERNEUBURG = {
