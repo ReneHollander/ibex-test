@@ -62,6 +62,7 @@ dependencies {
 
     runtime('mysql:mysql-connector-java')
     compile('redis.clients:jedis:2.9.0')
+    compile('org.flywaydb:flyway-core:5.0.7')
 
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-security')

@@ -3,19 +3,30 @@ spring:
     url: jdbc:mysql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
     username: ${DATABASE_USER}
     password: ${DATABASE_PASSWORD}
-  redis:
-    host: ${SESSION_STORE_HOST}
-    port: ${SESSION_STORE_PORT}
-  session:
-    store-type: redis
   jpa:
     hibernate:
       ddl-auto: validate
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MariaDBDialect
+  flyway:
+    locations:
+      - classpath:/db/migration
 security:
   encoding-strength: 10
+
+---
+
+spring:
+  profiles:
+    - production
+    - staging
+    - develop
+  redis:
+    host: ${SESSION_STORE_HOST}
+    port: ${SESSION_STORE_PORT}
+  session:
+    store-type: redis
 
 ---
 
@@ -24,21 +35,18 @@ spring:
     - develop-standalone
   session:
     store-type: jdbc
-    jdbc:
-      initialize-schema: always
   datasource:
     url: jdbc:mysql://localhost:3306/ibex
     username: ibex
     password: ibex
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
 
 ---
 
 spring:
   profiles:
     - develop
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
+    - develop-standalone
+  flyway:
+    locations:
+      - classpath:/db/migration
+      - classpath:/dev/db/migration
