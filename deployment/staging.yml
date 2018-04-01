@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  ibex-backend:
+    image: registry.ibex.renehollander.at/ibex/backend:staging
+    environment:
+      - spring.profiles.active=staging
+  ibex-frontend:
+    image: registry.ibex.renehollander.at/ibex/frontend:staging

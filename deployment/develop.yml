@@ -1,0 +1,13 @@
+version: '3.6'
+
+services:
+  ibex-backend:
+    build:
+      context: ../
+      dockerfile: ./deployment/backend/Dockerfile
+    environment:
+      - spring.profiles.active=develop
+  ibex-frontend:
+    build:
+      context: ../
+      dockerfile: ./deployment/frontend/Dockerfile
