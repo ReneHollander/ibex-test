@@ -4,6 +4,8 @@ services:
   ibex-database:
     volumes:
       - /var/ibex/database:/var/lib/mysql
+    ports:
+      - "3306:3306"
   ibex-backend:
     image: registry.ibex.renehollander.at/ibex/backend:production
     environment:
