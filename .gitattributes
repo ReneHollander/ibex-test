@@ -31,3 +31,4 @@ Jenkinsfile     text
 *.ttf           binary
 *.woff          binary
 *.woff2         binary
+*.jar           binary
