@@ -27,7 +27,7 @@ main.container {
     padding: 0;
 }
 
-.version-string {
+.build-info-link {
     text-align: center;
     color: gray;
 }

@@ -15,6 +15,7 @@ import {ApiClient} from "./api/apiclient.service";
 import {AuthGuardLoggedIn} from "./guard/auth-guard-loggedin.service";
 import {AuthGuardAdmin} from "./guard/auth-guard-admin.service";
 import {OrderService} from "./api/order.service";
+import {BuildInformationService} from "./api/buildinformation.service";
 
 @NgModule({
     imports: [
@@ -39,6 +40,7 @@ import {OrderService} from "./api/order.service";
         CityService,
         OrderAdminService,
         NewsletterService,
+        BuildInformationService,
     ]
 })
 export class ServiceModule {

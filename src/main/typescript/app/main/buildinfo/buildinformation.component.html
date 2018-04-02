@@ -1,0 +1,27 @@
+<loading-card [condition]="isLoading"></loading-card>
+
+<div class="card mb-3" *ngIf="!isLoading">
+    <h4 class="card-header">Build Information</h4>
+    <div class="card-body">
+        <h4>Frontend</h4>
+        <p>
+            Long Hash: {{frontendBuildInformation.longHash}}<br>
+            Short Hash: {{frontendBuildInformation.shortHash}}<br>
+            Branch: {{frontendBuildInformation.branch}}<br>
+            Job ID: {{frontendBuildInformation.jobId}}<br>
+            Version Tag: {{frontendBuildInformation.versionTag}}<br>
+            Time: {{frontendBuildInformation.time}}<br>
+            Time Milliseconds: {{frontendBuildInformation.timeMillis}}
+        </p>
+        <h4>Backend</h4>
+        <p>
+            Long Hash: {{backendBuildInformation.longHash}}<br>
+            Short Hash: {{backendBuildInformation.shortHash}}<br>
+            Branch: {{backendBuildInformation.branch}}<br>
+            Job ID: {{backendBuildInformation.jobId}}<br>
+            Version Tag: {{backendBuildInformation.versionTag}}<br>
+            Time: {{backendBuildInformation.time}}<br>
+            Time Milliseconds: {{backendBuildInformation.timeMillis}}
+        </p>
+    </div>
+</div>

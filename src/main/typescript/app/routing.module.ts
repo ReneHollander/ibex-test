@@ -10,6 +10,7 @@ import {AuthGuardAdmin} from './service/guard/auth-guard-admin.service';
 import {AuthGuardLoggedIn} from "./service/guard/auth-guard-loggedin.service";
 import {ImpressComponent} from "./main/impress/impress.component";
 import {AuthGuardUser} from "./service/guard/auth-guard-login.service";
+import {BuildInformationComponent} from "./main/buildinfo/build-information.component";
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
     {path: 'register', component: RegisterComponent},
     {path: 'account', component: AccountComponent, canActivate: [AuthGuardLoggedIn]},
     {path: 'impress', component: ImpressComponent},
+    {path: 'buildinformation', component: BuildInformationComponent},
     {path: 'notfound', component: NotFoundComponent},
     {path: '**', redirectTo: '/notfound'},
 ];

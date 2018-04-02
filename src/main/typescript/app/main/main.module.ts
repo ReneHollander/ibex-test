@@ -10,6 +10,7 @@ import {AccountComponent} from "./account/account.component";
 import {NotFoundComponent} from "./not-found/not-found.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BrowserModule} from "@angular/platform-browser";
+import {BuildInformationComponent} from "./buildinfo/build-information.component";
 
 @NgModule({
     imports: [
@@ -26,6 +27,7 @@ import {BrowserModule} from "@angular/platform-browser";
         AccountComponent,
         NotFoundComponent,
         ImpressComponent,
+        BuildInformationComponent,
     ],
     declarations: [
         HomeComponent,
@@ -36,6 +38,7 @@ import {BrowserModule} from "@angular/platform-browser";
         NotFoundComponent,
         ImpressComponent,
         NewsletterRegisterComponent,
+        BuildInformationComponent,
     ],
     providers: []
 })
