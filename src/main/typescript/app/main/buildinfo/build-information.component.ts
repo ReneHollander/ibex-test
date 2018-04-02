@@ -16,7 +16,7 @@ export class BuildInformationComponent implements OnInit {
     constructor(private buildInformationService: BuildInformationService) {
     }
 
-    async ngOnInit(): void {
+    async ngOnInit(): Promise<void> {
         this.isLoading = true;
         this.backendBuildInformation = await this.buildInformationService.getBackendBuildInformation();
         this.frontendBuildInformation = await this.buildInformationService.getFrontendBuildInformation();
