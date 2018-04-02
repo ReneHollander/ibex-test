@@ -1,3 +1,7 @@
-export const buildVersion = "0.0.0";
-export const buildRevision = "";
-export const buildTime = new Date(0);
+export const IBEX_BUILD_LONG_HASH = '0000000000000000000000000000000000000000';
+export const IBEX_BUILD_SHORT_HASH = '00000000';
+export const IBEX_BUILD_BRANCH = 'no_branch_supplied';
+export const IBEX_BUILD_JOB_ID = 0;
+export const IBEX_BUILD_VERSION_TAG = '00000000-0';
+export const IBEX_BUILD_TIME = '1970-01-01T00:00:00Z';
+export const IBEX_BUILD_TIME_MILLIS = 0;

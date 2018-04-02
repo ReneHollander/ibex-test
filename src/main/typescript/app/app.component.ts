@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from './service/auth/auth.service';
-import {buildVersion} from "../version";
+import {IBEX_BUILD_VERSION_TAG} from "../version";
 
 @Component({
     selector: 'app-root',
@@ -9,7 +9,7 @@ import {buildVersion} from "../version";
 })
 export class AppComponent implements OnInit {
 
-    buildVersion = buildVersion;
+    IBEX_BUILD_VERSION_TAG = IBEX_BUILD_VERSION_TAG;
 
     constructor(public auth: AuthService) {
     }

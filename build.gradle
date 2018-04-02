@@ -1,5 +1,3 @@
-import java.time.Instant
-
 buildscript {
     ext {
         springBootVersion = '2.0.0.RELEASE'
@@ -15,32 +13,31 @@ buildscript {
     }
 }
 
-plugins {
-    id 'com.palantir.git-version' version '0.10.1'
-}
-
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group = 'at.hollander'
 sourceCompatibility = 1.8
-def buildRevision = ""
-if (new File(".git").exists()) {
-    version = gitVersion()
-    buildRevision = versionDetails().gitHashFull
-} else {
-    version = "0.0.0"
+version = System.getenv('IBEX_BUILD_VERSION_TAG') ?: '00000000-0'
+
+ext {
+    speed = project.hasProperty('speed') ? project.getProperty('speed') : false
+    offlineCompile = new File("$buildDir/output/lib")
 }
-def buildTime = Instant.now()
 
 bootJar {
     archiveName = 'ibex.jar'
     manifest {
         attributes 'Implementation-Title': 'Ibex Backend',
-                'Implementation-Version': version,
-                'Build-Revision': buildRevision,
-                'Built-Date': buildTime.toString()
+                'Implementation-Version': System.getenv('IBEX_BUILD_VERSION_TAG') ?: '00000000-0',
+                'Ibex-Build-Long-Hash': System.getenv('IBEX_BUILD_LONG_HASH') ?: '0000000000000000000000000000000000000000',
+                'Ibex-Build-Short-Hash': System.getenv('IBEX_BUILD_SHORT_HASH') ?: '00000000',
+                'Ibex-Build-Branch': System.getenv('IBEX_BUILD_BRANCH') ?: 'no_branch_supplied',
+                'Ibex-Build-Job-Id': System.getenv('IBEX_BUILD_JOB_ID') ?: '0',
+                'Ibex-Build-Version-Tag': System.getenv('IBEX_BUILD_VERSION_TAG') ?: '00000000-0',
+                'Ibex-Build-Time': System.getenv('IBEX_BUILD_TIME') ?: '1970-01-01T00:00:00Z',
+                'Ibex-Build-Time-Millis': System.getenv('IBEX_BUILD_TIME_MILLIS') ?: '0'
     }
 }
 
@@ -52,45 +49,47 @@ repositories {
 }
 
 dependencies {
-    compileOnly('org.projectlombok:lombok:1.16.20')
+    if (speed) {
+        compile fileTree(dir: offlineCompile, include: '*.jar')
+    } else {
+        compileOnly('org.projectlombok:lombok:1.16.20')
 
-    compile('com.google.guava:guava:24.1-jre')
-    compile('commons-io:commons-io:2.6')
-    compile('org.jooq:jool-java-8:0.9.13')
+        compile('com.google.guava:guava:24.1-jre')
+        compile('commons-io:commons-io:2.6')
+        compile('org.jooq:jool-java-8:0.9.13')
 
-    compile('com.itextpdf:itextpdf:5.5.13')
+        compile('com.itextpdf:itextpdf:5.5.13')
 
-    runtime('mysql:mysql-connector-java')
-    compile('redis.clients:jedis:2.9.0')
-    compile('org.flywaydb:flyway-core:5.0.7')
+        runtime('mysql:mysql-connector-java')
+        compile('redis.clients:jedis:2.9.0')
+        compile('org.flywaydb:flyway-core:5.0.7')
 
-    compile('org.springframework.boot:spring-boot-starter-data-jpa')
-    compile('org.springframework.boot:spring-boot-starter-security')
-    compile('org.springframework.boot:spring-boot-starter-validation')
-    compile('org.springframework.boot:spring-boot-starter-web')
-    runtime('org.springframework.boot:spring-boot-devtools')
-    compileOnly('org.springframework.boot:spring-boot-configuration-processor')
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+        compile('org.springframework.boot:spring-boot-starter-data-jpa')
+        compile('org.springframework.boot:spring-boot-starter-security')
+        compile('org.springframework.boot:spring-boot-starter-validation')
+        compile('org.springframework.boot:spring-boot-starter-web')
+        runtime('org.springframework.boot:spring-boot-devtools')
+        compileOnly('org.springframework.boot:spring-boot-configuration-processor')
+        testCompile('org.springframework.boot:spring-boot-starter-test')
 
-    compile('org.springframework.session:spring-session-core:2.0.1.RELEASE')
-    compile('org.springframework.session:spring-session-jdbc:2.0.2.RELEASE')
-    compile('org.springframework.session:spring-session-data-redis:2.0.2.RELEASE')
+        compile('org.springframework.session:spring-session-core:2.0.1.RELEASE')
+        compile('org.springframework.session:spring-session-jdbc:2.0.2.RELEASE')
+        compile('org.springframework.session:spring-session-data-redis:2.0.2.RELEASE')
 
-    testCompile('org.springframework.security:spring-security-test')
+        testCompile('org.springframework.security:spring-security-test')
 
-    compile('javax.xml.bind:jaxb-api:2.3.0')
-    compile('com.sun.xml.bind:jaxb-core:2.3.0')
-    compile('com.sun.xml.bind:jaxb-impl:2.3.0')
+        compile('javax.xml.bind:jaxb-api:2.3.0')
+        compile('com.sun.xml.bind:jaxb-core:2.3.0')
+        compile('com.sun.xml.bind:jaxb-impl:2.3.0')
 
-    compile('io.codearte.jfairy:jfairy:0.5.9')
+        compile('io.codearte.jfairy:jfairy:0.5.9')
+    }
 }
 
-task frontendInjectVersion {
-    doLast {
-        new File("$projectDir/src/main/typescript/version.ts").text = """export const buildVersion = "$version";
-export const buildRevision = "$buildRevision";
-export const buildTime = new Date(${buildTime.toEpochMilli()});
-"""
-        ant.replace(file: "$projectDir/package.json", token: "\"version\": \"0.0.0\",", value: "\"version\": \"$version\",")
-    }
+task downloadRepos(type: Copy) {
+    from configurations.compile
+    from configurations.compileOnly
+    from configurations.runtime
+    from configurations.testCompile
+    into offlineCompile
 }
