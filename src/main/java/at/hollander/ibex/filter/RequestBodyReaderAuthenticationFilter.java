@@ -24,7 +24,6 @@ public class RequestBodyReaderAuthenticationFilter extends UsernamePasswordAuthe
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
             String body = IOUtils.toString(request.getReader());
-//            LoginRequest authRequest = objectMapper.readerFor(LoginRequest.class).readValue(request.getReader());
             LoginRequest authRequest = objectMapper.readValue(body, LoginRequest.class);
 
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(authRequest.getEmail(), authRequest.getPassword());
