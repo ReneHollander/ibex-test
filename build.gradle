@@ -83,6 +83,8 @@ dependencies {
         compile('com.sun.xml.bind:jaxb-impl:2.3.0')
 
         compile('io.codearte.jfairy:jfairy:0.5.9')
+
+        compile('com.jcabi:jcabi-manifests:1.1')
     }
 }
 
