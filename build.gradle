@@ -60,7 +60,7 @@ dependencies {
 
         compile('com.itextpdf:itextpdf:5.5.13')
 
-        runtime('mysql:mysql-connector-java')
+        runtime('mysql:mysql-connector-java:5.1.46')
         compile('redis.clients:jedis:2.9.0')
         compile('org.flywaydb:flyway-core:5.0.7')
 
@@ -68,22 +68,11 @@ dependencies {
         compile('org.springframework.boot:spring-boot-starter-security')
         compile('org.springframework.boot:spring-boot-starter-validation')
         compile('org.springframework.boot:spring-boot-starter-web')
-        runtime('org.springframework.boot:spring-boot-devtools')
-        compileOnly('org.springframework.boot:spring-boot-configuration-processor')
         testCompile('org.springframework.boot:spring-boot-starter-test')
 
         compile('org.springframework.session:spring-session-core:2.0.1.RELEASE')
         compile('org.springframework.session:spring-session-jdbc:2.0.2.RELEASE')
         compile('org.springframework.session:spring-session-data-redis:2.0.2.RELEASE')
-
-        testCompile('org.springframework.security:spring-security-test')
-
-        compile('javax.xml.bind:jaxb-api:2.3.0')
-        compile('com.sun.xml.bind:jaxb-core:2.3.0')
-        compile('com.sun.xml.bind:jaxb-impl:2.3.0')
-
-        compile('io.codearte.jfairy:jfairy:0.5.9')
-
         compile('com.jcabi:jcabi-manifests:1.1')
     }
 }
