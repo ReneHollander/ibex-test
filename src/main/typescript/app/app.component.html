@@ -33,11 +33,11 @@
                         <i class="icon-login"></i> Login
                     </a>
                 </li>
-                <li class="nav-item" *ngIf="!auth.isLoggedIn">
-                    <a routerLink="/register" class="nav-link" routerLinkActive="active">
-                        <i class="icon-user-plus"></i> Register
-                    </a>
-                </li>
+                <!--<li class="nav-item" *ngIf="!auth.isLoggedIn">-->
+                    <!--<a routerLink="/register" class="nav-link" routerLinkActive="active">-->
+                        <!--<i class="icon-user-plus"></i> Register-->
+                    <!--</a>-->
+                <!--</li>-->
                 <li class="nav-item" *ngIf="auth.isLoggedIn">
                     <a routerLink="/account" class="nav-link" routerLinkActive="active">
                         <i class="icon-user"></i> Account ({{auth.user.name}})
