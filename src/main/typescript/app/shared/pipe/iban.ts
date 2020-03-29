@@ -1,8 +1,8 @@
 import {Pipe} from '@angular/core';
-import {friendlyFormatIBAN} from "ibantools";
+import {friendlyFormatIBAN} from 'ibantools';
 
 @Pipe({
-    name: "iban"
+    name: 'iban'
 })
 export class IbanPipe {
     transform(value: string): string {

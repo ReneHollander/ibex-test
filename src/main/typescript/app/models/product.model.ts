@@ -1,5 +1,5 @@
-import {Type} from "class-transformer";
-import {serializeType} from "../util";
+import {Type} from 'class-transformer';
+import {serializeType} from '../util';
 
 export class Product {
     id?: number;

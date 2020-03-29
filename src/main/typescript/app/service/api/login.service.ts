@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {User} from "../../models/user.model";
-import {HttpClient} from "@angular/common/http";
-import {plainToClass} from "class-transformer";
+import {User} from '../../models/user.model';
+import {HttpClient} from '@angular/common/http';
+import {plainToClass} from 'class-transformer';
 
 @Injectable()
 export class LoginService {

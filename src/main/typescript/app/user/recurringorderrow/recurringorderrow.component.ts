@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {RecurringOrderItem} from "../../models/recurringorder.model";
+import {RecurringOrderItem} from '../../models/recurringorder.model';
 
 @Component({
     selector: '[recurring-orders-row]',
@@ -19,7 +19,7 @@ export class RecurringOrderRowComponent {
     }
 
     delete(): void {
-        this.onDelete.emit(this.item)
+        this.onDelete.emit(this.item);
     }
 
     onAmountChange() {

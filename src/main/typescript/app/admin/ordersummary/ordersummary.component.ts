@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {ProductAmount} from "../../models/product.model";
-import {OrderAdminService} from "../../service/api/orderadmin.service";
-import {BsLocaleService} from "ngx-bootstrap";
-import {Order} from "../../models/order.model";
+import {ActivatedRoute} from '@angular/router';
+import {ProductAmount} from '../../models/product.model';
+import {OrderAdminService} from '../../service/api/orderadmin.service';
+import {BsLocaleService} from 'ngx-bootstrap';
+import {Order} from '../../models/order.model';
 
 @Component({
     selector: 'ordersummary',
@@ -12,8 +12,8 @@ import {Order} from "../../models/order.model";
 })
 export class OrderSummaryComponent {
 
-    isLoading: boolean = false;
-    hasOrders: boolean = false;
+    isLoading = false;
+    hasOrders = false;
 
     selectedDate: Date;
     productAmounts: ProductAmount[];
@@ -32,11 +32,11 @@ export class OrderSummaryComponent {
     }
 
     onClickProductAmountDownload() {
-        window.open("/api/admin/productamounts/" + this.selectedDate.toISOString().slice(0, 10) + "/pdf", "_blank");
+        window.open('/api/admin/productamounts/' + this.selectedDate.toISOString().slice(0, 10) + '/pdf', '_blank');
     }
 
     onClickOrdersDownload() {
-        window.open("/api/admin/ordersummary/" + this.selectedDate.toISOString().slice(0, 10) + "/pdf", "_blank");
+        window.open('/api/admin/ordersummary/' + this.selectedDate.toISOString().slice(0, 10) + '/pdf', '_blank');
     }
 
     async onSelectDate() {
@@ -53,7 +53,7 @@ export class OrderSummaryComponent {
     }
 
     async loadDay() {
-        let [amounts, orders] = await Promise.all([this.orderAdminService.getProductAmounts(this.selectedDate), this.orderAdminService.getOrders(this.selectedDate)]);
+        const [amounts, orders] = await Promise.all([this.orderAdminService.getProductAmounts(this.selectedDate), this.orderAdminService.getOrders(this.selectedDate)]);
         if (amounts.length > 0 && orders.length > 0) {
             this.productAmounts = amounts;
             this.orders = orders;

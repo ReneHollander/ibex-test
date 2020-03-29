@@ -1,6 +1,6 @@
-import {Account} from "./account.model";
-import {Transform, Type} from "class-transformer";
-import {serializeType} from "../util";
+import {Account} from './account.model';
+import {Transform, Type} from 'class-transformer';
+import {serializeType} from '../util';
 
 export enum Role {
     USER = 0, ADMIN = 1

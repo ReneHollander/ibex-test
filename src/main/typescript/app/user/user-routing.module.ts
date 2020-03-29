@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {OrderComponent} from "./order/order.component";
-import {InvoicesComponent} from "./invoices/invoices.component";
-import {RecurringOrdersComponent} from "./recurringorders/recurringorders.component";
-import {InvoiceComponent} from "./invoice/invoice.component";
-import {AuthGuardUser} from "../service/guard/auth-guard-login.service";
+import {OrderComponent} from './order/order.component';
+import {InvoicesComponent} from './invoices/invoices.component';
+import {RecurringOrdersComponent} from './recurringorders/recurringorders.component';
+import {InvoiceComponent} from './invoice/invoice.component';
+import {AuthGuardUser} from '../service/guard/auth-guard-login.service';
 
 const routes: Routes = [
     {path: 'recurringorders', component: RecurringOrdersComponent, canActivate: [AuthGuardUser]},

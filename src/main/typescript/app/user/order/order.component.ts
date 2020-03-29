@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {OrderService} from "../../service/api/order.service";
-import {Order} from "../../models/order.model";
+import {ActivatedRoute} from '@angular/router';
+import {OrderService} from '../../service/api/order.service';
+import {Order} from '../../models/order.model';
 
 @Component({
     selector: 'order',
@@ -10,7 +10,7 @@ import {Order} from "../../models/order.model";
 export class OrderComponent implements OnInit, OnDestroy {
 
     id: number;
-    isLoading: boolean = true;
+    isLoading = true;
     order: Order;
 
     private routeParamsSub: any;

@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../service/auth/auth.service';
 import {AccountService} from '../../service/api/account.service';
-import {User} from "../../models/user.model";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {validateEqual} from "../../util";
-import {ToastrService} from "ngx-toastr";
+import {User} from '../../models/user.model';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {validateEqual} from '../../util';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-account',
@@ -55,11 +55,11 @@ export class AccountComponent implements OnInit {
         if (this.passwordChangeForm.valid) {
             try {
                 await this.accountService.changePassword(this.currentPassword.value, this.newPassword.value);
-                this.toastr.success("Ihr Passwort wurde geändert.");
+                this.toastr.success('Ihr Passwort wurde geändert.');
                 this.passwordChangeForm.reset();
             } catch (e) {
                 if (e.error.message === 'invalid password') {
-                    this.toastr.error("Das angegebene aktuelle Passwort ist ungültig.");
+                    this.toastr.error('Das angegebene aktuelle Passwort ist ungültig.');
                 }
             }
         }
@@ -69,6 +69,6 @@ export class AccountComponent implements OnInit {
         return {
             'is-invalid': fc.invalid && (fc.dirty || fc.touched),
             'is-valid': fc.valid && (fc.dirty || fc.touched)
-        }
+        };
     }
 }

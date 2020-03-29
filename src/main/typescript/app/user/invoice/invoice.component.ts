@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {Invoice} from "../../models/invoice.model";
-import {InvoiceService} from "../../service/api/invoice.service";
-import {Order} from "../../models/order.model";
+import {ActivatedRoute, Router} from '@angular/router';
+import {Invoice} from '../../models/invoice.model';
+import {InvoiceService} from '../../service/api/invoice.service';
+import {Order} from '../../models/order.model';
 
 @Component({
     selector: 'invoice',
@@ -12,7 +12,7 @@ import {Order} from "../../models/order.model";
 export class InvoiceComponent implements OnInit, OnDestroy {
 
     id: number;
-    isLoading: boolean = true;
+    isLoading = true;
     invoice: Invoice;
 
     private routeParamsSub: any;
@@ -36,7 +36,7 @@ export class InvoiceComponent implements OnInit, OnDestroy {
     }
 
     onOrderClick(order: Order) {
-        this.router.navigate(['/user/order/' + order.id])
+        this.router.navigate(['/user/order/' + order.id]);
     }
 
 }

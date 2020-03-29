@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {ClassType} from "class-transformer/ClassTransformer";
-import {plainToClass} from "class-transformer";
-import {AuthService} from "../auth/auth.service";
+import {ClassType} from 'class-transformer/ClassTransformer';
+import {plainToClass} from 'class-transformer';
+import {AuthService} from '../auth/auth.service';
 
 @Injectable()
 export class ApiClient {

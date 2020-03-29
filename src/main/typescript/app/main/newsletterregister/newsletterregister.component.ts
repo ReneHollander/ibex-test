@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {City} from "../../models/city.model";
-import {CityService} from "../../service/api/city.service";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {NewsletterService} from "../../service/api/newsletter.service";
-import {ToastrService} from "ngx-toastr";
+import {City} from '../../models/city.model';
+import {CityService} from '../../service/api/city.service';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {NewsletterService} from '../../service/api/newsletter.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'newsletterregister',
@@ -12,7 +12,7 @@ import {ToastrService} from "ngx-toastr";
 })
 export class NewsletterRegisterComponent implements OnInit {
 
-    isLoading: boolean = true;
+    isLoading = true;
     cities: City[];
 
     form: FormGroup;
@@ -44,13 +44,13 @@ export class NewsletterRegisterComponent implements OnInit {
         if (this.form.valid) {
             try {
                 await this.newsletterService.register(this.form.value);
-                this.toastr.success("Sie erhalten nun updates an Ihre E-Mail Adresse.");
+                this.toastr.success('Sie erhalten nun updates an Ihre E-Mail Adresse.');
             } catch (e) {
                 console.log(e);
                 if (e.error.message === 'email already subscribed') {
-                    this.toastr.error("Die angegebene E-Mail Adresse wurde schon registriert!");
+                    this.toastr.error('Die angegebene E-Mail Adresse wurde schon registriert!');
                 } else {
-                    this.toastr.error("Ein unbekannter Fehler ist aufgetreten!");
+                    this.toastr.error('Ein unbekannter Fehler ist aufgetreten!');
                 }
             }
             this.form.reset();
@@ -61,6 +61,6 @@ export class NewsletterRegisterComponent implements OnInit {
         return {
             'is-invalid': fc.invalid && (fc.dirty || fc.touched),
             'is-valid': fc.valid && (fc.dirty || fc.touched)
-        }
+        };
     }
 }

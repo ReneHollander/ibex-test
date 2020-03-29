@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {BuildInformationService} from "../../service/api/buildinformation.service";
-import {BuildInformation} from "../../models/buildinformation.model";
+import {BuildInformationService} from '../../service/api/buildinformation.service';
+import {BuildInformation} from '../../models/buildinformation.model';
 
 @Component({
     selector: 'buildinformation',

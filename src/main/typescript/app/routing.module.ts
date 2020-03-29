@@ -7,10 +7,10 @@ import {LogoutComponent} from './main/logout/logout.component';
 import {AccountComponent} from './main/account/account.component';
 import {NotFoundComponent} from './main/not-found/not-found.component';
 import {AuthGuardAdmin} from './service/guard/auth-guard-admin.service';
-import {AuthGuardLoggedIn} from "./service/guard/auth-guard-loggedin.service";
-import {ImpressComponent} from "./main/impress/impress.component";
-import {AuthGuardUser} from "./service/guard/auth-guard-login.service";
-import {BuildInformationComponent} from "./main/buildinfo/build-information.component";
+import {AuthGuardLoggedIn} from './service/guard/auth-guard-loggedin.service';
+import {ImpressComponent} from './main/impress/impress.component';
+import {AuthGuardUser} from './service/guard/auth-guard-login.service';
+import {BuildInformationComponent} from './main/buildinfo/build-information.component';
 
 const routes: Routes = [
     {path: '', component: HomeComponent},

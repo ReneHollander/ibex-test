@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {RecurringOrder} from "../../models/recurringorder.model";
-import {ApiClient} from "./apiclient.service";
+import {RecurringOrder} from '../../models/recurringorder.model';
+import {ApiClient} from './apiclient.service';
 
 @Injectable()
 export class RecurringOrderService {

@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 import {AuthService} from '../../service/auth/auth.service';
-import {ToastrService} from "ngx-toastr";
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-login',
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
             await this.auth.login(this.loginForm.value.email, this.loginForm.value.password);
             await this.router.navigate(['/']);
         } catch (e) {
-            this.toastr.error('Ungültige E-Mail Adresse oder Passwort.')
+            this.toastr.error('Ungültige E-Mail Adresse oder Passwort.');
         }
     }
 

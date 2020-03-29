@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
-import {InvoiceService} from "../../service/api/invoice.service";
-import {Invoice} from "../../models/invoice.model";
-import {OrderService} from "../../service/api/order.service";
-import {Order} from "../../models/order.model";
+import {Router} from '@angular/router';
+import {InvoiceService} from '../../service/api/invoice.service';
+import {Invoice} from '../../models/invoice.model';
+import {OrderService} from '../../service/api/order.service';
+import {Order} from '../../models/order.model';
 
 @Component({
     selector: 'invoices',
@@ -11,8 +11,8 @@ import {Order} from "../../models/order.model";
 })
 export class InvoicesComponent implements OnInit {
 
-    isLoadingInvoices: boolean = true;
-    isLoadingPendingOrders: boolean = true;
+    isLoadingInvoices = true;
+    isLoadingPendingOrders = true;
     invoices: Invoice[];
     pendingOrders: Order[];
 
@@ -41,10 +41,10 @@ export class InvoicesComponent implements OnInit {
     }
 
     onOrderClick(order: Order) {
-        this.router.navigate(['/user/order/' + order.id])
+        this.router.navigate(['/user/order/' + order.id]);
     }
 
     onInvoiceClick(invoice: Invoice) {
-        this.router.navigate(['/user/invoice/' + invoice.id])
+        this.router.navigate(['/user/invoice/' + invoice.id]);
     }
 }

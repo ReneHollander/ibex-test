@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {ApiClient} from "./apiclient.service";
-import {NewsletterRegistration} from "../../models/newsletter.model";
+import {ApiClient} from './apiclient.service';
+import {NewsletterRegistration} from '../../models/newsletter.model';
 
 @Injectable()
 export class NewsletterService {

@@ -2,24 +2,9 @@ import {Operator} from 'rxjs/Operator';
 import {Observable} from 'rxjs/Observable';
 import {Subscriber} from 'rxjs/Subscriber';
 import {OperatorFunction} from 'rxjs/interfaces';
-import {ClassType} from "class-transformer/ClassTransformer";
-import {plainToClass} from "class-transformer";
-import {FormGroup} from "@angular/forms";
-
-export function plainToClassOp<T, R>(cls: ClassType<R>): OperatorFunction<T, R> {
-    return function mapOperation(source: Observable<T>): Observable<R> {
-        return source.lift(new PlainToClassOperator(cls));
-    };
-}
-
-export class PlainToClassOperator<T, R> implements Operator<T, R> {
-    constructor(private cls: ClassType<R>) {
-    }
-
-    call(subscriber: Subscriber<R>, source: any): any {
-        return source.subscribe(new PlainToClassSubscriber(subscriber, this.cls));
-    }
-}
+import {ClassType} from 'class-transformer/ClassTransformer';
+import {plainToClass} from 'class-transformer';
+import {FormGroup} from '@angular/forms';
 
 class PlainToClassSubscriber<T, R> extends Subscriber<T> {
     constructor(destination: Subscriber<R>, private cls: ClassType<R>) {
@@ -39,19 +24,19 @@ class PlainToClassSubscriber<T, R> extends Subscriber<T> {
     }
 }
 
-export function plainToClassArrayOp<T extends Array<any>, R>(cls: ClassType<R>): OperatorFunction<T, R[]> {
-    return function mapOperation(source: Observable<T>): Observable<R[]> {
-        return source.lift(new PlainToClassArrayOperator(cls));
-    };
-}
-
-export class PlainToClassArrayOperator<T extends Array<any>, R> implements Operator<T, R[]> {
+export class PlainToClassOperator<T, R> implements Operator<T, R> {
     constructor(private cls: ClassType<R>) {
     }
 
-    call(subscriber: Subscriber<R[]>, source: any): any {
-        return source.subscribe(new PlainToClassArraySubscriber(subscriber, this.cls));
+    call(subscriber: Subscriber<R>, source: any): any {
+        return source.subscribe(new PlainToClassSubscriber(subscriber, this.cls));
     }
+}
+
+export function plainToClassOp<T, R>(cls: ClassType<R>): OperatorFunction<T, R> {
+    return function mapOperation(source: Observable<T>): Observable<R> {
+        return source.lift(new PlainToClassOperator(cls));
+    };
 }
 
 class PlainToClassArraySubscriber<T extends Array<any>, R> extends Subscriber<T> {
@@ -72,6 +57,21 @@ class PlainToClassArraySubscriber<T extends Array<any>, R> extends Subscriber<T>
     }
 }
 
+export class PlainToClassArrayOperator<T extends Array<any>, R> implements Operator<T, R[]> {
+    constructor(private cls: ClassType<R>) {
+    }
+
+    call(subscriber: Subscriber<R[]>, source: any): any {
+        return source.subscribe(new PlainToClassArraySubscriber(subscriber, this.cls));
+    }
+}
+
+export function plainToClassArrayOp<T extends Array<any>, R>(cls: ClassType<R>): OperatorFunction<T, R[]> {
+    return function mapOperation(source: Observable<T>): Observable<R[]> {
+        return source.lift(new PlainToClassArrayOperator(cls));
+    };
+}
+
 export class CachedValue<T> {
     private _value: T;
     private time: number;
@@ -87,7 +87,7 @@ export class CachedValue<T> {
             this._value = await this.supplier();
             this.time = Date.now();
             this.loading = false;
-            for (let f of this.waiting) {
+            for (const f of this.waiting) {
                 f(this._value);
             }
         }
@@ -103,19 +103,25 @@ export class CachedValue<T> {
 
 export function validateEqual(key1: string, key2: string) {
     return (group: FormGroup) => {
-        let control1 = group.controls[key1];
-        let control2 = group.controls[key2];
+        const control1 = group.controls[key1];
+        const control2 = group.controls[key2];
         let errors = control2.errors;
-        if (!errors) errors = {};
+        if (!errors) {
+            errors = {};
+        }
         if (control1.value !== control2.value) {
             errors.equal = false;
         } else {
             delete errors.equal;
-            if (Object.keys(errors).length == 0) errors = null;
+            if (Object.keys(errors).length === 0) {
+                errors = null;
+            }
         }
-        if (control2.pristine && !control1.pristine) control2.markAsDirty();
+        if (control2.pristine && !control1.pristine) {
+            control2.markAsDirty();
+        }
         control2.setErrors(errors);
-    }
+    };
 }
 
 export function serializeType<T>(object: T) {

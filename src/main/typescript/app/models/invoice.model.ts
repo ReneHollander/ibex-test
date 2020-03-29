@@ -1,8 +1,8 @@
-import {Type} from "class-transformer";
-import {Order} from "./order.model";
-import {serializeType} from "../util";
-import {ProductAmount} from "./product.model";
-import {DeliveryFeeAmount} from "./city.model";
+import {Type} from 'class-transformer';
+import {Order} from './order.model';
+import {serializeType} from '../util';
+import {ProductAmount} from './product.model';
+import {DeliveryFeeAmount} from './city.model';
 
 export class Invoice {
     id?: number;

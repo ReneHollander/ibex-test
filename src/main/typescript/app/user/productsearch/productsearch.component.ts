@@ -1,10 +1,10 @@
 import {Component, forwardRef, Input, ViewChild} from '@angular/core';
-import {Product} from "../../models/product.model";
-import {NgbTypeahead} from "@ng-bootstrap/ng-bootstrap";
+import {Product} from '../../models/product.model';
+import {NgbTypeahead} from '@ng-bootstrap/ng-bootstrap';
 import {Observable} from 'rxjs/Observable';
 import {debounceTime, distinctUntilChanged, filter, map, merge} from 'rxjs/operators';
 import {Subject} from 'rxjs/Subject';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
     selector: 'product-search',
@@ -24,14 +24,14 @@ export class ProductSearchComponent implements ControlValueAccessor {
 
     public productModel: Product;
     @Input()
-    placeholderEmpty: string = "";
+    placeholderEmpty = '';
     @ViewChild('instance') instance: NgbTypeahead;
     focus$ = new Subject<string>();
     click$ = new Subject<string>();
     onChange = (product: Product) => {
-    };
+    }
     onTouched = () => {
-    };
+    }
     productSearch = (text$: Observable<string>) =>
         text$
             .pipe(debounceTime(200))
@@ -39,10 +39,10 @@ export class ProductSearchComponent implements ControlValueAccessor {
             .pipe(merge(this.focus$))
             .pipe(merge(this.click$.pipe(filter(() => !this.instance.isPopupOpen()))))
             .pipe(map(term => term === '' ? this.products
-                : this.products.filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)));
+                : this.products.filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)))
     productFormatter = (x: { name: string }) => x.name;
 
-    private _placeholder: string = "";
+    private _placeholder = '';
 
     get placeholder(): string {
         return this.disabled ? this.placeholderEmpty : this._placeholder;
@@ -53,7 +53,7 @@ export class ProductSearchComponent implements ControlValueAccessor {
         this._placeholder = str;
     }
 
-    private _disabled: boolean = false;
+    private _disabled = false;
 
     get disabled() {
         return this._disabled || this.products.length == 0;
@@ -74,7 +74,7 @@ export class ProductSearchComponent implements ControlValueAccessor {
 
     writeValue(obj: any): void {
         this.productModel = obj;
-        this.onChange(this.productModel)
+        this.onChange(this.productModel);
     }
 
     registerOnChange(fn: (product: Product) => void): void {

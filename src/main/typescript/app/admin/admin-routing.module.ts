@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {OrderSummaryComponent} from "./ordersummary/ordersummary.component";
-import {AuthGuardAdmin} from "../service/guard/auth-guard-admin.service";
+import {OrderSummaryComponent} from './ordersummary/ordersummary.component';
+import {AuthGuardAdmin} from '../service/guard/auth-guard-admin.service';
 
 const routes: Routes = [
     {path: 'ordersummary', component: OrderSummaryComponent, canActivate: [AuthGuardAdmin]},
