@@ -62,16 +62,16 @@
 <div class="container footer-container">
     <div class="row">
         <div class="col-auto mr-auto ">
-            <ngx-toggle
+            <ng-toggle
                     onColor="success"
                     offColor="danger"
                     [(value)]="enabled"
                     [disabled]="recurringOrder.items.length == 0">
-                <ng-template ngxToggleLabel forLabel="off">Lieferung deaktiviert</ng-template>
-                <ng-template ngxToggleLabel forLabel="on">
+                <ng-template ngToggleLabel forLabel="off">Lieferung deaktiviert</ng-template>
+                <ng-template ngToggleLabel forLabel="on">
                     Lieferung aktiviert
                 </ng-template>
-            </ngx-toggle>
+            </ng-toggle>
             <span *ngIf="enabled">
                 bis {{recurringOrder.deliverySlot.deliverBy}} Uhr
             </span>

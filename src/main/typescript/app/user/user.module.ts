@@ -8,7 +8,7 @@ import {RecurringOrderComponent} from './recurringorder/recurringorder.component
 import {ProductSearchComponent} from './productsearch/productsearch.component';
 import {RecurringOrderRowComponent} from './recurringorderrow/recurringorderrow.component';
 import {TabsModule} from 'ngx-bootstrap';
-import {NgxToggleModule} from 'ngx-toggle';
+import {NgToggleModule} from '@nth-cloud/ng-toggle';
 import {NgbTypeaheadModule} from '@ng-bootstrap/ng-bootstrap';
 import {UserRoutingModule} from './user-routing.module';
 
@@ -17,7 +17,7 @@ import {UserRoutingModule} from './user-routing.module';
         SharedModule,
         TabsModule.forRoot(),
         NgbTypeaheadModule.forRoot(),
-        NgxToggleModule,
+        NgToggleModule,
         UserRoutingModule,
     ],
     declarations: [

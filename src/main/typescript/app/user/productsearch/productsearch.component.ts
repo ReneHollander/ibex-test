@@ -3,7 +3,7 @@ import {Product} from '../../models/product.model';
 import {Observable, Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged, filter, map, merge} from 'rxjs/operators';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import { NgbTypeahead } from "@ng-bootstrap/ng-bootstrap";
+import {NgbTypeahead} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'product-search',
@@ -28,9 +28,9 @@ export class ProductSearchComponent implements ControlValueAccessor {
     focus$ = new Subject<string>();
     click$ = new Subject<string>();
     onChange = (product: Product) => {
-    }
+    };
     onTouched = () => {
-    }
+    };
     productSearch = (text$: Observable<string>) =>
         text$
             .pipe(debounceTime(200))
@@ -38,7 +38,7 @@ export class ProductSearchComponent implements ControlValueAccessor {
             .pipe(merge(this.focus$))
             .pipe(merge(this.click$.pipe(filter(() => !this.instance.isPopupOpen()))))
             .pipe(map(term => term === '' ? this.products
-                : this.products.filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)))
+                : this.products.filter(v => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)));
     productFormatter = (x: { name: string }) => x.name;
 
     private _placeholder = '';
