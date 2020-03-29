@@ -1,10 +1,9 @@
 import {Component, forwardRef, Input, ViewChild} from '@angular/core';
 import {Product} from '../../models/product.model';
-import {NgbTypeahead} from '@ng-bootstrap/ng-bootstrap';
-import {Observable} from 'rxjs/Observable';
+import {Observable, Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged, filter, map, merge} from 'rxjs/operators';
-import {Subject} from 'rxjs/Subject';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import { NgbTypeahead } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
     selector: 'product-search',

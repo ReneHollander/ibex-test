@@ -1,7 +1,4 @@
-import {Operator} from 'rxjs/Operator';
-import {Observable} from 'rxjs/Observable';
-import {Subscriber} from 'rxjs/Subscriber';
-import {OperatorFunction} from 'rxjs/interfaces';
+import {Operator, Observable, Subscriber, OperatorFunction} from 'rxjs';
 import {ClassType} from 'class-transformer/ClassTransformer';
 import {plainToClass} from 'class-transformer';
 import {FormGroup} from '@angular/forms';
