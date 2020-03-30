@@ -16,7 +16,7 @@ import {UserRoutingModule} from './user-routing.module';
     imports: [
         SharedModule,
         TabsModule.forRoot(),
-        NgbTypeaheadModule.forRoot(),
+        NgbTypeaheadModule,
         NgToggleModule,
         UserRoutingModule,
     ],

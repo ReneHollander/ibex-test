@@ -55,7 +55,7 @@ export class ProductSearchComponent implements ControlValueAccessor {
     private _disabled = false;
 
     get disabled() {
-        return this._disabled || this.products.length == 0;
+        return this._disabled || this.products.length === 0;
     }
 
     @Input()

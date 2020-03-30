@@ -27,11 +27,11 @@ export class AuthService {
     }
 
     get isAdmin(): boolean {
-        return this.isLoggedIn && this._user.role == Role.ADMIN;
+        return this.isLoggedIn && this._user.role === Role.ADMIN;
     }
 
     async initial(): Promise<boolean> {
-        if (this._user == null) {
+        if (this._user === null) {
             try {
                 this._user = await this.loginService.initial();
                 this._loggedIn = true;
