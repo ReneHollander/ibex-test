@@ -29,7 +29,6 @@
     "@ng-bootstrap/ng-bootstrap": "^4.2.2",
     "@nth-cloud/ng-toggle": "^3.0.3",
     "@types/deep-equal": "^1.0.1",
-    "acorn": "^6.4.1",
     "bootstrap": "^4.4.1",
     "class-transformer": "^0.2.3",
     "ibantools": "^2.2.0",
