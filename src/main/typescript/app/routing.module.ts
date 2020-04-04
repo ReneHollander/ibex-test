@@ -11,11 +11,15 @@ import {AuthGuardLoggedIn} from './service/guard/auth-guard-loggedin.service';
 import {ImpressComponent} from './main/impress/impress.component';
 import {AuthGuardUser} from './service/guard/auth-guard-login.service';
 import {BuildInformationComponent} from './main/buildinfo/build-information.component';
+import {UserModule} from './user/user.module';
+import {AdminModule} from './admin/admin.module';
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
-    {path: 'user', loadChildren: () => import('app/user/user.module').then(m => m.UserModule), canActivate: [AuthGuardUser]},
-    {path: 'admin', loadChildren: () => import('app/admin/admin.module').then(m => m.AdminModule), canActivate: [AuthGuardAdmin]},
+    // TODO: Fix loadChildren to lazy load the other modules
+    //      import('./user/user.module').then(m => m.UserModule)
+    {path: 'user', loadChildren: () => UserModule, canActivate: [AuthGuardUser]},
+    {path: 'admin', loadChildren: () => AdminModule, canActivate: [AuthGuardAdmin]},
     {path: 'login', component: LoginComponent},
     {path: 'logout', component: LogoutComponent},
     {path: 'register', component: RegisterComponent},
