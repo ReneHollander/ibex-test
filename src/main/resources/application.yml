@@ -36,7 +36,7 @@ spring:
   session:
     store-type: jdbc
   datasource:
-    url: jdbc:mysql://localhost:3306/ibex
+    url: jdbc:mysql://localhost:3306/ibex?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
     username: ibex
     password: ibex
 

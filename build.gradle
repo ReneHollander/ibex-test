@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.0.0.RELEASE'
+        springBootVersion = '2.2.6.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -18,7 +18,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group = 'at.hollander'
-sourceCompatibility = 1.8
+sourceCompatibility = 1.13
 version = System.getenv('IBEX_BUILD_VERSION_TAG') ?: '00000000-0'
 
 ext {
@@ -27,7 +27,7 @@ ext {
 }
 
 bootJar {
-    archiveName = 'ibex.jar'
+    archiveFileName = 'ibex.jar'
     manifest {
         attributes 'Implementation-Title': 'Ibex Backend',
                 'Implementation-Version': System.getenv('IBEX_BUILD_VERSION_TAG') ?: '00000000-0',
@@ -50,30 +50,33 @@ repositories {
 
 dependencies {
     if (speed) {
-        compile fileTree(dir: offlineCompile, include: '*.jar')
+        implementation fileTree(dir: offlineCompile, include: '*.jar')
     } else {
-        compileOnly('org.projectlombok:lombok:1.16.20')
+        compileOnly 'org.projectlombok:lombok:1.18.12'
+        annotationProcessor 'org.projectlombok:lombok:1.18.12'
+        testCompileOnly 'org.projectlombok:lombok:1.18.12'
+        testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 
-        compile('com.google.guava:guava:24.1-jre')
-        compile('commons-io:commons-io:2.6')
-        compile('org.jooq:jool-java-8:0.9.13')
+        implementation('com.google.guava:guava:28.2-jre')
+        implementation('commons-io:commons-io:2.6')
+        implementation('org.jooq:jool:0.9.14')
 
-        compile('com.itextpdf:itextpdf:5.5.13')
+        implementation('com.itextpdf:itextpdf:5.5.13.1')
 
-        runtime('mysql:mysql-connector-java:5.1.46')
-        compile('redis.clients:jedis:2.9.0')
-        compile('org.flywaydb:flyway-core:5.0.7')
+        runtimeOnly('mysql:mysql-connector-java:8.0.19')
+        implementation('redis.clients:jedis:3.2.0')
+        implementation('org.flywaydb:flyway-core:6.3.2')
 
-        compile('org.springframework.boot:spring-boot-starter-data-jpa')
-        compile('org.springframework.boot:spring-boot-starter-security')
-        compile('org.springframework.boot:spring-boot-starter-validation')
-        compile('org.springframework.boot:spring-boot-starter-web')
-        testCompile('org.springframework.boot:spring-boot-starter-test')
+        implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+        implementation('org.springframework.boot:spring-boot-starter-security')
+        implementation('org.springframework.boot:spring-boot-starter-validation')
+        implementation('org.springframework.boot:spring-boot-starter-web')
+        testImplementation('org.springframework.boot:spring-boot-starter-test')
 
-        compile('org.springframework.session:spring-session-core:2.0.1.RELEASE')
-        compile('org.springframework.session:spring-session-jdbc:2.0.2.RELEASE')
-        compile('org.springframework.session:spring-session-data-redis:2.0.2.RELEASE')
-        compile('com.jcabi:jcabi-manifests:1.1')
+        implementation('org.springframework.session:spring-session-core:2.2.2.RELEASE')
+        implementation('org.springframework.session:spring-session-jdbc:2.2.2.RELEASE')
+        implementation('org.springframework.session:spring-session-data-redis:2.2.2.RELEASE')
+        implementation('com.jcabi:jcabi-manifests:1.1')
     }
 }
 
