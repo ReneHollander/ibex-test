@@ -14,8 +14,8 @@ import {BuildInformationComponent} from './main/buildinfo/build-information.comp
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
-    {path: 'user', loadChildren: 'app/user/user.module#UserModule', canActivate: [AuthGuardUser]},
-    {path: 'admin', loadChildren: 'app/admin/admin.module#AdminModule', canActivate: [AuthGuardAdmin]},
+    {path: 'user', loadChildren: () => import('app/user/user.module').then(m => m.UserModule), canActivate: [AuthGuardUser]},
+    {path: 'admin', loadChildren: () => import('app/admin/admin.module').then(m => m.AdminModule), canActivate: [AuthGuardAdmin]},
     {path: 'login', component: LoginComponent},
     {path: 'logout', component: LogoutComponent},
     {path: 'register', component: RegisterComponent},

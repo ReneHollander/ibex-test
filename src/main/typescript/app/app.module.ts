@@ -7,6 +7,7 @@ import {SharedModule} from './shared/shared.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
+import {ServiceModule} from './service/service.module';
 
 @NgModule({
     declarations: [
@@ -22,6 +23,7 @@ import {ToastrModule} from 'ngx-toastr';
         RoutingModule,
         SharedModule,
         MainModule,
+        ServiceModule,
     ],
     providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],

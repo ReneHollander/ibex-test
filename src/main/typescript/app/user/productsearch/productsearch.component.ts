@@ -24,7 +24,7 @@ export class ProductSearchComponent implements ControlValueAccessor {
     public productModel: Product;
     @Input()
     placeholderEmpty = '';
-    @ViewChild('instance') instance: NgbTypeahead;
+    @ViewChild('instance', { static: true }) instance: NgbTypeahead;
     focus$ = new Subject<string>();
     click$ = new Subject<string>();
     onChange = (product: Product) => {
