@@ -31,7 +31,7 @@ export class AuthService {
     }
 
     async initial(): Promise<boolean> {
-        if (this._user === null) {
+        if (!this._user) {
             try {
                 this._user = await this.loginService.initial();
                 this._loggedIn = true;
