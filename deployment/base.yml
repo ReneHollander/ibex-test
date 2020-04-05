@@ -2,15 +2,15 @@ version: '3.6'
 
 services:
   ibex-database:
-    image: mariadb:10
+    image: mariadb/server:10.4
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=ibex
-      - MYSQL_USER=ibex
-      - MYSQL_PASSWORD=ibex
+      - MARIADB_ROOT_PASSWORD=root
+      - MARIADB_DATABASE=ibex
+      - MARIADB_USER=ibex
+      - MARIADB_PASSWORD=ibex
     restart: always
   ibex-session-store:
-    image: redis:4
+    image: redis:5.0-alpine
     restart: always
   ibex-backend:
     depends_on:

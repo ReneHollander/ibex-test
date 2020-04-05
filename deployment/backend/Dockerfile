@@ -1,11 +1,10 @@
-FROM openjdk:8-jdk AS builder
+FROM adoptopenjdk/openjdk13:debian AS builder
 WORKDIR /root/
 COPY gradlew ./
 COPY gradle ./gradle
-RUN chmod +x ./gradlew && ./gradlew --no-daemon
+RUN chmod +x ./gradlew
 
 COPY settings.gradle build.gradle ./
-RUN ./gradlew downloadRepos --no-daemon
 
 ARG IBEX_BUILD_LONG_HASH=0000000000000000000000000000000000000000
 ARG IBEX_BUILD_SHORT_HASH=00000000
@@ -20,9 +19,9 @@ ENV IBEX_BUILD_LONG_HASH=$IBEX_BUILD_LONG_HASH IBEX_BUILD_SHORT_HASH=$IBEX_BUILD
 COPY src/main/resources ./src/main/resources
 COPY src/test/java ./src/test/java
 COPY src/main/java ./src/main/java
-RUN ./gradlew build --no-daemon -Pspeed=true
+RUN ./gradlew build
 
-FROM openjdk:8-jre-slim
+FROM adoptopenjdk/openjdk13:alpine-jre
 WORKDIR /root/
 COPY --from=builder /root/build/libs/ibex.jar ./ibex.jar
 EXPOSE 8080
