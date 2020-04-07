@@ -1,0 +1,45 @@
+on:
+  release:
+    types: [created]
+
+name: Deploy ibex
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Get git data
+      id: github_data
+      run: |
+        echo ::set-output name=SHA::$GITHUB_SHA
+        echo ::set-output name=REF::$GITHUB_REF
+        echo ::set-output name=TAG::$(echo $GITHUB_REF | cut -d / -f 3)
+        echo ::set-output name=RUN_ID::$GITHUB_RUN_ID
+        echo ::set-output name=RUN_NUMBER::$GITHUB_RUN_NUMBER
+
+    - name: Build and push frontend
+      uses: docker/build-push-action@v1
+      with:
+        repository: ibex/frontend
+        dockerfile: deployment/frontend/Dockerfile
+        push: false
+        always_pull: true
+        add_git_labels: true
+        build_args: IBEX_BUILD_GITHUB_SHA=1234,IBEX_BUILD_GITHUB_REF=${{ steps.github_data.outputs.REF }},IBEX_BUILD_GITHUB_TAG=${{ steps.github_data.outputs.TAG }},IBEX_BUILD_GITHUB_RUN_ID=${{ steps.github_data.outputs.RUN_ID }},IBEX_BUILD_GITHUB_RUN_NUMBER=${{ steps.github_data.outputs.RUN_NUMBER }}
+        tags: ${{ steps.github_data.outputs.SHA }},${{ steps.github_data.outputs.TAG }}
+
+    - name: Build and push backend
+      uses: docker/build-push-action@v1
+      with:
+        repository: ibex/backend
+        dockerfile: deployment/backend/Dockerfile
+        push: false
+        always_pull: true
+        add_git_labels: true
+        build_args: IBEX_BUILD_GITHUB_SHA=${{ steps.github_data.outputs.SHA }},IBEX_BUILD_GITHUB_REF=${{ steps.github_data.outputs.REF }},IBEX_BUILD_GITHUB_TAG=${{ steps.github_data.outputs.TAG }},IBEX_BUILD_GITHUB_RUN_ID=${{ steps.github_data.outputs.RUN_ID }},IBEX_BUILD_GITHUB_RUN_NUMBER=${{ steps.github_data.outputs.RUN_NUMBER }}
+        tags: ${{ steps.github_data.outputs.SHA }},${{ steps.github_data.outputs.TAG }}

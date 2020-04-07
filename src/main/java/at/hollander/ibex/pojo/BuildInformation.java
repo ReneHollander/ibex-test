@@ -6,11 +6,9 @@ import lombok.Getter;
 @Getter
 @Builder
 public class BuildInformation {
-    private String longHash;
-    private String shortHash;
-    private String branch;
-    private int jobId;
-    private String versionTag;
-    private String time;
-    private long timeMillis;
+    private String githubSha;
+    private String githubRef;
+    private String githubTag;
+    private long githubRunId;
+    private long githubRunNumber;
 }

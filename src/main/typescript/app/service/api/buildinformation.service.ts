@@ -2,13 +2,11 @@ import {Injectable} from '@angular/core';
 import {ApiClient} from './apiclient.service';
 import {BuildInformation} from '../../models/buildinformation.model';
 import {
-    IBEX_BUILD_BRANCH,
-    IBEX_BUILD_JOB_ID,
-    IBEX_BUILD_LONG_HASH,
-    IBEX_BUILD_SHORT_HASH,
-    IBEX_BUILD_TIME,
-    IBEX_BUILD_TIME_MILLIS,
-    IBEX_BUILD_VERSION_TAG
+    IBEX_BUILD_GITHUB_SHA,
+    IBEX_BUILD_GITHUB_REF,
+    IBEX_BUILD_GITHUB_TAG,
+    IBEX_BUILD_GITHUB_RUN_ID,
+    IBEX_BUILD_GITHUB_RUN_NUMBER,
 } from '../../../version';
 import {CachedValue} from '../../util';
 
@@ -27,13 +25,12 @@ export class BuildInformationService {
 
     async getFrontendBuildInformation(): Promise<BuildInformation> {
         return Promise.resolve(new BuildInformation(
-            IBEX_BUILD_LONG_HASH,
-            IBEX_BUILD_SHORT_HASH,
-            IBEX_BUILD_BRANCH,
-            IBEX_BUILD_JOB_ID,
-            IBEX_BUILD_VERSION_TAG,
-            IBEX_BUILD_TIME,
-            IBEX_BUILD_TIME_MILLIS));
+            IBEX_BUILD_GITHUB_SHA,
+            IBEX_BUILD_GITHUB_REF,
+            IBEX_BUILD_GITHUB_TAG,
+            IBEX_BUILD_GITHUB_RUN_ID,
+            IBEX_BUILD_GITHUB_RUN_NUMBER,
+        ));
     }
 
 }

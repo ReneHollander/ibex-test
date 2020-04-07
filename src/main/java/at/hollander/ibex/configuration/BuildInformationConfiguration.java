@@ -17,13 +17,11 @@ public class BuildInformationConfiguration {
     @Bean
     public BuildInformation buildInformation() throws IOException {
         return BuildInformation.builder()
-                .longHash(get("Ibex-Build-Long-Hash", "0000000000000000000000000000000000000000"))
-                .shortHash(get("Ibex-Build-Short-Hash", "00000000"))
-                .branch(get("Ibex-Build-Branch", "no_branch_supplied"))
-                .jobId(Integer.parseInt(get("Ibex-Build-Job-Id", "0")))
-                .versionTag(get("Ibex-Build-Version-Tag", "00000000-0"))
-                .time(get("Ibex-Build-Time", "1970-01-01T00:00:00Z"))
-                .timeMillis(Long.parseLong(get("Ibex-Build-Time-Millis", "0")))
+                .githubSha(get("Ibex-Build-Github-Sha", "0000000000000000000000000000000000000000"))
+                .githubRef(get("Ibex-Build-Github-Ref", "no_ref_specified"))
+                .githubTag(get("Ibex-Build-Github-Tag", "no_tag_specified"))
+                .githubRunId(Long.parseLong(get("Ibex-Build-Github-Run-Id", "0")))
+                .githubRunNumber(Long.parseLong(get("Ibex-Build-Github-Run-Number", "0")))
                 .build();
     }
 

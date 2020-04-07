@@ -1,7 +1,5 @@
-export const IBEX_BUILD_LONG_HASH = '0000000000000000000000000000000000000000';
-export const IBEX_BUILD_SHORT_HASH = '00000000';
-export const IBEX_BUILD_BRANCH = 'no_branch_supplied';
-export const IBEX_BUILD_JOB_ID = 0;
-export const IBEX_BUILD_VERSION_TAG = '00000000-0';
-export const IBEX_BUILD_TIME = '1970-01-01T00:00:00Z';
-export const IBEX_BUILD_TIME_MILLIS = 0;
+export const IBEX_BUILD_GITHUB_SHA = '0000000000000000000000000000000000000000';
+export const IBEX_BUILD_GITHUB_REF = 'no_ref_specified';
+export const IBEX_BUILD_GITHUB_TAG = 'no_tag_specified';
+export const IBEX_BUILD_GITHUB_RUN_ID = 0;
+export const IBEX_BUILD_GITHUB_RUN_NUMBER = 0;

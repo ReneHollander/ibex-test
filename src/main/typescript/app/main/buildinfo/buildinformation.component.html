@@ -5,23 +5,19 @@
     <div class="card-body">
         <h4>Frontend</h4>
         <p>
-            Long Hash: {{frontendBuildInformation.longHash}}<br>
-            Short Hash: {{frontendBuildInformation.shortHash}}<br>
-            Branch: {{frontendBuildInformation.branch}}<br>
-            Job ID: {{frontendBuildInformation.jobId}}<br>
-            Version Tag: {{frontendBuildInformation.versionTag}}<br>
-            Time: {{frontendBuildInformation.time}}<br>
-            Time Milliseconds: {{frontendBuildInformation.timeMillis}}
+            Commit: <a href="https://github.com/ReneHollander/ibex/commit/{{ frontendBuildInformation.githubSha }}">{{ frontendBuildInformation.githubSha }}</a><br>
+            Ref: {{frontendBuildInformation.githubRef}}<br>
+            Tag: <a href="https://github.com/ReneHollander/ibex/releases/tag/{{ frontendBuildInformation.githubTag }}">{{ frontendBuildInformation.githubTag }}</a><br>
+            Run ID: <a href="https://github.com/ReneHollander/ibex/actions/runs/{{ frontendBuildInformation.githubRunId }}">{{ frontendBuildInformation.githubRunId }}</a><br>
+            Run Number: {{ frontendBuildInformation.githubRunNumber }}<br>
         </p>
         <h4>Backend</h4>
         <p>
-            Long Hash: {{backendBuildInformation.longHash}}<br>
-            Short Hash: {{backendBuildInformation.shortHash}}<br>
-            Branch: {{backendBuildInformation.branch}}<br>
-            Job ID: {{backendBuildInformation.jobId}}<br>
-            Version Tag: {{backendBuildInformation.versionTag}}<br>
-            Time: {{backendBuildInformation.time}}<br>
-            Time Milliseconds: {{backendBuildInformation.timeMillis}}
+            Commit: <a href="https://github.com/ReneHollander/ibex/commit/{{ backendBuildInformation.githubSha }}">{{ backendBuildInformation.githubSha }}</a><br>
+            Ref: {{backendBuildInformation.githubRef}}<br>
+            Tag: <a href="https://github.com/ReneHollander/ibex/releases/tag/{{ backendBuildInformation.githubTag }}">{{ backendBuildInformation.githubTag }}</a><br>
+            Run ID: <a href="https://github.com/ReneHollander/ibex/actions/runs/{{ backendBuildInformation.githubRunId }}">{{ backendBuildInformation.githubRunId }}</a><br>
+            Run Number: {{ backendBuildInformation.githubRunNumber }}<br>
         </p>
     </div>
 </div>
